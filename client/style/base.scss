@@ -1,0 +1,12 @@
+body {}
+
+.uk-container {
+	padding: 0;
+}
+
+@media (min-width: 1220px) {
+	.uk-container {
+		max-width: 100%;
+		padding: 0;
+	}
+}

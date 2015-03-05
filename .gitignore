@@ -1,0 +1,4 @@
+node_modules/*
+.jsbeautifyrc
+.brackets.json
+npm-debug.log

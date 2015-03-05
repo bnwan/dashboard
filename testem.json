@@ -1,0 +1,13 @@
+{
+	"framework": "mocha",
+	"src_files": [
+    "client/**/*.js",
+    "tests/*.js",
+		"client/**/*.html",
+		"client/**/*.scss"
+  ],
+	"serve_files": ["test.bundle.js"],
+	"before_tests": "browserify -t html2js-browserify -t sassify test/index.js -o test.bundle.js -d",
+	"on_exit": "trash test.bundle.js",
+	"launch_in_dev": ["chrome"]
+}
