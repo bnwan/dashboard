@@ -21,13 +21,13 @@ domready(function () {
 	
 	app.init();
 });
-},{"./app-base":2,"./app-service-events":3,"./views/app-body":10,"ampersand-app":17,"domready":101}],2:[function(require,module,exports){
+},{"./app-base":2,"./app-service-events":3,"./views/app-body":10,"ampersand-app":17,"domready":94}],2:[function(require,module,exports){
 require('./style/base.scss');
 
 window.jQuery = require('jquery');
 
 require('./vendor/uikit/js/uikit.min.js');
-},{"./style/base.scss":6,"./vendor/uikit/js/uikit.min.js":8,"jquery":102}],3:[function(require,module,exports){
+},{"./style/base.scss":6,"./vendor/uikit/js/uikit.min.js":8,"jquery":95}],3:[function(require,module,exports){
 var app = require('ampersand-app');
 },{"ampersand-app":17}],4:[function(require,module,exports){
 var AmpersandCollection = require('ampersand-collection');
@@ -45,7 +45,7 @@ module.exports = AmpersandState.extend({
 });
 },{"ampersand-state":70}],6:[function(require,module,exports){
 var css = "\n.uk-container {\n  padding: 0; }\n\n@media (min-width: 1220px) {\n  .uk-container {\n    max-width: 100%;\n    padding: 0; } }\n";(require('sassify'))(css); module.exports = css;
-},{"sassify":103}],7:[function(require,module,exports){
+},{"sassify":96}],7:[function(require,module,exports){
 /*! UIkit 2.17.0 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
 !function(t){var i;window.UIkit&&(i=t(UIkit)),"function"==typeof define&&define.amd&&define("uikit-grid",["uikit"],function(){return i||t(UIkit)})}(function(t){"use strict";function i(t){return e(t)}t.component("grid",{defaults:{colwidth:"auto",animation:!0,duration:300,gutter:0,controls:!1},boot:function(){t.ready(function(i){t.$("[data-uk-grid]",i).each(function(){var i=t.$(this);if(!i.data("grid")){t.grid(i,t.Utils.options(i.attr("data-uk-grid")))}})})},init:function(){var i=this;if(this.element.css({position:"relative"}),this.options.controls){var e=t.$(this.options.controls),n="uk-active";e.on("click","[data-uk-filter]",function(o){o.preventDefault(),i.filter(t.$(this).data("ukFilter")),e.find("[data-uk-filter]").removeClass(n).filter(this).addClass(n)}),e.on("click","[data-uk-sort]",function(o){o.preventDefault();var r=t.$(this).attr("data-uk-sort").split(":");i.sort(r[0],r[1]),e.find("[data-uk-sort]").removeClass(n).filter(this).addClass(n)})}t.$win.on("load resize orientationchange",t.Utils.debounce(function(){this.updateLayout()}.bind(this),100)),this.updateLayout(),this.on("display.uk.check",function(){i.element.is(":visible")&&i.updateLayout()}),t.$html.on("changed.uk.dom",function(){i.updateLayout()})},_prepareElements:function(){var t,i=this.element.children(":not([data-grid-prepared])");i.length&&(t={position:"absolute","box-sizing":"border-box",width:"auto"==this.options.colwidth?"":this.options.colwidth},this.options.gutter&&(t["padding-left"]=this.options.gutter,t["padding-bottom"]=this.options.gutter,this.element.css("margin-left",-1*this.options.gutter)),i.attr("data-grid-prepared","true").css(t))},updateLayout:function(e){this._prepareElements(),e=e||this.element.children(":visible");var n,o,r,a,d,s,h,u,f=this.options.gutter,l=e,p=this.element.width()+2*f+2,c=0,g=0,m=[];this.trigger("beforeupdate.uk.grid",[l]),l.each(function(){for(u=i(this),n=t.$(this),o=u.outerWidth,r=u.outerHeight,c=0,g=0,d=0,h=m.length;h>d;d++)a=m[d],c<=a.aX&&(c=a.aX),c+o>p&&(c=0),g<=a.aY&&(g=a.aY);m.push({ele:n,top:g,left:c,width:o,height:r,aY:g+r,aX:c+o})});var v,b=0;for(d=0,h=m.length;h>d;d++){for(a=m[d],g=0,s=0;d>s;s++)v=m[s],a.left<v.aX&&v.left+1<a.aX&&(g=v.aY);a.top=g,a.aY=g+a.height,b=Math.max(b,a.aY)}b-=f,this.options.animation?(this.element.stop().animate({height:b},100),m.forEach(function(t){t.ele.stop().animate({top:t.top,left:t.left,opacity:1},this.options.duration)}.bind(this))):(this.element.css("height",b),m.forEach(function(t){t.ele.css({top:t.top,left:t.left,opacity:1})}.bind(this))),this.trigger("afterupdate.uk.grid",[l])},filter:function(i){i=i||[],"string"==typeof i&&(i=i.split(/,/).map(function(t){return t.trim()}));var e=this,n=this.element.children(),o={visible:[],hidden:[]};n.each(function(){var e=t.$(this),n=e.attr("data-uk-filter"),r=i.length?!1:!0;n&&(n=n.split(/,/).map(function(t){return t.trim()}),i.forEach(function(t){n.indexOf(t)>-1&&(r=!0)})),o[r?"visible":"hidden"].push(e)}),o.hidden=t.$(o.hidden).map(function(){return this[0]}),o.visible=t.$(o.visible).map(function(){return this[0]}),o.hidden.filter(":visible").fadeOut(this.options.duration),o.visible.filter(":hidden").css("opacity",0).show(),e.updateLayout(o.visible)},sort:function(i,e){e=e||1,"string"==typeof e&&(e="desc"==e.toLowerCase()?-1:1);var n=this.element.children();n.sort(function(n,o){return n=t.$(n),o=t.$(o),(o.data(i)||"")<(n.data(i)||"")?e:-1*e}).appendTo(this.element),this.updateLayout(n.filter(":visible"))}});var e=function(){function t(t){if(t){if("string"==typeof u[t])return t;t=t.charAt(0).toUpperCase()+t.slice(1);for(var i,e=0,n=h.length;n>e;e++)if(i=h[e]+t,"string"==typeof u[i])return i}}function i(t){var i=parseFloat(t),e=-1===t.indexOf("%")&&!isNaN(i);return e&&i}function e(){}function n(){for(var t={width:0,height:0,innerWidth:0,innerHeight:0,outerWidth:0,outerHeight:0},i=0,e=l.length;e>i;i++){var n=l[i];t[n]=0}return t}function o(){if(!p){p=!0;var e=window.getComputedStyle;if(a=function(){var t=e?function(t){return e(t,null)}:function(t){return t.currentStyle};return function(i){var e=t(i);return e||f("Style returned "+e+". Are you running this code in a hidden iframe on Firefox? See http://bit.ly/getsizebug1"),e}}(),d=t("boxSizing")){var n=document.createElement("div");n.style.width="200px",n.style.padding="1px 2px 3px 4px",n.style.borderStyle="solid",n.style.borderWidth="1px 2px 3px 4px",n.style[d]="border-box";var o=document.body||document.documentElement;o.appendChild(n);var r=a(n);s=200===i(r.width),o.removeChild(n)}}}function r(t){if(o(),"string"==typeof t&&(t=document.querySelector(t)),t&&"object"==typeof t&&t.nodeType){var e=a(t);if("none"===e.display)return n();var r={};r.width=t.offsetWidth,r.height=t.offsetHeight;for(var h=r.isBorderBox=!(!d||!e[d]||"border-box"!==e[d]),u=0,f=l.length;f>u;u++){var p=l[u],c=e[p],g=parseFloat(c);r[p]=isNaN(g)?0:g}var m=r.paddingLeft+r.paddingRight,v=r.paddingTop+r.paddingBottom,b=r.marginLeft+r.marginRight,y=r.marginTop+r.marginBottom,k=r.borderLeftWidth+r.borderRightWidth,w=r.borderTopWidth+r.borderBottomWidth,x=h&&s,W=i(e.width);W!==!1&&(r.width=W+(x?0:m+k));var L=i(e.height);return L!==!1&&(r.height=L+(x?0:v+w)),r.innerWidth=r.width-(m+k),r.innerHeight=r.height-(v+w),r.outerWidth=r.width+b,r.outerHeight=r.height+y,r}}var a,d,s,h="Webkit Moz ms Ms O".split(" "),u=document.documentElement.style,f="undefined"==typeof console?e:function(t){console.error(t)},l=["paddingLeft","paddingRight","paddingTop","paddingBottom","marginLeft","marginRight","marginTop","marginBottom","borderLeftWidth","borderRightWidth","borderTopWidth","borderBottomWidth"],p=!1;return r}()});
 },{}],8:[function(require,module,exports){
@@ -4237,7 +4237,7 @@ _.extend(View.prototype, {
 View.extend = BaseState.extend;
 module.exports = View;
 
-},{"ampersand-collection-view":77,"ampersand-dom-bindings":83,"ampersand-state":86,"domify":92,"events-mixin":93,"get-object-path":98,"matches-selector":99,"underscore":100}],77:[function(require,module,exports){
+},{"ampersand-collection-view":77,"ampersand-dom-bindings":82,"ampersand-state":70,"domify":85,"events-mixin":86,"get-object-path":91,"matches-selector":92,"underscore":93}],77:[function(require,module,exports){
 ;if (typeof window !== "undefined") {  window.ampersand = window.ampersand || {};  window.ampersand["ampersand-collection-view"] = window.ampersand["ampersand-collection-view"] || [];  window.ampersand["ampersand-collection-view"].push("1.2.1");}
 var _ = require('underscore');
 var BBEvents = require('backbone-events-standalone');
@@ -4399,7 +4399,7 @@ CollectionView.extend = ampExtend;
 
 module.exports = CollectionView;
 
-},{"ampersand-class-extend":78,"backbone-events-standalone":81,"underscore":82}],78:[function(require,module,exports){
+},{"ampersand-class-extend":78,"backbone-events-standalone":81,"underscore":93}],78:[function(require,module,exports){
 arguments[4][65][0].apply(exports,arguments)
 },{"dup":65,"extend-object":79}],79:[function(require,module,exports){
 arguments[4][68][0].apply(exports,arguments)
@@ -4685,6 +4685,895 @@ arguments[4][68][0].apply(exports,arguments)
 },{}],81:[function(require,module,exports){
 arguments[4][67][0].apply(exports,arguments)
 },{"./backbone-events-standalone":80,"dup":67}],82:[function(require,module,exports){
+;if (typeof window !== "undefined") {  window.ampersand = window.ampersand || {};  window.ampersand["ampersand-dom-bindings"] = window.ampersand["ampersand-dom-bindings"] || [];  window.ampersand["ampersand-dom-bindings"].push("3.3.3");}
+var Store = require('key-tree-store');
+var dom = require('ampersand-dom');
+var matchesSelector = require('matches-selector');
+
+
+// returns a key-tree-store of functions
+// that can be applied to any element/model.
+
+// all resulting functions should be called
+// like func(el, value, lastKeyName)
+module.exports = function (bindings, context) {
+    var store = new Store();
+    var key, current;
+
+    for (key in bindings) {
+        current = bindings[key];
+        if (typeof current === 'string') {
+            store.add(key, getBindingFunc({
+                type: 'text',
+                selector: current
+            }));
+        } else if (current.forEach) {
+            current.forEach(function (binding) {
+                store.add(key, getBindingFunc(binding, context));
+            });
+        } else {
+            store.add(key, getBindingFunc(current, context));
+        }
+    }
+
+    return store;
+};
+
+
+var slice = Array.prototype.slice;
+
+function getMatches(el, selector) {
+    if (selector === '') return [el];
+    var matches = [];
+    if (matchesSelector(el, selector)) matches.push(el);
+    return matches.concat(slice.call(el.querySelectorAll(selector)));
+}
+
+function makeArray(val) {
+    return Array.isArray(val) ? val : [val];
+}
+
+function getBindingFunc(binding, context) {
+    var type = binding.type || 'text';
+    var isCustomBinding = typeof type === 'function';
+    var selector = (function () {
+        if (typeof binding.selector === 'string') {
+            return binding.selector;
+        } else if (binding.hook) {
+            return '[data-hook~="' + binding.hook + '"]';
+        } else {
+            return '';
+        }
+    })();
+    var yes = binding.yes;
+    var no = binding.no;
+    var hasYesNo = !!(yes || no);
+
+    // storage variable for previous if relevant
+    var previousValue;
+
+    if (isCustomBinding) {
+        return function (el, value) {
+            getMatches(el, selector).forEach(function (match) {
+                type.call(context, match, value, previousValue);
+            });
+            previousValue = value;
+        };
+    } else if (type === 'text') {
+        return function (el, value) {
+            getMatches(el, selector).forEach(function (match) {
+                dom.text(match, value);
+            });
+        };
+    } else if (type === 'class') {
+        return function (el, value) {
+            getMatches(el, selector).forEach(function (match) {
+                dom.switchClass(match, previousValue, value);
+            });
+            previousValue = value;
+        };
+    } else if (type === 'attribute') {
+        if (!binding.name) throw Error('attribute bindings must have a "name"');
+        return function (el, value) {
+            var names = makeArray(binding.name);
+            getMatches(el, selector).forEach(function (match) {
+                names.forEach(function (name) {
+                    dom.setAttribute(match, name, value);
+                });
+            });
+            previousValue = value;
+        };
+    } else if (type === 'value') {
+        return function (el, value) {
+            getMatches(el, selector).forEach(function (match) {
+                if (!value && value !== 0) value = '';
+                // only apply bindings if element is not currently focused
+                if (document.activeElement !== match) match.value = value;
+            });
+            previousValue = value;
+        };
+    } else if (type === 'booleanClass') {
+        // if there's a `no` case this is actually a switch
+        if (hasYesNo) {
+            yes = makeArray(yes || '');
+            no = makeArray(no || '');
+            return function (el, value) {
+                var prevClass = value ? no : yes;
+                var newClass = value ? yes : no;
+                getMatches(el, selector).forEach(function (match) {
+                    prevClass.forEach(function (pc) {
+                        dom.removeClass(match, pc);
+                    });
+                    newClass.forEach(function (nc) {
+                        dom.addClass(match, nc);
+                    });
+                });
+            };
+        } else {
+            return function (el, value, keyName) {
+                var name = makeArray(binding.name || keyName);
+                getMatches(el, selector).forEach(function (match) {
+                    name.forEach(function (className) {
+                        dom[value ? 'addClass' : 'removeClass'](match, className);
+                    });
+                });
+            };
+        }
+    } else if (type === 'booleanAttribute') {
+        return function (el, value, keyName) {
+            var name = makeArray(binding.name || keyName);
+            getMatches(el, selector).forEach(function (match) {
+                name.forEach(function (attr) {
+                    dom[value ? 'addAttribute' : 'removeAttribute'](match, attr);
+                });
+            });
+        };
+    } else if (type === 'toggle') {
+        // this doesn't require a selector since we can pass yes/no selectors
+        if (hasYesNo) {
+            return function (el, value) {
+                getMatches(el, yes).forEach(function (match) {
+                    dom[value ? 'show' : 'hide'](match);
+                });
+                getMatches(el, no).forEach(function (match) {
+                    dom[value ? 'hide' : 'show'](match);
+                });
+            };
+        } else {
+            return function (el, value) {
+                getMatches(el, selector).forEach(function (match) {
+                    dom[value ? 'show' : 'hide'](match);
+                });
+            };
+        }
+    } else if (type === 'switch') {
+        if (!binding.cases) throw Error('switch bindings must have "cases"');
+        return function (el, value) {
+            for (var item in binding.cases) {
+                getMatches(el, binding.cases[item]).forEach(function (match) {
+                    dom[value === item ? 'show' : 'hide'](match);
+                });
+            }
+        };
+    } else if (type === 'innerHTML') {
+        return function (el, value) {
+            getMatches(el, selector).forEach(function (match) {
+                dom.html(match, value);
+            });
+        };
+    } else if (type === 'switchClass') {
+        if (!binding.cases) throw Error('switchClass bindings must have "cases"');
+        return function (el, value, keyName) {
+            var name = makeArray(binding.name || keyName);
+            for (var item in binding.cases) {
+                getMatches(el, binding.cases[item]).forEach(function (match) {
+                    name.forEach(function (className) {
+                        dom[value === item ? 'addClass' : 'removeClass'](match, className);
+                    });
+                });
+            }
+        };
+    } else {
+        throw new Error('no such binding type: ' + type);
+    }
+}
+
+},{"ampersand-dom":83,"key-tree-store":84,"matches-selector":92}],83:[function(require,module,exports){
+;if (typeof window !== "undefined") {  window.ampersand = window.ampersand || {};  window.ampersand["ampersand-dom"] = window.ampersand["ampersand-dom"] || [];  window.ampersand["ampersand-dom"].push("1.2.7");}
+var dom = module.exports = {
+    text: function (el, val) {
+        el.textContent = getString(val);
+    },
+    // optimize if we have classList
+    addClass: function (el, cls) {
+        cls = getString(cls);
+        if (!cls) return;
+        if (Array.isArray(cls)) {
+            cls.forEach(function(c) {
+                dom.addClass(el, c);
+            });
+        } else if (el.classList) {
+            el.classList.add(cls);
+        } else {
+            if (!hasClass(el, cls)) {
+                if (el.classList) {
+                    el.classList.add(cls);
+                } else {
+                    el.className += ' ' + cls;
+                }
+            }
+        }
+    },
+    removeClass: function (el, cls) {
+        if (Array.isArray(cls)) {
+            cls.forEach(function(c) {
+                dom.removeClass(el, c);
+            });
+        } else if (el.classList) {
+            cls = getString(cls);
+            if (cls) el.classList.remove(cls);
+        } else {
+            // may be faster to not edit unless we know we have it?
+            el.className = el.className.replace(new RegExp('(^|\\b)' + cls.split(' ').join('|') + '(\\b|$)', 'gi'), ' ');
+        }
+    },
+    hasClass: hasClass,
+    switchClass: function (el, prevCls, newCls) {
+        if (prevCls) this.removeClass(el, prevCls);
+        this.addClass(el, newCls);
+    },
+    // makes sure attribute (with no content) is added
+    // if exists it will be cleared of content
+    addAttribute: function (el, attr) {
+        // setting to empty string does same
+        el.setAttribute(attr, '');
+        // Some browsers won't update UI for boolean attributes unless you
+        // set it directly. So we do both
+        if (hasBooleanProperty(el, attr)) el[attr] = true;
+    },
+    // completely removes attribute
+    removeAttribute: function (el, attr) {
+        el.removeAttribute(attr);
+        if (hasBooleanProperty(el, attr)) el[attr] = false;
+    },
+    // sets attribute to string value given, clearing any current value
+    setAttribute: function (el, attr, value) {
+        el.setAttribute(attr, getString(value));
+    },
+    getAttribute: function (el, attr) {
+        return el.getAttribute(attr);
+    },
+    hide: function (el) {
+        if (!isHidden(el)) {
+            storeDisplayStyle(el);
+            hide(el);
+        }
+    },
+    // show element
+    show: function (el) {
+        show(el);
+    },
+    html: function (el, content) {
+        el.innerHTML = content;
+    }
+};
+
+// helpers
+function getString(val) {
+    if (!val && val !== 0) {
+        return '';
+    } else {
+        return val;
+    }
+}
+
+function hasClass(el, cls) {
+    if (el.classList) {
+        return el.classList.contains(cls);
+    } else {
+        return new RegExp('(^| )' + cls + '( |$)', 'gi').test(el.className);
+    }
+}
+
+function hasBooleanProperty(el, prop) {
+    var val = el[prop];
+    return prop in el && (val === true || val === false);
+}
+
+function isHidden (el) {
+    return dom.getAttribute(el, 'data-anddom-hidden') === 'true';
+}
+
+function storeDisplayStyle (el) {
+    dom.setAttribute(el, 'data-anddom-display', el.style.display);
+}
+
+function show (el) {
+    el.style.display = dom.getAttribute(el, 'data-anddom-display') || '';
+    dom.removeAttribute(el, 'data-anddom-hidden');
+}
+
+function hide (el) {
+    dom.setAttribute(el, 'data-anddom-hidden', 'true');
+    el.style.display = 'none';
+}
+
+},{}],84:[function(require,module,exports){
+var slice = Array.prototype.slice;
+
+// our constructor
+function KeyTreeStore() {
+    this.storage = {};
+}
+
+// add an object to the store
+KeyTreeStore.prototype.add = function (keypath, obj) {
+    var arr = this.storage[keypath] || (this.storage[keypath] = []);
+    arr.push(obj);
+};
+
+// remove an object
+KeyTreeStore.prototype.remove = function (obj) {
+    var path, arr;
+    for (path in this.storage) {
+        arr = this.storage[path];
+        arr.some(function (item, index) {
+            if (item === obj) {
+                arr.splice(index, 1);
+                return true;
+            }
+        });
+    }
+};
+
+// get array of all all relevant functions, without keys
+KeyTreeStore.prototype.get = function (keypath) {
+    var res = [];
+    var key;
+
+    for (key in this.storage) {
+        if (!keypath || keypath === key || key.indexOf(keypath + '.') === 0) {
+            res = res.concat(this.storage[key]);
+        }
+    }
+
+    return res;
+};
+
+// get all results that match keypath but still grouped by key
+KeyTreeStore.prototype.getGrouped = function (keypath) {
+    var res = {};
+    var key;
+
+    for (key in this.storage) {
+        if (!keypath || keypath === key || key.indexOf(keypath + '.') === 0) {
+            res[key] = slice.call(this.storage[key]);
+        }
+    }
+
+    return res;
+};
+
+// get all results that match keypath but still grouped by key
+KeyTreeStore.prototype.getAll = function (keypath) {
+    var res = {};
+    var key;
+
+    for (key in this.storage) {
+        if (keypath === key || key.indexOf(keypath + '.') === 0) {
+            res[key] = slice.call(this.storage[key]);
+        }
+    }
+
+    return res;
+};
+
+// run all matches with optional context
+KeyTreeStore.prototype.run = function (keypath, context) {
+    var args = slice.call(arguments, 2);
+    this.get(keypath).forEach(function (fn) {
+        fn.apply(context || this, args);
+    });
+};
+
+
+
+module.exports = KeyTreeStore;
+
+},{}],85:[function(require,module,exports){
+
+/**
+ * Expose `parse`.
+ */
+
+module.exports = parse;
+
+/**
+ * Tests for browser support.
+ */
+
+var div = document.createElement('div');
+// Setup
+div.innerHTML = '  <link/><table></table><a href="/a">a</a><input type="checkbox"/>';
+// Make sure that link elements get serialized correctly by innerHTML
+// This requires a wrapper element in IE
+var innerHTMLBug = !div.getElementsByTagName('link').length;
+div = undefined;
+
+/**
+ * Wrap map from jquery.
+ */
+
+var map = {
+  legend: [1, '<fieldset>', '</fieldset>'],
+  tr: [2, '<table><tbody>', '</tbody></table>'],
+  col: [2, '<table><tbody></tbody><colgroup>', '</colgroup></table>'],
+  // for script/link/style tags to work in IE6-8, you have to wrap
+  // in a div with a non-whitespace character in front, ha!
+  _default: innerHTMLBug ? [1, 'X<div>', '</div>'] : [0, '', '']
+};
+
+map.td =
+map.th = [3, '<table><tbody><tr>', '</tr></tbody></table>'];
+
+map.option =
+map.optgroup = [1, '<select multiple="multiple">', '</select>'];
+
+map.thead =
+map.tbody =
+map.colgroup =
+map.caption =
+map.tfoot = [1, '<table>', '</table>'];
+
+map.text =
+map.circle =
+map.ellipse =
+map.line =
+map.path =
+map.polygon =
+map.polyline =
+map.rect = [1, '<svg xmlns="http://www.w3.org/2000/svg" version="1.1">','</svg>'];
+
+/**
+ * Parse `html` and return a DOM Node instance, which could be a TextNode,
+ * HTML DOM Node of some kind (<div> for example), or a DocumentFragment
+ * instance, depending on the contents of the `html` string.
+ *
+ * @param {String} html - HTML string to "domify"
+ * @param {Document} doc - The `document` instance to create the Node for
+ * @return {DOMNode} the TextNode, DOM Node, or DocumentFragment instance
+ * @api private
+ */
+
+function parse(html, doc) {
+  if ('string' != typeof html) throw new TypeError('String expected');
+
+  // default to the global `document` object
+  if (!doc) doc = document;
+
+  // tag name
+  var m = /<([\w:]+)/.exec(html);
+  if (!m) return doc.createTextNode(html);
+
+  html = html.replace(/^\s+|\s+$/g, ''); // Remove leading/trailing whitespace
+
+  var tag = m[1];
+
+  // body support
+  if (tag == 'body') {
+    var el = doc.createElement('html');
+    el.innerHTML = html;
+    return el.removeChild(el.lastChild);
+  }
+
+  // wrap map
+  var wrap = map[tag] || map._default;
+  var depth = wrap[0];
+  var prefix = wrap[1];
+  var suffix = wrap[2];
+  var el = doc.createElement('div');
+  el.innerHTML = prefix + html + suffix;
+  while (depth--) el = el.lastChild;
+
+  // one element
+  if (el.firstChild == el.lastChild) {
+    return el.removeChild(el.firstChild);
+  }
+
+  // several elements
+  var fragment = doc.createDocumentFragment();
+  while (el.firstChild) {
+    fragment.appendChild(el.removeChild(el.firstChild));
+  }
+
+  return fragment;
+}
+
+},{}],86:[function(require,module,exports){
+
+/**
+ * Module dependencies.
+ */
+
+var events = require('component-event');
+var delegate = require('delegate-events');
+var forceCaptureEvents = ['focus', 'blur'];
+
+/**
+ * Expose `Events`.
+ */
+
+module.exports = Events;
+
+/**
+ * Initialize an `Events` with the given
+ * `el` object which events will be bound to,
+ * and the `obj` which will receive method calls.
+ *
+ * @param {Object} el
+ * @param {Object} obj
+ * @api public
+ */
+
+function Events(el, obj) {
+  if (!(this instanceof Events)) return new Events(el, obj);
+  if (!el) throw new Error('element required');
+  if (!obj) throw new Error('object required');
+  this.el = el;
+  this.obj = obj;
+  this._events = {};
+}
+
+/**
+ * Subscription helper.
+ */
+
+Events.prototype.sub = function(event, method, cb){
+  this._events[event] = this._events[event] || {};
+  this._events[event][method] = cb;
+};
+
+/**
+ * Bind to `event` with optional `method` name.
+ * When `method` is undefined it becomes `event`
+ * with the "on" prefix.
+ *
+ * Examples:
+ *
+ *  Direct event handling:
+ *
+ *    events.bind('click') // implies "onclick"
+ *    events.bind('click', 'remove')
+ *    events.bind('click', 'sort', 'asc')
+ *
+ *  Delegated event handling:
+ *
+ *    events.bind('click li > a')
+ *    events.bind('click li > a', 'remove')
+ *    events.bind('click a.sort-ascending', 'sort', 'asc')
+ *    events.bind('click a.sort-descending', 'sort', 'desc')
+ *
+ * @param {String} event
+ * @param {String|function} [method]
+ * @return {Function} callback
+ * @api public
+ */
+
+Events.prototype.bind = function(event, method){
+  var e = parse(event);
+  var el = this.el;
+  var obj = this.obj;
+  var name = e.name;
+  var method = method || 'on' + name;
+  var args = [].slice.call(arguments, 2);
+
+  // callback
+  function cb(){
+    var a = [].slice.call(arguments).concat(args);
+
+    if (typeof method === 'function') {
+        method.apply(obj, a);    
+        return;
+    }
+    
+    if (!obj[method]) {
+        throw new Error(method + ' method is not defined');
+    } else {
+        obj[method].apply(obj, a);
+    }
+  }
+
+  // bind
+  if (e.selector) {
+    cb = delegate.bind(el, e.selector, name, cb);
+  } else {
+    events.bind(el, name, cb);
+  }
+
+  // subscription for unbinding
+  this.sub(name, method, cb);
+
+  return cb;
+};
+
+/**
+ * Unbind a single binding, all bindings for `event`,
+ * or all bindings within the manager.
+ *
+ * Examples:
+ *
+ *  Unbind direct handlers:
+ *
+ *     events.unbind('click', 'remove')
+ *     events.unbind('click')
+ *     events.unbind()
+ *
+ * Unbind delegate handlers:
+ *
+ *     events.unbind('click', 'remove')
+ *     events.unbind('click')
+ *     events.unbind()
+ *
+ * @param {String|Function} [event]
+ * @param {String|Function} [method]
+ * @api public
+ */
+
+Events.prototype.unbind = function(event, method){
+  if (0 == arguments.length) return this.unbindAll();
+  if (1 == arguments.length) return this.unbindAllOf(event);
+
+  // no bindings for this event
+  var bindings = this._events[event];
+  var capture = (forceCaptureEvents.indexOf(event) !== -1);
+  if (!bindings) return;
+
+  // no bindings for this method
+  var cb = bindings[method];
+  if (!cb) return;
+
+  events.unbind(this.el, event, cb, capture);
+};
+
+/**
+ * Unbind all events.
+ *
+ * @api private
+ */
+
+Events.prototype.unbindAll = function(){
+  for (var event in this._events) {
+    this.unbindAllOf(event);
+  }
+};
+
+/**
+ * Unbind all events for `event`.
+ *
+ * @param {String} event
+ * @api private
+ */
+
+Events.prototype.unbindAllOf = function(event){
+  var bindings = this._events[event];
+  if (!bindings) return;
+
+  for (var method in bindings) {
+    this.unbind(event, method);
+  }
+};
+
+/**
+ * Parse `event`.
+ *
+ * @param {String} event
+ * @return {Object}
+ * @api private
+ */
+
+function parse(event) {
+  var parts = event.split(/ +/);
+  return {
+    name: parts.shift(),
+    selector: parts.join(' ')
+  }
+}
+
+},{"component-event":87,"delegate-events":88}],87:[function(require,module,exports){
+var bind = window.addEventListener ? 'addEventListener' : 'attachEvent',
+    unbind = window.removeEventListener ? 'removeEventListener' : 'detachEvent',
+    prefix = bind !== 'addEventListener' ? 'on' : '';
+
+/**
+ * Bind `el` event `type` to `fn`.
+ *
+ * @param {Element} el
+ * @param {String} type
+ * @param {Function} fn
+ * @param {Boolean} capture
+ * @return {Function}
+ * @api public
+ */
+
+exports.bind = function(el, type, fn, capture){
+  el[bind](prefix + type, fn, capture || false);
+  return fn;
+};
+
+/**
+ * Unbind `el` event `type`'s callback `fn`.
+ *
+ * @param {Element} el
+ * @param {String} type
+ * @param {Function} fn
+ * @param {Boolean} capture
+ * @return {Function}
+ * @api public
+ */
+
+exports.unbind = function(el, type, fn, capture){
+  el[unbind](prefix + type, fn, capture || false);
+  return fn;
+};
+},{}],88:[function(require,module,exports){
+/**
+ * Module dependencies.
+ */
+
+var closest = require('closest')
+  , event = require('event');
+
+/**
+ * Delegate event `type` to `selector`
+ * and invoke `fn(e)`. A callback function
+ * is returned which may be passed to `.unbind()`.
+ *
+ * @param {Element} el
+ * @param {String} selector
+ * @param {String} type
+ * @param {Function} fn
+ * @param {Boolean} capture
+ * @return {Function}
+ * @api public
+ */
+
+// Some events don't bubble, so we want to bind to the capture phase instead
+// when delegating.
+var forceCaptureEvents = ['focus', 'blur'];
+
+exports.bind = function(el, selector, type, fn, capture){
+  if (forceCaptureEvents.indexOf(type) !== -1) capture = true;
+
+  return event.bind(el, type, function(e){
+    var target = e.target || e.srcElement;
+    e.delegateTarget = closest(target, selector, true, el);
+    if (e.delegateTarget) fn.call(el, e);
+  }, capture);
+};
+
+/**
+ * Unbind event `type`'s callback `fn`.
+ *
+ * @param {Element} el
+ * @param {String} type
+ * @param {Function} fn
+ * @param {Boolean} capture
+ * @api public
+ */
+
+exports.unbind = function(el, type, fn, capture){
+  if (forceCaptureEvents.indexOf(type) !== -1) capture = true;
+
+  event.unbind(el, type, fn, capture);
+};
+
+},{"closest":89,"event":87}],89:[function(require,module,exports){
+var matches = require('matches-selector')
+
+module.exports = function (element, selector, checkYoSelf) {
+  var parent = checkYoSelf ? element : element.parentNode
+
+  while (parent && parent !== document) {
+    if (matches(parent, selector)) return parent;
+    parent = parent.parentNode
+  }
+}
+
+},{"matches-selector":90}],90:[function(require,module,exports){
+
+/**
+ * Element prototype.
+ */
+
+var proto = Element.prototype;
+
+/**
+ * Vendor function.
+ */
+
+var vendor = proto.matchesSelector
+  || proto.webkitMatchesSelector
+  || proto.mozMatchesSelector
+  || proto.msMatchesSelector
+  || proto.oMatchesSelector;
+
+/**
+ * Expose `match()`.
+ */
+
+module.exports = match;
+
+/**
+ * Match `el` to `selector`.
+ *
+ * @param {Element} el
+ * @param {String} selector
+ * @return {Boolean}
+ * @api public
+ */
+
+function match(el, selector) {
+  if (vendor) return vendor.call(el, selector);
+  var nodes = el.parentNode.querySelectorAll(selector);
+  for (var i = 0; i < nodes.length; ++i) {
+    if (nodes[i] == el) return true;
+  }
+  return false;
+}
+},{}],91:[function(require,module,exports){
+module.exports = get;
+
+function get (context, path) {
+  if (path.indexOf('.') == -1 && path.indexOf('[') == -1) {
+    return context[path];
+  }
+
+  var crumbs = path.split(/\.|\[|\]/g);
+  var i = -1;
+  var len = crumbs.length;
+  var result;
+
+  while (++i < len) {
+    if (i == 0) result = context;
+    if (!crumbs[i]) continue;
+    if (result == undefined) break;
+    result = result[crumbs[i]];
+  }
+
+  return result;
+}
+
+},{}],92:[function(require,module,exports){
+'use strict';
+
+var proto = Element.prototype;
+var vendor = proto.matches
+  || proto.matchesSelector
+  || proto.webkitMatchesSelector
+  || proto.mozMatchesSelector
+  || proto.msMatchesSelector
+  || proto.oMatchesSelector;
+
+module.exports = match;
+
+/**
+ * Match `el` to `selector`.
+ *
+ * @param {Element} el
+ * @param {String} selector
+ * @return {Boolean}
+ * @api public
+ */
+
+function match(el, selector) {
+  if (vendor) return vendor.call(el, selector);
+  var nodes = el.parentNode.querySelectorAll(selector);
+  for (var i = 0; i < nodes.length; i++) {
+    if (nodes[i] == el) return true;
+  }
+  return false;
+}
+},{}],93:[function(require,module,exports){
 //     Underscore.js 1.6.0
 //     http://underscorejs.org
 //     (c) 2009-2014 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
@@ -6029,900 +6918,7 @@ arguments[4][67][0].apply(exports,arguments)
   }
 }).call(this);
 
-},{}],83:[function(require,module,exports){
-;if (typeof window !== "undefined") {  window.ampersand = window.ampersand || {};  window.ampersand["ampersand-dom-bindings"] = window.ampersand["ampersand-dom-bindings"] || [];  window.ampersand["ampersand-dom-bindings"].push("3.3.3");}
-var Store = require('key-tree-store');
-var dom = require('ampersand-dom');
-var matchesSelector = require('matches-selector');
-
-
-// returns a key-tree-store of functions
-// that can be applied to any element/model.
-
-// all resulting functions should be called
-// like func(el, value, lastKeyName)
-module.exports = function (bindings, context) {
-    var store = new Store();
-    var key, current;
-
-    for (key in bindings) {
-        current = bindings[key];
-        if (typeof current === 'string') {
-            store.add(key, getBindingFunc({
-                type: 'text',
-                selector: current
-            }));
-        } else if (current.forEach) {
-            current.forEach(function (binding) {
-                store.add(key, getBindingFunc(binding, context));
-            });
-        } else {
-            store.add(key, getBindingFunc(current, context));
-        }
-    }
-
-    return store;
-};
-
-
-var slice = Array.prototype.slice;
-
-function getMatches(el, selector) {
-    if (selector === '') return [el];
-    var matches = [];
-    if (matchesSelector(el, selector)) matches.push(el);
-    return matches.concat(slice.call(el.querySelectorAll(selector)));
-}
-
-function makeArray(val) {
-    return Array.isArray(val) ? val : [val];
-}
-
-function getBindingFunc(binding, context) {
-    var type = binding.type || 'text';
-    var isCustomBinding = typeof type === 'function';
-    var selector = (function () {
-        if (typeof binding.selector === 'string') {
-            return binding.selector;
-        } else if (binding.hook) {
-            return '[data-hook~="' + binding.hook + '"]';
-        } else {
-            return '';
-        }
-    })();
-    var yes = binding.yes;
-    var no = binding.no;
-    var hasYesNo = !!(yes || no);
-
-    // storage variable for previous if relevant
-    var previousValue;
-
-    if (isCustomBinding) {
-        return function (el, value) {
-            getMatches(el, selector).forEach(function (match) {
-                type.call(context, match, value, previousValue);
-            });
-            previousValue = value;
-        };
-    } else if (type === 'text') {
-        return function (el, value) {
-            getMatches(el, selector).forEach(function (match) {
-                dom.text(match, value);
-            });
-        };
-    } else if (type === 'class') {
-        return function (el, value) {
-            getMatches(el, selector).forEach(function (match) {
-                dom.switchClass(match, previousValue, value);
-            });
-            previousValue = value;
-        };
-    } else if (type === 'attribute') {
-        if (!binding.name) throw Error('attribute bindings must have a "name"');
-        return function (el, value) {
-            var names = makeArray(binding.name);
-            getMatches(el, selector).forEach(function (match) {
-                names.forEach(function (name) {
-                    dom.setAttribute(match, name, value);
-                });
-            });
-            previousValue = value;
-        };
-    } else if (type === 'value') {
-        return function (el, value) {
-            getMatches(el, selector).forEach(function (match) {
-                if (!value && value !== 0) value = '';
-                // only apply bindings if element is not currently focused
-                if (document.activeElement !== match) match.value = value;
-            });
-            previousValue = value;
-        };
-    } else if (type === 'booleanClass') {
-        // if there's a `no` case this is actually a switch
-        if (hasYesNo) {
-            yes = makeArray(yes || '');
-            no = makeArray(no || '');
-            return function (el, value) {
-                var prevClass = value ? no : yes;
-                var newClass = value ? yes : no;
-                getMatches(el, selector).forEach(function (match) {
-                    prevClass.forEach(function (pc) {
-                        dom.removeClass(match, pc);
-                    });
-                    newClass.forEach(function (nc) {
-                        dom.addClass(match, nc);
-                    });
-                });
-            };
-        } else {
-            return function (el, value, keyName) {
-                var name = makeArray(binding.name || keyName);
-                getMatches(el, selector).forEach(function (match) {
-                    name.forEach(function (className) {
-                        dom[value ? 'addClass' : 'removeClass'](match, className);
-                    });
-                });
-            };
-        }
-    } else if (type === 'booleanAttribute') {
-        return function (el, value, keyName) {
-            var name = makeArray(binding.name || keyName);
-            getMatches(el, selector).forEach(function (match) {
-                name.forEach(function (attr) {
-                    dom[value ? 'addAttribute' : 'removeAttribute'](match, attr);
-                });
-            });
-        };
-    } else if (type === 'toggle') {
-        // this doesn't require a selector since we can pass yes/no selectors
-        if (hasYesNo) {
-            return function (el, value) {
-                getMatches(el, yes).forEach(function (match) {
-                    dom[value ? 'show' : 'hide'](match);
-                });
-                getMatches(el, no).forEach(function (match) {
-                    dom[value ? 'hide' : 'show'](match);
-                });
-            };
-        } else {
-            return function (el, value) {
-                getMatches(el, selector).forEach(function (match) {
-                    dom[value ? 'show' : 'hide'](match);
-                });
-            };
-        }
-    } else if (type === 'switch') {
-        if (!binding.cases) throw Error('switch bindings must have "cases"');
-        return function (el, value) {
-            for (var item in binding.cases) {
-                getMatches(el, binding.cases[item]).forEach(function (match) {
-                    dom[value === item ? 'show' : 'hide'](match);
-                });
-            }
-        };
-    } else if (type === 'innerHTML') {
-        return function (el, value) {
-            getMatches(el, selector).forEach(function (match) {
-                dom.html(match, value);
-            });
-        };
-    } else if (type === 'switchClass') {
-        if (!binding.cases) throw Error('switchClass bindings must have "cases"');
-        return function (el, value, keyName) {
-            var name = makeArray(binding.name || keyName);
-            for (var item in binding.cases) {
-                getMatches(el, binding.cases[item]).forEach(function (match) {
-                    name.forEach(function (className) {
-                        dom[value === item ? 'addClass' : 'removeClass'](match, className);
-                    });
-                });
-            }
-        };
-    } else {
-        throw new Error('no such binding type: ' + type);
-    }
-}
-
-},{"ampersand-dom":84,"key-tree-store":85,"matches-selector":99}],84:[function(require,module,exports){
-;if (typeof window !== "undefined") {  window.ampersand = window.ampersand || {};  window.ampersand["ampersand-dom"] = window.ampersand["ampersand-dom"] || [];  window.ampersand["ampersand-dom"].push("1.2.7");}
-var dom = module.exports = {
-    text: function (el, val) {
-        el.textContent = getString(val);
-    },
-    // optimize if we have classList
-    addClass: function (el, cls) {
-        cls = getString(cls);
-        if (!cls) return;
-        if (Array.isArray(cls)) {
-            cls.forEach(function(c) {
-                dom.addClass(el, c);
-            });
-        } else if (el.classList) {
-            el.classList.add(cls);
-        } else {
-            if (!hasClass(el, cls)) {
-                if (el.classList) {
-                    el.classList.add(cls);
-                } else {
-                    el.className += ' ' + cls;
-                }
-            }
-        }
-    },
-    removeClass: function (el, cls) {
-        if (Array.isArray(cls)) {
-            cls.forEach(function(c) {
-                dom.removeClass(el, c);
-            });
-        } else if (el.classList) {
-            cls = getString(cls);
-            if (cls) el.classList.remove(cls);
-        } else {
-            // may be faster to not edit unless we know we have it?
-            el.className = el.className.replace(new RegExp('(^|\\b)' + cls.split(' ').join('|') + '(\\b|$)', 'gi'), ' ');
-        }
-    },
-    hasClass: hasClass,
-    switchClass: function (el, prevCls, newCls) {
-        if (prevCls) this.removeClass(el, prevCls);
-        this.addClass(el, newCls);
-    },
-    // makes sure attribute (with no content) is added
-    // if exists it will be cleared of content
-    addAttribute: function (el, attr) {
-        // setting to empty string does same
-        el.setAttribute(attr, '');
-        // Some browsers won't update UI for boolean attributes unless you
-        // set it directly. So we do both
-        if (hasBooleanProperty(el, attr)) el[attr] = true;
-    },
-    // completely removes attribute
-    removeAttribute: function (el, attr) {
-        el.removeAttribute(attr);
-        if (hasBooleanProperty(el, attr)) el[attr] = false;
-    },
-    // sets attribute to string value given, clearing any current value
-    setAttribute: function (el, attr, value) {
-        el.setAttribute(attr, getString(value));
-    },
-    getAttribute: function (el, attr) {
-        return el.getAttribute(attr);
-    },
-    hide: function (el) {
-        if (!isHidden(el)) {
-            storeDisplayStyle(el);
-            hide(el);
-        }
-    },
-    // show element
-    show: function (el) {
-        show(el);
-    },
-    html: function (el, content) {
-        el.innerHTML = content;
-    }
-};
-
-// helpers
-function getString(val) {
-    if (!val && val !== 0) {
-        return '';
-    } else {
-        return val;
-    }
-}
-
-function hasClass(el, cls) {
-    if (el.classList) {
-        return el.classList.contains(cls);
-    } else {
-        return new RegExp('(^| )' + cls + '( |$)', 'gi').test(el.className);
-    }
-}
-
-function hasBooleanProperty(el, prop) {
-    var val = el[prop];
-    return prop in el && (val === true || val === false);
-}
-
-function isHidden (el) {
-    return dom.getAttribute(el, 'data-anddom-hidden') === 'true';
-}
-
-function storeDisplayStyle (el) {
-    dom.setAttribute(el, 'data-anddom-display', el.style.display);
-}
-
-function show (el) {
-    el.style.display = dom.getAttribute(el, 'data-anddom-display') || '';
-    dom.removeAttribute(el, 'data-anddom-hidden');
-}
-
-function hide (el) {
-    dom.setAttribute(el, 'data-anddom-hidden', 'true');
-    el.style.display = 'none';
-}
-
-},{}],85:[function(require,module,exports){
-var slice = Array.prototype.slice;
-
-// our constructor
-function KeyTreeStore() {
-    this.storage = {};
-}
-
-// add an object to the store
-KeyTreeStore.prototype.add = function (keypath, obj) {
-    var arr = this.storage[keypath] || (this.storage[keypath] = []);
-    arr.push(obj);
-};
-
-// remove an object
-KeyTreeStore.prototype.remove = function (obj) {
-    var path, arr;
-    for (path in this.storage) {
-        arr = this.storage[path];
-        arr.some(function (item, index) {
-            if (item === obj) {
-                arr.splice(index, 1);
-                return true;
-            }
-        });
-    }
-};
-
-// get array of all all relevant functions, without keys
-KeyTreeStore.prototype.get = function (keypath) {
-    var res = [];
-    var key;
-
-    for (key in this.storage) {
-        if (!keypath || keypath === key || key.indexOf(keypath + '.') === 0) {
-            res = res.concat(this.storage[key]);
-        }
-    }
-
-    return res;
-};
-
-// get all results that match keypath but still grouped by key
-KeyTreeStore.prototype.getGrouped = function (keypath) {
-    var res = {};
-    var key;
-
-    for (key in this.storage) {
-        if (!keypath || keypath === key || key.indexOf(keypath + '.') === 0) {
-            res[key] = slice.call(this.storage[key]);
-        }
-    }
-
-    return res;
-};
-
-// get all results that match keypath but still grouped by key
-KeyTreeStore.prototype.getAll = function (keypath) {
-    var res = {};
-    var key;
-
-    for (key in this.storage) {
-        if (keypath === key || key.indexOf(keypath + '.') === 0) {
-            res[key] = slice.call(this.storage[key]);
-        }
-    }
-
-    return res;
-};
-
-// run all matches with optional context
-KeyTreeStore.prototype.run = function (keypath, context) {
-    var args = slice.call(arguments, 2);
-    this.get(keypath).forEach(function (fn) {
-        fn.apply(context || this, args);
-    });
-};
-
-
-
-module.exports = KeyTreeStore;
-
-},{}],86:[function(require,module,exports){
-arguments[4][70][0].apply(exports,arguments)
-},{"array-next":87,"backbone-events-standalone":89,"dup":70,"key-tree-store":90,"underscore":91}],87:[function(require,module,exports){
-arguments[4][71][0].apply(exports,arguments)
-},{"dup":71}],88:[function(require,module,exports){
-arguments[4][66][0].apply(exports,arguments)
-},{"dup":66}],89:[function(require,module,exports){
-arguments[4][67][0].apply(exports,arguments)
-},{"./backbone-events-standalone":88,"dup":67}],90:[function(require,module,exports){
-arguments[4][74][0].apply(exports,arguments)
-},{"dup":74}],91:[function(require,module,exports){
-arguments[4][75][0].apply(exports,arguments)
-},{"dup":75}],92:[function(require,module,exports){
-
-/**
- * Expose `parse`.
- */
-
-module.exports = parse;
-
-/**
- * Tests for browser support.
- */
-
-var div = document.createElement('div');
-// Setup
-div.innerHTML = '  <link/><table></table><a href="/a">a</a><input type="checkbox"/>';
-// Make sure that link elements get serialized correctly by innerHTML
-// This requires a wrapper element in IE
-var innerHTMLBug = !div.getElementsByTagName('link').length;
-div = undefined;
-
-/**
- * Wrap map from jquery.
- */
-
-var map = {
-  legend: [1, '<fieldset>', '</fieldset>'],
-  tr: [2, '<table><tbody>', '</tbody></table>'],
-  col: [2, '<table><tbody></tbody><colgroup>', '</colgroup></table>'],
-  // for script/link/style tags to work in IE6-8, you have to wrap
-  // in a div with a non-whitespace character in front, ha!
-  _default: innerHTMLBug ? [1, 'X<div>', '</div>'] : [0, '', '']
-};
-
-map.td =
-map.th = [3, '<table><tbody><tr>', '</tr></tbody></table>'];
-
-map.option =
-map.optgroup = [1, '<select multiple="multiple">', '</select>'];
-
-map.thead =
-map.tbody =
-map.colgroup =
-map.caption =
-map.tfoot = [1, '<table>', '</table>'];
-
-map.text =
-map.circle =
-map.ellipse =
-map.line =
-map.path =
-map.polygon =
-map.polyline =
-map.rect = [1, '<svg xmlns="http://www.w3.org/2000/svg" version="1.1">','</svg>'];
-
-/**
- * Parse `html` and return a DOM Node instance, which could be a TextNode,
- * HTML DOM Node of some kind (<div> for example), or a DocumentFragment
- * instance, depending on the contents of the `html` string.
- *
- * @param {String} html - HTML string to "domify"
- * @param {Document} doc - The `document` instance to create the Node for
- * @return {DOMNode} the TextNode, DOM Node, or DocumentFragment instance
- * @api private
- */
-
-function parse(html, doc) {
-  if ('string' != typeof html) throw new TypeError('String expected');
-
-  // default to the global `document` object
-  if (!doc) doc = document;
-
-  // tag name
-  var m = /<([\w:]+)/.exec(html);
-  if (!m) return doc.createTextNode(html);
-
-  html = html.replace(/^\s+|\s+$/g, ''); // Remove leading/trailing whitespace
-
-  var tag = m[1];
-
-  // body support
-  if (tag == 'body') {
-    var el = doc.createElement('html');
-    el.innerHTML = html;
-    return el.removeChild(el.lastChild);
-  }
-
-  // wrap map
-  var wrap = map[tag] || map._default;
-  var depth = wrap[0];
-  var prefix = wrap[1];
-  var suffix = wrap[2];
-  var el = doc.createElement('div');
-  el.innerHTML = prefix + html + suffix;
-  while (depth--) el = el.lastChild;
-
-  // one element
-  if (el.firstChild == el.lastChild) {
-    return el.removeChild(el.firstChild);
-  }
-
-  // several elements
-  var fragment = doc.createDocumentFragment();
-  while (el.firstChild) {
-    fragment.appendChild(el.removeChild(el.firstChild));
-  }
-
-  return fragment;
-}
-
-},{}],93:[function(require,module,exports){
-
-/**
- * Module dependencies.
- */
-
-var events = require('component-event');
-var delegate = require('delegate-events');
-var forceCaptureEvents = ['focus', 'blur'];
-
-/**
- * Expose `Events`.
- */
-
-module.exports = Events;
-
-/**
- * Initialize an `Events` with the given
- * `el` object which events will be bound to,
- * and the `obj` which will receive method calls.
- *
- * @param {Object} el
- * @param {Object} obj
- * @api public
- */
-
-function Events(el, obj) {
-  if (!(this instanceof Events)) return new Events(el, obj);
-  if (!el) throw new Error('element required');
-  if (!obj) throw new Error('object required');
-  this.el = el;
-  this.obj = obj;
-  this._events = {};
-}
-
-/**
- * Subscription helper.
- */
-
-Events.prototype.sub = function(event, method, cb){
-  this._events[event] = this._events[event] || {};
-  this._events[event][method] = cb;
-};
-
-/**
- * Bind to `event` with optional `method` name.
- * When `method` is undefined it becomes `event`
- * with the "on" prefix.
- *
- * Examples:
- *
- *  Direct event handling:
- *
- *    events.bind('click') // implies "onclick"
- *    events.bind('click', 'remove')
- *    events.bind('click', 'sort', 'asc')
- *
- *  Delegated event handling:
- *
- *    events.bind('click li > a')
- *    events.bind('click li > a', 'remove')
- *    events.bind('click a.sort-ascending', 'sort', 'asc')
- *    events.bind('click a.sort-descending', 'sort', 'desc')
- *
- * @param {String} event
- * @param {String|function} [method]
- * @return {Function} callback
- * @api public
- */
-
-Events.prototype.bind = function(event, method){
-  var e = parse(event);
-  var el = this.el;
-  var obj = this.obj;
-  var name = e.name;
-  var method = method || 'on' + name;
-  var args = [].slice.call(arguments, 2);
-
-  // callback
-  function cb(){
-    var a = [].slice.call(arguments).concat(args);
-    obj[method].apply(obj, a);
-  }
-
-  // bind
-  if (e.selector) {
-    cb = delegate.bind(el, e.selector, name, cb);
-  } else {
-    events.bind(el, name, cb);
-  }
-
-  // subscription for unbinding
-  this.sub(name, method, cb);
-
-  return cb;
-};
-
-/**
- * Unbind a single binding, all bindings for `event`,
- * or all bindings within the manager.
- *
- * Examples:
- *
- *  Unbind direct handlers:
- *
- *     events.unbind('click', 'remove')
- *     events.unbind('click')
- *     events.unbind()
- *
- * Unbind delegate handlers:
- *
- *     events.unbind('click', 'remove')
- *     events.unbind('click')
- *     events.unbind()
- *
- * @param {String|Function} [event]
- * @param {String|Function} [method]
- * @api public
- */
-
-Events.prototype.unbind = function(event, method){
-  if (0 == arguments.length) return this.unbindAll();
-  if (1 == arguments.length) return this.unbindAllOf(event);
-
-  // no bindings for this event
-  var bindings = this._events[event];
-  var capture = (forceCaptureEvents.indexOf(event) !== -1);
-  if (!bindings) return;
-
-  // no bindings for this method
-  var cb = bindings[method];
-  if (!cb) return;
-
-  events.unbind(this.el, event, cb, capture);
-};
-
-/**
- * Unbind all events.
- *
- * @api private
- */
-
-Events.prototype.unbindAll = function(){
-  for (var event in this._events) {
-    this.unbindAllOf(event);
-  }
-};
-
-/**
- * Unbind all events for `event`.
- *
- * @param {String} event
- * @api private
- */
-
-Events.prototype.unbindAllOf = function(event){
-  var bindings = this._events[event];
-  if (!bindings) return;
-
-  for (var method in bindings) {
-    this.unbind(event, method);
-  }
-};
-
-/**
- * Parse `event`.
- *
- * @param {String} event
- * @return {Object}
- * @api private
- */
-
-function parse(event) {
-  var parts = event.split(/ +/);
-  return {
-    name: parts.shift(),
-    selector: parts.join(' ')
-  }
-}
-
-},{"component-event":94,"delegate-events":95}],94:[function(require,module,exports){
-var bind = window.addEventListener ? 'addEventListener' : 'attachEvent',
-    unbind = window.removeEventListener ? 'removeEventListener' : 'detachEvent',
-    prefix = bind !== 'addEventListener' ? 'on' : '';
-
-/**
- * Bind `el` event `type` to `fn`.
- *
- * @param {Element} el
- * @param {String} type
- * @param {Function} fn
- * @param {Boolean} capture
- * @return {Function}
- * @api public
- */
-
-exports.bind = function(el, type, fn, capture){
-  el[bind](prefix + type, fn, capture || false);
-  return fn;
-};
-
-/**
- * Unbind `el` event `type`'s callback `fn`.
- *
- * @param {Element} el
- * @param {String} type
- * @param {Function} fn
- * @param {Boolean} capture
- * @return {Function}
- * @api public
- */
-
-exports.unbind = function(el, type, fn, capture){
-  el[unbind](prefix + type, fn, capture || false);
-  return fn;
-};
-},{}],95:[function(require,module,exports){
-/**
- * Module dependencies.
- */
-
-var closest = require('closest')
-  , event = require('event');
-
-/**
- * Delegate event `type` to `selector`
- * and invoke `fn(e)`. A callback function
- * is returned which may be passed to `.unbind()`.
- *
- * @param {Element} el
- * @param {String} selector
- * @param {String} type
- * @param {Function} fn
- * @param {Boolean} capture
- * @return {Function}
- * @api public
- */
-
-// Some events don't bubble, so we want to bind to the capture phase instead
-// when delegating.
-var forceCaptureEvents = ['focus', 'blur'];
-
-exports.bind = function(el, selector, type, fn, capture){
-  if (forceCaptureEvents.indexOf(type) !== -1) capture = true;
-
-  return event.bind(el, type, function(e){
-    var target = e.target || e.srcElement;
-    e.delegateTarget = closest(target, selector, true, el);
-    if (e.delegateTarget) fn.call(el, e);
-  }, capture);
-};
-
-/**
- * Unbind event `type`'s callback `fn`.
- *
- * @param {Element} el
- * @param {String} type
- * @param {Function} fn
- * @param {Boolean} capture
- * @api public
- */
-
-exports.unbind = function(el, type, fn, capture){
-  if (forceCaptureEvents.indexOf(type) !== -1) capture = true;
-
-  event.unbind(el, type, fn, capture);
-};
-
-},{"closest":96,"event":94}],96:[function(require,module,exports){
-var matches = require('matches-selector')
-
-module.exports = function (element, selector, checkYoSelf) {
-  var parent = checkYoSelf ? element : element.parentNode
-
-  while (parent && parent !== document) {
-    if (matches(parent, selector)) return parent;
-    parent = parent.parentNode
-  }
-}
-
-},{"matches-selector":97}],97:[function(require,module,exports){
-
-/**
- * Element prototype.
- */
-
-var proto = Element.prototype;
-
-/**
- * Vendor function.
- */
-
-var vendor = proto.matchesSelector
-  || proto.webkitMatchesSelector
-  || proto.mozMatchesSelector
-  || proto.msMatchesSelector
-  || proto.oMatchesSelector;
-
-/**
- * Expose `match()`.
- */
-
-module.exports = match;
-
-/**
- * Match `el` to `selector`.
- *
- * @param {Element} el
- * @param {String} selector
- * @return {Boolean}
- * @api public
- */
-
-function match(el, selector) {
-  if (vendor) return vendor.call(el, selector);
-  var nodes = el.parentNode.querySelectorAll(selector);
-  for (var i = 0; i < nodes.length; ++i) {
-    if (nodes[i] == el) return true;
-  }
-  return false;
-}
-},{}],98:[function(require,module,exports){
-module.exports = get;
-
-function get (context, path) {
-  if (path.indexOf('.') == -1 && path.indexOf('[') == -1) {
-    return context[path];
-  }
-
-  var crumbs = path.split(/\.|\[|\]/g);
-  var i = -1;
-  var len = crumbs.length;
-  var result;
-
-  while (++i < len) {
-    if (i == 0) result = context;
-    if (!crumbs[i]) continue;
-    if (result == undefined) break;
-    result = result[crumbs[i]];
-  }
-
-  return result;
-}
-
-},{}],99:[function(require,module,exports){
-'use strict';
-
-var proto = Element.prototype;
-var vendor = proto.matches
-  || proto.matchesSelector
-  || proto.webkitMatchesSelector
-  || proto.mozMatchesSelector
-  || proto.msMatchesSelector
-  || proto.oMatchesSelector;
-
-module.exports = match;
-
-/**
- * Match `el` to `selector`.
- *
- * @param {Element} el
- * @param {String} selector
- * @return {Boolean}
- * @api public
- */
-
-function match(el, selector) {
-  if (vendor) return vendor.call(el, selector);
-  var nodes = el.parentNode.querySelectorAll(selector);
-  for (var i = 0; i < nodes.length; i++) {
-    if (nodes[i] == el) return true;
-  }
-  return false;
-}
-},{}],100:[function(require,module,exports){
-arguments[4][82][0].apply(exports,arguments)
-},{"dup":82}],101:[function(require,module,exports){
+},{}],94:[function(require,module,exports){
 /*!
   * domready (c) Dustin Diaz 2014 - License MIT
   */
@@ -6954,7 +6950,7 @@ arguments[4][82][0].apply(exports,arguments)
 
 });
 
-},{}],102:[function(require,module,exports){
+},{}],95:[function(require,module,exports){
 /*!
  * jQuery JavaScript Library v2.1.3
  * http://jquery.com/
@@ -16161,9 +16157,9 @@ return jQuery;
 
 }));
 
-},{}],103:[function(require,module,exports){
+},{}],96:[function(require,module,exports){
 module.exports = require('cssify');
-},{"cssify":104}],104:[function(require,module,exports){
+},{"cssify":97}],97:[function(require,module,exports){
 module.exports = function (css, customDocument) {
   var doc = customDocument || document;
   if (doc.createStyleSheet) {
