@@ -1,1 +1,3 @@
-require('./vendor/uikit/css/uikit.min.css');
+require('./vendor/css/foundation.css');
+window.jQuery = require('jquery');
+require('./vendor/js/foundation.min');

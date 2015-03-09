@@ -16,7 +16,7 @@ app.extend({
 	}
 });
 
-domready(function () {	
+domready(function () {
 	
 	app.init();
 });
