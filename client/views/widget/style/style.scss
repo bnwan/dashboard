@@ -1,6 +1,20 @@
+@import '../../views-style-base.scss';
 
-.widget-item {	
+.widget-item {
 	border: 1px solid silver;
 	padding: 5px;
 	background: #D8D8D8;
+	@include border-radius($borderRadius);
+	.top-bar {
+		background: $widgetNavBarBackgroundColour;
+		margin-bottom: 10px;
+		height: 1.8125rem;
+		line-height: 1.8125rem;
+	}
+}
+
+.ghost {
+	border: 1px dashed #444749;
+	opacity: 0.4;
+	@include border-radius($borderRadius);
 }

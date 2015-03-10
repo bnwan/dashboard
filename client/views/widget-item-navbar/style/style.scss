@@ -1,0 +1,22 @@
+@import '../../views-style-base.scss';
+
+.title-area {
+	.name {
+		margin-left: 5px;		
+		height: 1.8125rem;
+	}	
+}
+
+.top-bar-section {
+	ul {
+		li {
+			background: $widgetNavBarBackgroundColour;
+			margin-right: 10px;	
+			cursor: pointer;
+			
+			:last-child{
+				margin-right: 5px;	
+			}
+		}
+	}
+}

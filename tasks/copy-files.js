@@ -3,7 +3,7 @@ var cpy = require('cpy');
 cpy([
 	'app.json',
 	'index.html',		
-	'vendor/**/*.js',
+	'vendor/foundation-icons/**',
 	'vendor/modernizr-*.min.js'
 ], './build/', {
 	cwd: './client'

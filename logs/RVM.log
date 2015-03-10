@@ -1434,3 +1434,919 @@
  - Utils::Common::LogFormattedLastError
 09/03/2015 17:39:32,559 [6992] WARN  StatusCode: 400 == HTTP_STATUS_BAD_REQUEST - Utils::Network::HttpRequest::WriteRequest
 09/03/2015 17:39:32,559 [6992] INFO  Post request completed in: 80 milliseconds - Utils::Network::HttpRequest::Post - Utils::Common::LogTimer::~LogTimer
+10/03/2015 09:20:17,813 [6464] INFO  Initializing WinINet - Utils::Network::HttpRequest::Initialize
+10/03/2015 09:20:17,814 [6464] INFO  Setting receive timeout: 300000 - Utils::Network::HttpRequest::Initialize
+10/03/2015 09:20:17,814 [6464] INFO  Setting send timeout: 30000 - Utils::Network::HttpRequest::Initialize
+10/03/2015 09:20:17,814 [6464] INFO  Setting connect timeout: 60000 - Utils::Network::HttpRequest::Initialize
+10/03/2015 09:20:17,814 [6464] INFO  Post request for url: "https://dl.openfin.co/services/s/" - Utils::Network::HttpRequest::Post
+10/03/2015 09:20:17,814 [6464] INFO  Processing url: "https://dl.openfin.co/services/s/" - Utils::Network::HttpRequest::WriteRequest
+10/03/2015 09:20:17,993 [2124] INFO  Termination event for process handle: 00000708 - RuntimeMonitor::MonitorThreadProc
+10/03/2015 09:20:17,993 [2124] INFO  Sending WM_QUIT message, no more process handles. - RuntimeMonitor::MonitorThreadProc
+10/03/2015 09:20:17,993 [13572] INFO  Exiting RVM... - OpenFinRVM::ExitInstance
+10/03/2015 09:20:17,993 [13572] INFO  Exiting RVM... - OpenFinRVM::ExitInstance
+10/03/2015 09:20:17,993 [13572] INFO  Calling MainController.Uninit() - OpenFinRVM::ExitInstance
+10/03/2015 09:20:17,993 [13572] INFO  Calling MessageWindow.Destroy() - OpenFinRVM::ExitInstance
+10/03/2015 09:20:17,993 [13572] INFO  Calling RuntimeMonitor.Stop() - OpenFinRVM::ExitInstance
+10/03/2015 09:20:17,993 [13572] INFO  Calling AnalyticsManager.Uninit() - OpenFinRVM::ExitInstance
+10/03/2015 09:20:18,212 [6464] INFO  StatusCode: 400 - Utils::Network::HttpRequest::WriteRequest
+10/03/2015 09:20:18,212 [6464] WARN  Unhandled HTTP status code - GetLastError() code: 0, msg: The operation completed successfully.
+ - Utils::Common::LogFormattedLastError
+10/03/2015 09:20:18,212 [6464] WARN  StatusCode: 400 == HTTP_STATUS_BAD_REQUEST - Utils::Network::HttpRequest::WriteRequest
+10/03/2015 09:20:18,212 [6464] INFO  Post request completed in: 398 milliseconds - Utils::Network::HttpRequest::Post - Utils::Common::LogTimer::~LogTimer
+10/03/2015 09:20:18,212 [13572] INFO  Calling TaskManager.Wait() - OpenFinRVM::ExitInstance
+10/03/2015 09:20:18,212 [13572] INFO  Exit completed in: 219 milliseconds - OpenFinRVM::ExitInstance - Utils::Common::LogTimer::~LogTimer
+10/03/2015 09:20:24,916 INFO  [default] Init RVM...
+10/03/2015 09:20:24,916 [12228] INFO  Initialized Log - OpenFinRVM::InitInstance
+10/03/2015 09:20:24,916 [12228] INFO  Running "c:\_projects\bnwan\dashboard\OpenFinRVM.exe" Version 0.1.0.20 - OpenFinRVM::InitInstance
+10/03/2015 09:20:24,916 [12228] WARN  RegCloseKey() failed with error 0 for path SOFTWARE\Microsoft\Cryptography - Utils::Repository::Registry::Key::Close
+10/03/2015 09:20:24,916 [12228] INFO  Initialized the MainController - OpenFinRVM::InitInstance
+10/03/2015 09:20:24,932 [12228] INFO  RVM::Controllers::InstallerController::DoLogic - RVM::Controllers::InstallerController::DoLogic
+10/03/2015 09:20:24,932 [12228] INFO  RVM::Controllers::PathVerifyController::DoLogic - RVM::Controllers::PathVerifyController::DoLogic
+10/03/2015 09:20:24,932 [12228] INFO  RVM is not running from the desired path. Launching "C:\Users\benjamin.nwaneampeh\AppData\Local\OpenFin\OpenFinRVM.exe" - RVM::Controllers::PathVerifyController::DoLogic
+10/03/2015 09:20:24,932 [12228] INFO  Init completed in: 16 milliseconds - OpenFinRVM::InitInstance - Utils::Common::LogTimer::~LogTimer
+10/03/2015 09:20:24,932 [12228] INFO  Exiting RVM... - OpenFinRVM::ExitInstance
+10/03/2015 09:20:24,932 [12228] INFO  Exiting RVM... - OpenFinRVM::ExitInstance
+10/03/2015 09:20:24,932 [12228] INFO  Calling MainController.Uninit() - OpenFinRVM::ExitInstance
+10/03/2015 09:20:24,932 [12228] INFO  Calling MessageWindow.Destroy() - OpenFinRVM::ExitInstance
+10/03/2015 09:20:24,932 [12228] INFO  Calling RuntimeMonitor.Stop() - OpenFinRVM::ExitInstance
+10/03/2015 09:20:24,932 [12228] INFO  Calling AnalyticsManager.Uninit() - OpenFinRVM::ExitInstance
+10/03/2015 09:20:24,932 [12228] INFO  Calling TaskManager.Wait() - OpenFinRVM::ExitInstance
+10/03/2015 09:20:24,932 INFO  [default] Init RVM...
+10/03/2015 09:20:24,932 [15572] INFO  Initialized Log - OpenFinRVM::InitInstance
+10/03/2015 09:20:24,932 [15572] INFO  Running "C:\Users\benjamin.nwaneampeh\AppData\Local\OpenFin\OpenFinRVM.exe" Version 0.1.0.20 - OpenFinRVM::InitInstance
+10/03/2015 09:20:24,932 [15572] WARN  RegCloseKey() failed with error 0 for path SOFTWARE\Microsoft\Cryptography - Utils::Repository::Registry::Key::Close
+10/03/2015 09:20:24,932 [15572] INFO  Initialized the MainController - OpenFinRVM::InitInstance
+10/03/2015 09:20:24,947 [15572] INFO  RVM::Controllers::InstallerController::DoLogic - RVM::Controllers::InstallerController::DoLogic
+10/03/2015 09:20:24,947 [15572] INFO  RVM::Controllers::PathVerifyController::DoLogic - RVM::Controllers::PathVerifyController::DoLogic
+10/03/2015 09:20:24,947 [15572] INFO  RVM::Controllers::AutoUpdateController::DoLogic - RVM::Controllers::AutoUpdateController::DoLogic
+10/03/2015 09:20:24,947 [15572] INFO  Initializing WinINet - Utils::Network::HttpRequest::Initialize
+10/03/2015 09:20:24,947 [15572] INFO  Setting receive timeout: 300000 - Utils::Network::HttpRequest::Initialize
+10/03/2015 09:20:24,947 [15572] INFO  Setting send timeout: 30000 - Utils::Network::HttpRequest::Initialize
+10/03/2015 09:20:24,947 [15572] INFO  Setting connect timeout: 60000 - Utils::Network::HttpRequest::Initialize
+10/03/2015 09:20:24,947 [15572] INFO  Get request for url: "https://developer.openfin.co/release/rvm/latestVersion" - Utils::Network::HttpRequest::Get
+10/03/2015 09:20:24,947 [15572] INFO  Processing url: "https://developer.openfin.co/release/rvm/latestVersion" - Utils::Network::HttpRequest::WriteRequest
+10/03/2015 09:20:25,416 [15572] INFO  StatusCode: 200 - Utils::Network::HttpRequest::WriteRequest
+10/03/2015 09:20:25,416 [15572] INFO  ContentLength: 8 - Utils::Network::HttpRequest::ReadResponse
+10/03/2015 09:20:25,416 [15572] INFO  Result: 1, total read: 8 - Utils::Network::HttpRequest::ReadResponse
+10/03/2015 09:20:25,416 [15572] INFO  Get request completed in: 469 milliseconds - Utils::Network::HttpRequest::Get - Utils::Common::LogTimer::~LogTimer
+10/03/2015 09:20:25,416 [15572] INFO  RVM::Controllers::ReadRemoteConfigController::DoLogic - RVM::Controllers::ReadRemoteConfigController::DoLogic
+10/03/2015 09:20:25,416 [15572] INFO  Initializing WinINet - Utils::Network::HttpRequest::Initialize
+10/03/2015 09:20:25,416 [15572] INFO  Setting receive timeout: 300000 - Utils::Network::HttpRequest::Initialize
+10/03/2015 09:20:25,416 [15572] INFO  Setting send timeout: 30000 - Utils::Network::HttpRequest::Initialize
+10/03/2015 09:20:25,416 [15572] INFO  Setting connect timeout: 60000 - Utils::Network::HttpRequest::Initialize
+10/03/2015 09:20:25,416 [15572] INFO  Get request for url: "http://localhost:8080/app.json" - Utils::Network::HttpRequest::Get
+10/03/2015 09:20:25,416 [15572] INFO  Processing url: "http://localhost:8080/app.json" - Utils::Network::HttpRequest::WriteRequest
+10/03/2015 09:20:25,807 [15620] INFO  Initializing WinINet - Utils::Network::HttpRequest::Initialize
+10/03/2015 09:20:25,807 [15620] INFO  Setting receive timeout: 300000 - Utils::Network::HttpRequest::Initialize
+10/03/2015 09:20:25,807 [15620] INFO  Setting send timeout: 30000 - Utils::Network::HttpRequest::Initialize
+10/03/2015 09:20:25,807 [15620] INFO  Setting connect timeout: 60000 - Utils::Network::HttpRequest::Initialize
+10/03/2015 09:20:25,807 [15620] INFO  Post request for url: "https://dl.openfin.co/services/authenticate" - Utils::Network::HttpRequest::Post
+10/03/2015 09:20:25,807 [15620] INFO  Processing url: "https://dl.openfin.co/services/authenticate" - Utils::Network::HttpRequest::WriteRequest
+10/03/2015 09:20:25,838 [15704] INFO  Initializing WinINet - Utils::Network::HttpRequest::Initialize
+10/03/2015 09:20:25,838 [15704] INFO  Setting receive timeout: 300000 - Utils::Network::HttpRequest::Initialize
+10/03/2015 09:20:25,838 [15704] INFO  Setting send timeout: 30000 - Utils::Network::HttpRequest::Initialize
+10/03/2015 09:20:25,838 [15704] INFO  Setting connect timeout: 60000 - Utils::Network::HttpRequest::Initialize
+10/03/2015 09:20:25,838 [15704] INFO  Post request for url: "https://dl.openfin.co/services/authenticate" - Utils::Network::HttpRequest::Post
+10/03/2015 09:20:25,838 [15704] INFO  Processing url: "https://dl.openfin.co/services/authenticate" - Utils::Network::HttpRequest::WriteRequest
+10/03/2015 09:20:26,182 [15704] INFO  StatusCode: 200 - Utils::Network::HttpRequest::WriteRequest
+10/03/2015 09:20:26,182 [15704] INFO  ContentLength: 166 - Utils::Network::HttpRequest::ReadResponse
+10/03/2015 09:20:26,182 [15704] INFO  Result: 1, total read: 166 - Utils::Network::HttpRequest::ReadResponse
+10/03/2015 09:20:26,182 [15704] INFO  Post request completed in: 344 milliseconds - Utils::Network::HttpRequest::Post - Utils::Common::LogTimer::~LogTimer
+10/03/2015 09:20:26,260 [15620] INFO  StatusCode: 200 - Utils::Network::HttpRequest::WriteRequest
+10/03/2015 09:20:26,260 [15620] INFO  ContentLength: 166 - Utils::Network::HttpRequest::ReadResponse
+10/03/2015 09:20:26,260 [15620] INFO  Result: 1, total read: 166 - Utils::Network::HttpRequest::ReadResponse
+10/03/2015 09:20:26,260 [15620] INFO  Post request completed in: 453 milliseconds - Utils::Network::HttpRequest::Post - Utils::Common::LogTimer::~LogTimer
+10/03/2015 09:20:26,432 [15572] INFO  StatusCode: 200 - Utils::Network::HttpRequest::WriteRequest
+10/03/2015 09:20:26,432 [15572] INFO  ContentLength: 546 - Utils::Network::HttpRequest::ReadResponse
+10/03/2015 09:20:26,432 [15572] INFO  Result: 1, total read: 546 - Utils::Network::HttpRequest::ReadResponse
+10/03/2015 09:20:26,432 [15572] INFO  Get request completed in: 1016 milliseconds - Utils::Network::HttpRequest::Get - Utils::Common::LogTimer::~LogTimer
+10/03/2015 09:20:26,432 [15572] INFO  Remote config has been read successfully - RVM::Controllers::ReadRemoteConfigController::DoLogic
+10/03/2015 09:20:26,432 [15572] INFO  Initializing WinINet - Utils::Network::HttpRequest::Initialize
+10/03/2015 09:20:26,432 [15572] INFO  Setting receive timeout: 300000 - Utils::Network::HttpRequest::Initialize
+10/03/2015 09:20:26,432 [15572] INFO  Setting send timeout: 30000 - Utils::Network::HttpRequest::Initialize
+10/03/2015 09:20:26,432 [15572] INFO  Setting connect timeout: 60000 - Utils::Network::HttpRequest::Initialize
+10/03/2015 09:20:26,447 [15572] INFO  Get request for url: "https://developer.openfin.co/release/runtime/releaseChannels" - Utils::Network::HttpRequest::Get
+10/03/2015 09:20:26,447 [15572] INFO  Processing url: "https://developer.openfin.co/release/runtime/releaseChannels" - Utils::Network::HttpRequest::WriteRequest
+10/03/2015 09:20:26,525 [15572] INFO  StatusCode: 200 - Utils::Network::HttpRequest::WriteRequest
+10/03/2015 09:20:26,525 [15572] INFO  ContentLength: 65 - Utils::Network::HttpRequest::ReadResponse
+10/03/2015 09:20:26,525 [15572] INFO  Result: 1, total read: 65 - Utils::Network::HttpRequest::ReadResponse
+10/03/2015 09:20:26,525 [15572] INFO  Get request completed in: 78 milliseconds - Utils::Network::HttpRequest::Get - Utils::Common::LogTimer::~LogTimer
+10/03/2015 09:20:26,525 [15572] INFO  Initializing WinINet - Utils::Network::HttpRequest::Initialize
+10/03/2015 09:20:26,525 [15572] INFO  Setting receive timeout: 300000 - Utils::Network::HttpRequest::Initialize
+10/03/2015 09:20:26,525 [15572] INFO  Setting send timeout: 30000 - Utils::Network::HttpRequest::Initialize
+10/03/2015 09:20:26,525 [15572] INFO  Setting connect timeout: 60000 - Utils::Network::HttpRequest::Initialize
+10/03/2015 09:20:26,525 [15572] INFO  Get request for url: "https://developer.openfin.co/release/runtime/stable" - Utils::Network::HttpRequest::Get
+10/03/2015 09:20:26,525 [15572] INFO  Processing url: "https://developer.openfin.co/release/runtime/stable" - Utils::Network::HttpRequest::WriteRequest
+10/03/2015 09:20:26,604 [15572] INFO  StatusCode: 200 - Utils::Network::HttpRequest::WriteRequest
+10/03/2015 09:20:26,604 [15572] INFO  ContentLength: 8 - Utils::Network::HttpRequest::ReadResponse
+10/03/2015 09:20:26,604 [15572] INFO  Result: 1, total read: 8 - Utils::Network::HttpRequest::ReadResponse
+10/03/2015 09:20:26,604 [15572] INFO  Get request completed in: 79 milliseconds - Utils::Network::HttpRequest::Get - Utils::Common::LogTimer::~LogTimer
+10/03/2015 09:20:26,604 [15572] INFO  RVM::Controllers::RuntimeInstallerController::DoLogic - RVM::Controllers::RuntimeInstallerController::DoLogic
+10/03/2015 09:20:26,604 [15572] INFO  No need to install the runtime. - RVM::Controllers::RuntimeInstallerController::DoLogic
+10/03/2015 09:20:26,604 [15572] INFO  RVM::Controllers::ApplicationInstallController::DoLogic - RVM::Controllers::ApplicationInstallController::DoLogic
+10/03/2015 09:20:26,604 [16276] INFO  HTTP task: "http://localhost:8000/images/adaptive_mark_250x.png", type: GET - HTTPRequestTask::Execute
+10/03/2015 09:20:26,604 [15572] INFO  RVM::Controllers::LaunchRuntimeController::DoLogic - RVM::Controllers::LaunchRuntimeController::DoLogic
+10/03/2015 09:20:26,604 [16276] INFO  Initializing WinINet - Utils::Network::HttpRequest::Initialize
+10/03/2015 09:20:26,604 [15572] INFO  Launching runtime - RVM::Controllers::LaunchRuntimeController::DoLogic
+10/03/2015 09:20:26,604 [16276] INFO  Setting receive timeout: 300000 - Utils::Network::HttpRequest::Initialize
+10/03/2015 09:20:26,604 [16276] INFO  Setting send timeout: 30000 - Utils::Network::HttpRequest::Initialize
+10/03/2015 09:20:26,604 [16276] INFO  Setting connect timeout: 60000 - Utils::Network::HttpRequest::Initialize
+10/03/2015 09:20:26,604 [16276] INFO  Get request for url: "http://localhost:8000/images/adaptive_mark_250x.png" - Utils::Network::HttpRequest::Get
+10/03/2015 09:20:26,604 [16276] INFO  Processing url: "http://localhost:8000/images/adaptive_mark_250x.png" - Utils::Network::HttpRequest::WriteRequest
+10/03/2015 09:20:26,604 [15572] INFO  Monitoring process handle: 0000070C - RuntimeMonitor::MonitorProcess
+10/03/2015 09:20:26,604 [15572] INFO  Starting monitor thread - RuntimeMonitor::MonitorProcess
+10/03/2015 09:20:26,604 [15572] INFO  Init completed in: 1672 milliseconds - OpenFinRVM::InitInstance - Utils::Common::LogTimer::~LogTimer
+10/03/2015 09:20:26,604 [14908] INFO  Running monitor thread - RuntimeMonitor::MonitorThreadProc
+10/03/2015 09:20:26,604 [14908] INFO  Refreshing handles array - RuntimeMonitor::MonitorThreadProc
+10/03/2015 09:20:27,247 [12228] INFO  Exit completed in: 2315 milliseconds - OpenFinRVM::ExitInstance - Utils::Common::LogTimer::~LogTimer
+10/03/2015 09:20:27,256 [16288] INFO  Initializing WinINet - Utils::Network::HttpRequest::Initialize
+10/03/2015 09:20:27,256 [16288] INFO  Setting receive timeout: 300000 - Utils::Network::HttpRequest::Initialize
+10/03/2015 09:20:27,256 [16288] INFO  Setting send timeout: 30000 - Utils::Network::HttpRequest::Initialize
+10/03/2015 09:20:27,256 [16288] INFO  Setting connect timeout: 60000 - Utils::Network::HttpRequest::Initialize
+10/03/2015 09:20:27,256 [16288] INFO  Post request for url: "https://dl.openfin.co/services/s/" - Utils::Network::HttpRequest::Post
+10/03/2015 09:20:27,256 [16288] INFO  Processing url: "https://dl.openfin.co/services/s/" - Utils::Network::HttpRequest::WriteRequest
+10/03/2015 09:20:27,339 [16288] INFO  StatusCode: 200 - Utils::Network::HttpRequest::WriteRequest
+10/03/2015 09:20:27,339 [16288] INFO  ContentLength: 2 - Utils::Network::HttpRequest::ReadResponse
+10/03/2015 09:20:27,339 [16288] INFO  Result: 1, total read: 2 - Utils::Network::HttpRequest::ReadResponse
+10/03/2015 09:20:27,339 [16288] INFO  Post request completed in: 83 milliseconds - Utils::Network::HttpRequest::Post - Utils::Common::LogTimer::~LogTimer
+10/03/2015 09:20:28,839 [6056] INFO  Initializing WinINet - Utils::Network::HttpRequest::Initialize
+10/03/2015 09:20:28,839 [6056] INFO  Setting receive timeout: 300000 - Utils::Network::HttpRequest::Initialize
+10/03/2015 09:20:28,839 [6056] INFO  Setting send timeout: 30000 - Utils::Network::HttpRequest::Initialize
+10/03/2015 09:20:28,839 [6056] INFO  Setting connect timeout: 60000 - Utils::Network::HttpRequest::Initialize
+10/03/2015 09:20:28,839 [6056] INFO  Post request for url: "https://dl.openfin.co/services/s/" - Utils::Network::HttpRequest::Post
+10/03/2015 09:20:28,839 [6056] INFO  Processing url: "https://dl.openfin.co/services/s/" - Utils::Network::HttpRequest::WriteRequest
+10/03/2015 09:20:28,926 [6056] INFO  StatusCode: 200 - Utils::Network::HttpRequest::WriteRequest
+10/03/2015 09:20:28,926 [6056] INFO  ContentLength: 2 - Utils::Network::HttpRequest::ReadResponse
+10/03/2015 09:20:28,926 [6056] INFO  Result: 1, total read: 2 - Utils::Network::HttpRequest::ReadResponse
+10/03/2015 09:20:28,926 [6056] INFO  Post request completed in: 87 milliseconds - Utils::Network::HttpRequest::Post - Utils::Common::LogTimer::~LogTimer
+10/03/2015 09:20:29,619 [16276] WARN  Failed on HttpSendRequest() - GetLastError() code: 12029, msg:  - Utils::Common::LogFormattedLastError
+10/03/2015 09:20:29,619 [16276] WARN  code: 12029 == ERROR_INTERNET_CANNOT_CONNECT - Utils::Network::LogFormattedLastHttpError
+10/03/2015 09:20:29,619 [16276] INFO  Get request completed in: 3015 milliseconds - Utils::Network::HttpRequest::Get - Utils::Common::LogTimer::~LogTimer
+10/03/2015 09:20:29,619 [16276] ERROR HTTP task failed: "http://localhost:8000/images/adaptive_mark_250x.png" - HTTPRequestTask::Execute
+10/03/2015 09:20:29,619 [16276] INFO  HTTP task complete in: 3015 milliseconds - HTTPRequestTask::Execute
+10/03/2015 09:20:29,620 [16276] WARN  Failed to fetch the icon - RVM::Controllers::ApplicationInstallController::OnRequestComplete
+10/03/2015 09:20:29,630 [3448] INFO  Initializing WinINet - Utils::Network::HttpRequest::Initialize
+10/03/2015 09:20:29,630 [3448] INFO  Setting receive timeout: 300000 - Utils::Network::HttpRequest::Initialize
+10/03/2015 09:20:29,630 [3448] INFO  Setting send timeout: 30000 - Utils::Network::HttpRequest::Initialize
+10/03/2015 09:20:29,630 [3448] INFO  Setting connect timeout: 60000 - Utils::Network::HttpRequest::Initialize
+10/03/2015 09:20:29,630 [3448] INFO  Post request for url: "https://dl.openfin.co/services/s/" - Utils::Network::HttpRequest::Post
+10/03/2015 09:20:29,630 [3448] INFO  Processing url: "https://dl.openfin.co/services/s/" - Utils::Network::HttpRequest::WriteRequest
+10/03/2015 09:20:29,715 [3448] INFO  StatusCode: 200 - Utils::Network::HttpRequest::WriteRequest
+10/03/2015 09:20:29,715 [3448] INFO  ContentLength: 2 - Utils::Network::HttpRequest::ReadResponse
+10/03/2015 09:20:29,715 [3448] INFO  Result: 1, total read: 2 - Utils::Network::HttpRequest::ReadResponse
+10/03/2015 09:20:29,715 [3448] INFO  Post request completed in: 85 milliseconds - Utils::Network::HttpRequest::Post - Utils::Common::LogTimer::~LogTimer
+10/03/2015 10:30:08,314 INFO  [default] Init RVM...
+10/03/2015 10:30:08,315 [15116] INFO  Initialized Log - OpenFinRVM::InitInstance
+10/03/2015 10:30:08,316 [15116] INFO  Running "c:\_projects\bnwan\dashboard\OpenFinRVM.exe" Version 0.1.0.20 - OpenFinRVM::InitInstance
+10/03/2015 10:30:08,316 [15116] WARN  RegCloseKey() failed with error 0 for path SOFTWARE\Microsoft\Cryptography - Utils::Repository::Registry::Key::Close
+10/03/2015 10:30:08,316 [15116] INFO  Initialized the MainController - OpenFinRVM::InitInstance
+10/03/2015 10:30:08,316 [15572] INFO  RVM::Controllers::ReadRemoteConfigController::DoLogic - RVM::Controllers::ReadRemoteConfigController::DoLogic
+10/03/2015 10:30:08,316 [15572] INFO  Initializing WinINet - Utils::Network::HttpRequest::Initialize
+10/03/2015 10:30:08,316 [15572] INFO  Setting receive timeout: 300000 - Utils::Network::HttpRequest::Initialize
+10/03/2015 10:30:08,316 [15572] INFO  Setting send timeout: 30000 - Utils::Network::HttpRequest::Initialize
+10/03/2015 10:30:08,316 [15572] INFO  Setting connect timeout: 60000 - Utils::Network::HttpRequest::Initialize
+10/03/2015 10:30:08,317 [15572] INFO  Get request for url: "http://localhost:8080/app.json" - Utils::Network::HttpRequest::Get
+10/03/2015 10:30:08,317 [15572] INFO  Processing url: "http://localhost:8080/app.json" - Utils::Network::HttpRequest::WriteRequest
+10/03/2015 10:30:09,134 [16324] INFO  Initializing WinINet - Utils::Network::HttpRequest::Initialize
+10/03/2015 10:30:09,138 [16324] INFO  Setting receive timeout: 300000 - Utils::Network::HttpRequest::Initialize
+10/03/2015 10:30:09,138 [16324] INFO  Setting send timeout: 30000 - Utils::Network::HttpRequest::Initialize
+10/03/2015 10:30:09,138 [16324] INFO  Setting connect timeout: 60000 - Utils::Network::HttpRequest::Initialize
+10/03/2015 10:30:09,138 [16324] INFO  Post request for url: "https://dl.openfin.co/services/authenticate" - Utils::Network::HttpRequest::Post
+10/03/2015 10:30:09,138 [16324] INFO  Processing url: "https://dl.openfin.co/services/authenticate" - Utils::Network::HttpRequest::WriteRequest
+10/03/2015 10:30:09,359 [15572] INFO  StatusCode: 200 - Utils::Network::HttpRequest::WriteRequest
+10/03/2015 10:30:09,359 [15572] INFO  ContentLength: 546 - Utils::Network::HttpRequest::ReadResponse
+10/03/2015 10:30:09,360 [15572] INFO  Result: 1, total read: 546 - Utils::Network::HttpRequest::ReadResponse
+10/03/2015 10:30:09,360 [15572] INFO  Get request completed in: 1043 milliseconds - Utils::Network::HttpRequest::Get - Utils::Common::LogTimer::~LogTimer
+10/03/2015 10:30:09,371 [15572] INFO  Remote config has been read successfully - RVM::Controllers::ReadRemoteConfigController::DoLogic
+10/03/2015 10:30:09,371 [15572] INFO  Initializing WinINet - Utils::Network::HttpRequest::Initialize
+10/03/2015 10:30:09,371 [15572] INFO  Setting receive timeout: 300000 - Utils::Network::HttpRequest::Initialize
+10/03/2015 10:30:09,371 [15572] INFO  Setting send timeout: 30000 - Utils::Network::HttpRequest::Initialize
+10/03/2015 10:30:09,371 [15572] INFO  Setting connect timeout: 60000 - Utils::Network::HttpRequest::Initialize
+10/03/2015 10:30:09,371 [15572] INFO  Get request for url: "https://developer.openfin.co/release/runtime/releaseChannels" - Utils::Network::HttpRequest::Get
+10/03/2015 10:30:09,371 [15572] INFO  Processing url: "https://developer.openfin.co/release/runtime/releaseChannels" - Utils::Network::HttpRequest::WriteRequest
+10/03/2015 10:30:09,649 [16324] INFO  StatusCode: 200 - Utils::Network::HttpRequest::WriteRequest
+10/03/2015 10:30:09,649 [16324] INFO  ContentLength: 166 - Utils::Network::HttpRequest::ReadResponse
+10/03/2015 10:30:09,649 [16324] INFO  Result: 1, total read: 166 - Utils::Network::HttpRequest::ReadResponse
+10/03/2015 10:30:09,649 [16324] INFO  Post request completed in: 511 milliseconds - Utils::Network::HttpRequest::Post - Utils::Common::LogTimer::~LogTimer
+10/03/2015 10:30:09,949 [15572] INFO  StatusCode: 200 - Utils::Network::HttpRequest::WriteRequest
+10/03/2015 10:30:09,949 [15572] INFO  ContentLength: 65 - Utils::Network::HttpRequest::ReadResponse
+10/03/2015 10:30:09,949 [15572] INFO  Result: 1, total read: 65 - Utils::Network::HttpRequest::ReadResponse
+10/03/2015 10:30:09,949 [15572] INFO  Get request completed in: 578 milliseconds - Utils::Network::HttpRequest::Get - Utils::Common::LogTimer::~LogTimer
+10/03/2015 10:30:09,949 [15572] INFO  Initializing WinINet - Utils::Network::HttpRequest::Initialize
+10/03/2015 10:30:09,949 [15572] INFO  Setting receive timeout: 300000 - Utils::Network::HttpRequest::Initialize
+10/03/2015 10:30:09,949 [15572] INFO  Setting send timeout: 30000 - Utils::Network::HttpRequest::Initialize
+10/03/2015 10:30:09,949 [15572] INFO  Setting connect timeout: 60000 - Utils::Network::HttpRequest::Initialize
+10/03/2015 10:30:09,949 [15572] INFO  Get request for url: "https://developer.openfin.co/release/runtime/stable" - Utils::Network::HttpRequest::Get
+10/03/2015 10:30:09,949 [15572] INFO  Processing url: "https://developer.openfin.co/release/runtime/stable" - Utils::Network::HttpRequest::WriteRequest
+10/03/2015 10:30:10,030 [15572] INFO  StatusCode: 200 - Utils::Network::HttpRequest::WriteRequest
+10/03/2015 10:30:10,030 [15572] INFO  ContentLength: 8 - Utils::Network::HttpRequest::ReadResponse
+10/03/2015 10:30:10,030 [15572] INFO  Result: 1, total read: 8 - Utils::Network::HttpRequest::ReadResponse
+10/03/2015 10:30:10,030 [15572] INFO  Get request completed in: 81 milliseconds - Utils::Network::HttpRequest::Get - Utils::Common::LogTimer::~LogTimer
+10/03/2015 10:30:10,030 [15572] INFO  RVM::Controllers::RuntimeInstallerController::DoLogic - RVM::Controllers::RuntimeInstallerController::DoLogic
+10/03/2015 10:30:10,030 [15572] INFO  No need to install the runtime. - RVM::Controllers::RuntimeInstallerController::DoLogic
+10/03/2015 10:30:10,030 [15572] INFO  RVM::Controllers::ApplicationInstallController::DoLogic - RVM::Controllers::ApplicationInstallController::DoLogic
+10/03/2015 10:30:10,033 [16276] INFO  HTTP task: "http://localhost:8000/images/adaptive_mark_250x.png", type: GET - HTTPRequestTask::Execute
+10/03/2015 10:30:10,033 [16276] INFO  Initializing WinINet - Utils::Network::HttpRequest::Initialize
+10/03/2015 10:30:10,033 [15572] INFO  RVM::Controllers::LaunchRuntimeController::DoLogic - RVM::Controllers::LaunchRuntimeController::DoLogic
+10/03/2015 10:30:10,033 [15572] INFO  Launching runtime - RVM::Controllers::LaunchRuntimeController::DoLogic
+10/03/2015 10:30:10,033 [16276] INFO  Setting receive timeout: 300000 - Utils::Network::HttpRequest::Initialize
+10/03/2015 10:30:10,033 [16276] INFO  Setting send timeout: 30000 - Utils::Network::HttpRequest::Initialize
+10/03/2015 10:30:10,033 [16276] INFO  Setting connect timeout: 60000 - Utils::Network::HttpRequest::Initialize
+10/03/2015 10:30:10,033 [16276] INFO  Get request for url: "http://localhost:8000/images/adaptive_mark_250x.png" - Utils::Network::HttpRequest::Get
+10/03/2015 10:30:10,033 [16276] INFO  Processing url: "http://localhost:8000/images/adaptive_mark_250x.png" - Utils::Network::HttpRequest::WriteRequest
+10/03/2015 10:30:10,034 [15572] INFO  Monitoring process handle: 000002CC - RuntimeMonitor::MonitorProcess
+10/03/2015 10:30:10,034 [15572] INFO  Signaling monitor thread to refresh handles array - RuntimeMonitor::MonitorProcess
+10/03/2015 10:30:10,034 [14908] INFO  Refreshing handles array - RuntimeMonitor::MonitorThreadProc
+10/03/2015 10:30:10,034 [15116] INFO  Init completed in: 1719 milliseconds - OpenFinRVM::InitInstance - Utils::Common::LogTimer::~LogTimer
+10/03/2015 10:30:10,034 [15116] INFO  Exiting RVM... - OpenFinRVM::ExitInstance
+10/03/2015 10:30:10,034 [15116] INFO  Exiting RVM... - OpenFinRVM::ExitInstance
+10/03/2015 10:30:10,034 [15116] INFO  Calling MainController.Uninit() - OpenFinRVM::ExitInstance
+10/03/2015 10:30:10,034 [15116] INFO  Calling MessageWindow.Destroy() - OpenFinRVM::ExitInstance
+10/03/2015 10:30:10,034 [15116] INFO  Calling RuntimeMonitor.Stop() - OpenFinRVM::ExitInstance
+10/03/2015 10:30:10,034 [15116] INFO  Calling AnalyticsManager.Uninit() - OpenFinRVM::ExitInstance
+10/03/2015 10:30:10,034 [15116] INFO  Calling TaskManager.Wait() - OpenFinRVM::ExitInstance
+10/03/2015 10:30:10,037 [6056] INFO  Initializing WinINet - Utils::Network::HttpRequest::Initialize
+10/03/2015 10:30:10,037 [6056] INFO  Setting receive timeout: 300000 - Utils::Network::HttpRequest::Initialize
+10/03/2015 10:30:10,037 [6056] INFO  Setting send timeout: 30000 - Utils::Network::HttpRequest::Initialize
+10/03/2015 10:30:10,037 [6056] INFO  Setting connect timeout: 60000 - Utils::Network::HttpRequest::Initialize
+10/03/2015 10:30:10,037 [6056] INFO  Post request for url: "https://dl.openfin.co/services/s/" - Utils::Network::HttpRequest::Post
+10/03/2015 10:30:10,037 [6056] INFO  Processing url: "https://dl.openfin.co/services/s/" - Utils::Network::HttpRequest::WriteRequest
+10/03/2015 10:30:10,203 [14908] INFO  Termination event for process handle: 000002CC - RuntimeMonitor::MonitorThreadProc
+10/03/2015 10:30:10,203 [14908] INFO  Refreshing handles array - RuntimeMonitor::MonitorThreadProc
+10/03/2015 10:30:10,374 [6056] INFO  StatusCode: 400 - Utils::Network::HttpRequest::WriteRequest
+10/03/2015 10:30:10,374 [6056] WARN  Unhandled HTTP status code - GetLastError() code: 0, msg: The operation completed successfully.
+ - Utils::Common::LogFormattedLastError
+10/03/2015 10:30:10,374 [6056] WARN  StatusCode: 400 == HTTP_STATUS_BAD_REQUEST - Utils::Network::HttpRequest::WriteRequest
+10/03/2015 10:30:10,374 [6056] INFO  Post request completed in: 337 milliseconds - Utils::Network::HttpRequest::Post - Utils::Common::LogTimer::~LogTimer
+10/03/2015 10:30:10,398 [15704] INFO  Initializing WinINet - Utils::Network::HttpRequest::Initialize
+10/03/2015 10:30:10,398 [15704] INFO  Setting receive timeout: 300000 - Utils::Network::HttpRequest::Initialize
+10/03/2015 10:30:10,398 [15704] INFO  Setting send timeout: 30000 - Utils::Network::HttpRequest::Initialize
+10/03/2015 10:30:10,398 [15704] INFO  Setting connect timeout: 60000 - Utils::Network::HttpRequest::Initialize
+10/03/2015 10:30:10,398 [15704] INFO  Post request for url: "https://dl.openfin.co/services/s/" - Utils::Network::HttpRequest::Post
+10/03/2015 10:30:10,398 [15704] INFO  Processing url: "https://dl.openfin.co/services/s/" - Utils::Network::HttpRequest::WriteRequest
+10/03/2015 10:30:10,644 [15116] INFO  Exit completed in: 610 milliseconds - OpenFinRVM::ExitInstance - Utils::Common::LogTimer::~LogTimer
+10/03/2015 10:30:10,711 [15704] INFO  StatusCode: 400 - Utils::Network::HttpRequest::WriteRequest
+10/03/2015 10:30:10,711 [15704] WARN  Unhandled HTTP status code - GetLastError() code: 0, msg: The operation completed successfully.
+ - Utils::Common::LogFormattedLastError
+10/03/2015 10:30:10,711 [15704] WARN  StatusCode: 400 == HTTP_STATUS_BAD_REQUEST - Utils::Network::HttpRequest::WriteRequest
+10/03/2015 10:30:10,711 [15704] INFO  Post request completed in: 313 milliseconds - Utils::Network::HttpRequest::Post - Utils::Common::LogTimer::~LogTimer
+10/03/2015 10:30:13,031 [16276] WARN  Failed on HttpSendRequest() - GetLastError() code: 12029, msg:  - Utils::Common::LogFormattedLastError
+10/03/2015 10:30:13,031 [16276] WARN  code: 12029 == ERROR_INTERNET_CANNOT_CONNECT - Utils::Network::LogFormattedLastHttpError
+10/03/2015 10:30:13,031 [16276] INFO  Get request completed in: 2998 milliseconds - Utils::Network::HttpRequest::Get - Utils::Common::LogTimer::~LogTimer
+10/03/2015 10:30:13,031 [16276] ERROR HTTP task failed: "http://localhost:8000/images/adaptive_mark_250x.png" - HTTPRequestTask::Execute
+10/03/2015 10:30:13,032 [16276] INFO  HTTP task complete in: 2999 milliseconds - HTTPRequestTask::Execute
+10/03/2015 10:30:13,032 [16276] WARN  Failed to fetch the icon - RVM::Controllers::ApplicationInstallController::OnRequestComplete
+10/03/2015 10:30:13,042 [3448] INFO  Initializing WinINet - Utils::Network::HttpRequest::Initialize
+10/03/2015 10:30:13,042 [3448] INFO  Setting receive timeout: 300000 - Utils::Network::HttpRequest::Initialize
+10/03/2015 10:30:13,042 [3448] INFO  Setting send timeout: 30000 - Utils::Network::HttpRequest::Initialize
+10/03/2015 10:30:13,042 [3448] INFO  Setting connect timeout: 60000 - Utils::Network::HttpRequest::Initialize
+10/03/2015 10:30:13,042 [3448] INFO  Post request for url: "https://dl.openfin.co/services/s/" - Utils::Network::HttpRequest::Post
+10/03/2015 10:30:13,042 [3448] INFO  Processing url: "https://dl.openfin.co/services/s/" - Utils::Network::HttpRequest::WriteRequest
+10/03/2015 10:30:13,145 [3448] INFO  StatusCode: 400 - Utils::Network::HttpRequest::WriteRequest
+10/03/2015 10:30:13,145 [3448] WARN  Unhandled HTTP status code - GetLastError() code: 0, msg: The operation completed successfully.
+ - Utils::Common::LogFormattedLastError
+10/03/2015 10:30:13,145 [3448] WARN  StatusCode: 400 == HTTP_STATUS_BAD_REQUEST - Utils::Network::HttpRequest::WriteRequest
+10/03/2015 10:30:13,145 [3448] INFO  Post request completed in: 103 milliseconds - Utils::Network::HttpRequest::Post - Utils::Common::LogTimer::~LogTimer
+10/03/2015 10:30:26,027 [16288] INFO  Initializing WinINet - Utils::Network::HttpRequest::Initialize
+10/03/2015 10:30:26,027 [16288] INFO  Setting receive timeout: 300000 - Utils::Network::HttpRequest::Initialize
+10/03/2015 10:30:26,027 [16288] INFO  Setting send timeout: 30000 - Utils::Network::HttpRequest::Initialize
+10/03/2015 10:30:26,027 [16288] INFO  Setting connect timeout: 60000 - Utils::Network::HttpRequest::Initialize
+10/03/2015 10:30:26,027 [16288] INFO  Post request for url: "https://dl.openfin.co/services/s/" - Utils::Network::HttpRequest::Post
+10/03/2015 10:30:26,027 [16288] INFO  Processing url: "https://dl.openfin.co/services/s/" - Utils::Network::HttpRequest::WriteRequest
+10/03/2015 10:30:26,108 [16288] INFO  StatusCode: 400 - Utils::Network::HttpRequest::WriteRequest
+10/03/2015 10:30:26,108 [16288] WARN  Unhandled HTTP status code - GetLastError() code: 0, msg: The operation completed successfully.
+ - Utils::Common::LogFormattedLastError
+10/03/2015 10:30:26,108 [16288] WARN  StatusCode: 400 == HTTP_STATUS_BAD_REQUEST - Utils::Network::HttpRequest::WriteRequest
+10/03/2015 10:30:26,108 [16288] INFO  Post request completed in: 81 milliseconds - Utils::Network::HttpRequest::Post - Utils::Common::LogTimer::~LogTimer
+10/03/2015 10:30:26,172 [14908] INFO  Termination event for process handle: 0000070C - RuntimeMonitor::MonitorThreadProc
+10/03/2015 10:30:26,172 [14908] INFO  Sending WM_QUIT message, no more process handles. - RuntimeMonitor::MonitorThreadProc
+10/03/2015 10:30:26,172 [15572] INFO  Exiting RVM... - OpenFinRVM::ExitInstance
+10/03/2015 10:30:26,172 [15572] INFO  Exiting RVM... - OpenFinRVM::ExitInstance
+10/03/2015 10:30:26,172 [15572] INFO  Calling MainController.Uninit() - OpenFinRVM::ExitInstance
+10/03/2015 10:30:26,172 [15572] INFO  Calling MessageWindow.Destroy() - OpenFinRVM::ExitInstance
+10/03/2015 10:30:26,173 [15572] INFO  Calling RuntimeMonitor.Stop() - OpenFinRVM::ExitInstance
+10/03/2015 10:30:26,173 [15572] INFO  Calling AnalyticsManager.Uninit() - OpenFinRVM::ExitInstance
+10/03/2015 10:30:26,174 [15572] INFO  Calling TaskManager.Wait() - OpenFinRVM::ExitInstance
+10/03/2015 10:30:26,174 [15572] INFO  Exit completed in: 2 milliseconds - OpenFinRVM::ExitInstance - Utils::Common::LogTimer::~LogTimer
+10/03/2015 10:30:35,514 INFO  [default] Init RVM...
+10/03/2015 10:30:35,514 [17252] INFO  Initialized Log - OpenFinRVM::InitInstance
+10/03/2015 10:30:35,514 [17252] INFO  Running "c:\_projects\bnwan\dashboard\OpenFinRVM.exe" Version 0.1.0.20 - OpenFinRVM::InitInstance
+10/03/2015 10:30:35,514 [17252] WARN  RegCloseKey() failed with error 0 for path SOFTWARE\Microsoft\Cryptography - Utils::Repository::Registry::Key::Close
+10/03/2015 10:30:35,514 [17252] INFO  Initialized the MainController - OpenFinRVM::InitInstance
+10/03/2015 10:30:35,514 [17252] INFO  RVM::Controllers::InstallerController::DoLogic - RVM::Controllers::InstallerController::DoLogic
+10/03/2015 10:30:35,514 [17252] INFO  RVM::Controllers::PathVerifyController::DoLogic - RVM::Controllers::PathVerifyController::DoLogic
+10/03/2015 10:30:35,514 [17252] INFO  RVM is not running from the desired path. Launching "C:\Users\benjamin.nwaneampeh\AppData\Local\OpenFin\OpenFinRVM.exe" - RVM::Controllers::PathVerifyController::DoLogic
+10/03/2015 10:30:35,514 [17252] INFO  Init completed in: 0 milliseconds - OpenFinRVM::InitInstance - Utils::Common::LogTimer::~LogTimer
+10/03/2015 10:30:35,514 [17252] INFO  Exiting RVM... - OpenFinRVM::ExitInstance
+10/03/2015 10:30:35,514 [17252] INFO  Exiting RVM... - OpenFinRVM::ExitInstance
+10/03/2015 10:30:35,514 [17252] INFO  Calling MainController.Uninit() - OpenFinRVM::ExitInstance
+10/03/2015 10:30:35,514 [17252] INFO  Calling MessageWindow.Destroy() - OpenFinRVM::ExitInstance
+10/03/2015 10:30:35,514 [17252] INFO  Calling RuntimeMonitor.Stop() - OpenFinRVM::ExitInstance
+10/03/2015 10:30:35,514 [17252] INFO  Calling AnalyticsManager.Uninit() - OpenFinRVM::ExitInstance
+10/03/2015 10:30:35,514 [17252] INFO  Calling TaskManager.Wait() - OpenFinRVM::ExitInstance
+10/03/2015 10:30:35,530 INFO  [default] Init RVM...
+10/03/2015 10:30:35,530 [17328] INFO  Initialized Log - OpenFinRVM::InitInstance
+10/03/2015 10:30:35,530 [17328] INFO  Running "C:\Users\benjamin.nwaneampeh\AppData\Local\OpenFin\OpenFinRVM.exe" Version 0.1.0.20 - OpenFinRVM::InitInstance
+10/03/2015 10:30:35,530 [17328] WARN  RegCloseKey() failed with error 0 for path SOFTWARE\Microsoft\Cryptography - Utils::Repository::Registry::Key::Close
+10/03/2015 10:30:35,530 [17328] INFO  Initialized the MainController - OpenFinRVM::InitInstance
+10/03/2015 10:30:35,530 [17328] INFO  RVM::Controllers::InstallerController::DoLogic - RVM::Controllers::InstallerController::DoLogic
+10/03/2015 10:30:35,530 [17328] INFO  RVM::Controllers::PathVerifyController::DoLogic - RVM::Controllers::PathVerifyController::DoLogic
+10/03/2015 10:30:35,530 [17328] INFO  RVM::Controllers::AutoUpdateController::DoLogic - RVM::Controllers::AutoUpdateController::DoLogic
+10/03/2015 10:30:35,530 [17328] INFO  Initializing WinINet - Utils::Network::HttpRequest::Initialize
+10/03/2015 10:30:35,545 [17328] INFO  Setting receive timeout: 300000 - Utils::Network::HttpRequest::Initialize
+10/03/2015 10:30:35,545 [17328] INFO  Setting send timeout: 30000 - Utils::Network::HttpRequest::Initialize
+10/03/2015 10:30:35,545 [17328] INFO  Setting connect timeout: 60000 - Utils::Network::HttpRequest::Initialize
+10/03/2015 10:30:35,545 [17328] INFO  Get request for url: "https://developer.openfin.co/release/rvm/latestVersion" - Utils::Network::HttpRequest::Get
+10/03/2015 10:30:35,545 [17328] INFO  Processing url: "https://developer.openfin.co/release/rvm/latestVersion" - Utils::Network::HttpRequest::WriteRequest
+10/03/2015 10:30:35,905 [17328] INFO  StatusCode: 200 - Utils::Network::HttpRequest::WriteRequest
+10/03/2015 10:30:35,905 [17328] INFO  ContentLength: 8 - Utils::Network::HttpRequest::ReadResponse
+10/03/2015 10:30:35,905 [17328] INFO  Result: 1, total read: 8 - Utils::Network::HttpRequest::ReadResponse
+10/03/2015 10:30:35,905 [17328] INFO  Get request completed in: 360 milliseconds - Utils::Network::HttpRequest::Get - Utils::Common::LogTimer::~LogTimer
+10/03/2015 10:30:35,905 [17328] INFO  RVM::Controllers::ReadRemoteConfigController::DoLogic - RVM::Controllers::ReadRemoteConfigController::DoLogic
+10/03/2015 10:30:35,905 [17328] INFO  Initializing WinINet - Utils::Network::HttpRequest::Initialize
+10/03/2015 10:30:35,905 [17328] INFO  Setting receive timeout: 300000 - Utils::Network::HttpRequest::Initialize
+10/03/2015 10:30:35,905 [17328] INFO  Setting send timeout: 30000 - Utils::Network::HttpRequest::Initialize
+10/03/2015 10:30:35,905 [17328] INFO  Setting connect timeout: 60000 - Utils::Network::HttpRequest::Initialize
+10/03/2015 10:30:35,905 [17328] INFO  Get request for url: "http://localhost:8080/app.json" - Utils::Network::HttpRequest::Get
+10/03/2015 10:30:35,905 [17328] INFO  Processing url: "http://localhost:8080/app.json" - Utils::Network::HttpRequest::WriteRequest
+10/03/2015 10:30:36,436 [17332] INFO  Initializing WinINet - Utils::Network::HttpRequest::Initialize
+10/03/2015 10:30:36,436 [17332] INFO  Setting receive timeout: 300000 - Utils::Network::HttpRequest::Initialize
+10/03/2015 10:30:36,436 [17332] INFO  Setting send timeout: 30000 - Utils::Network::HttpRequest::Initialize
+10/03/2015 10:30:36,436 [17332] INFO  Setting connect timeout: 60000 - Utils::Network::HttpRequest::Initialize
+10/03/2015 10:30:36,436 [17332] INFO  Post request for url: "https://dl.openfin.co/services/authenticate" - Utils::Network::HttpRequest::Post
+10/03/2015 10:30:36,436 [17332] INFO  Processing url: "https://dl.openfin.co/services/authenticate" - Utils::Network::HttpRequest::WriteRequest
+10/03/2015 10:30:36,451 [17260] INFO  Initializing WinINet - Utils::Network::HttpRequest::Initialize
+10/03/2015 10:30:36,451 [17260] INFO  Setting receive timeout: 300000 - Utils::Network::HttpRequest::Initialize
+10/03/2015 10:30:36,451 [17260] INFO  Setting send timeout: 30000 - Utils::Network::HttpRequest::Initialize
+10/03/2015 10:30:36,451 [17260] INFO  Setting connect timeout: 60000 - Utils::Network::HttpRequest::Initialize
+10/03/2015 10:30:36,451 [17260] INFO  Post request for url: "https://dl.openfin.co/services/authenticate" - Utils::Network::HttpRequest::Post
+10/03/2015 10:30:36,451 [17260] INFO  Processing url: "https://dl.openfin.co/services/authenticate" - Utils::Network::HttpRequest::WriteRequest
+10/03/2015 10:30:36,764 [17332] INFO  StatusCode: 200 - Utils::Network::HttpRequest::WriteRequest
+10/03/2015 10:30:36,764 [17332] INFO  ContentLength: 166 - Utils::Network::HttpRequest::ReadResponse
+10/03/2015 10:30:36,764 [17332] INFO  Result: 1, total read: 166 - Utils::Network::HttpRequest::ReadResponse
+10/03/2015 10:30:36,764 [17332] INFO  Post request completed in: 328 milliseconds - Utils::Network::HttpRequest::Post - Utils::Common::LogTimer::~LogTimer
+10/03/2015 10:30:36,905 [17260] INFO  StatusCode: 200 - Utils::Network::HttpRequest::WriteRequest
+10/03/2015 10:30:36,905 [17260] INFO  ContentLength: 166 - Utils::Network::HttpRequest::ReadResponse
+10/03/2015 10:30:36,905 [17260] INFO  Result: 1, total read: 166 - Utils::Network::HttpRequest::ReadResponse
+10/03/2015 10:30:36,905 [17260] INFO  Post request completed in: 454 milliseconds - Utils::Network::HttpRequest::Post - Utils::Common::LogTimer::~LogTimer
+10/03/2015 10:30:36,951 [17328] INFO  StatusCode: 200 - Utils::Network::HttpRequest::WriteRequest
+10/03/2015 10:30:36,951 [17328] INFO  ContentLength: 546 - Utils::Network::HttpRequest::ReadResponse
+10/03/2015 10:30:36,951 [17328] INFO  Result: 1, total read: 546 - Utils::Network::HttpRequest::ReadResponse
+10/03/2015 10:30:36,951 [17328] INFO  Get request completed in: 1046 milliseconds - Utils::Network::HttpRequest::Get - Utils::Common::LogTimer::~LogTimer
+10/03/2015 10:30:36,951 [17328] INFO  Remote config has been read successfully - RVM::Controllers::ReadRemoteConfigController::DoLogic
+10/03/2015 10:30:36,951 [17328] INFO  Initializing WinINet - Utils::Network::HttpRequest::Initialize
+10/03/2015 10:30:36,951 [17328] INFO  Setting receive timeout: 300000 - Utils::Network::HttpRequest::Initialize
+10/03/2015 10:30:36,951 [17328] INFO  Setting send timeout: 30000 - Utils::Network::HttpRequest::Initialize
+10/03/2015 10:30:36,951 [17328] INFO  Setting connect timeout: 60000 - Utils::Network::HttpRequest::Initialize
+10/03/2015 10:30:36,951 [17328] INFO  Get request for url: "https://developer.openfin.co/release/runtime/releaseChannels" - Utils::Network::HttpRequest::Get
+10/03/2015 10:30:36,951 [17328] INFO  Processing url: "https://developer.openfin.co/release/runtime/releaseChannels" - Utils::Network::HttpRequest::WriteRequest
+10/03/2015 10:30:37,045 [17328] INFO  StatusCode: 200 - Utils::Network::HttpRequest::WriteRequest
+10/03/2015 10:30:37,045 [17328] INFO  ContentLength: 65 - Utils::Network::HttpRequest::ReadResponse
+10/03/2015 10:30:37,045 [17328] INFO  Result: 1, total read: 65 - Utils::Network::HttpRequest::ReadResponse
+10/03/2015 10:30:37,045 [17328] INFO  Get request completed in: 94 milliseconds - Utils::Network::HttpRequest::Get - Utils::Common::LogTimer::~LogTimer
+10/03/2015 10:30:37,045 [17328] INFO  Initializing WinINet - Utils::Network::HttpRequest::Initialize
+10/03/2015 10:30:37,045 [17328] INFO  Setting receive timeout: 300000 - Utils::Network::HttpRequest::Initialize
+10/03/2015 10:30:37,045 [17328] INFO  Setting send timeout: 30000 - Utils::Network::HttpRequest::Initialize
+10/03/2015 10:30:37,045 [17328] INFO  Setting connect timeout: 60000 - Utils::Network::HttpRequest::Initialize
+10/03/2015 10:30:37,045 [17328] INFO  Get request for url: "https://developer.openfin.co/release/runtime/stable" - Utils::Network::HttpRequest::Get
+10/03/2015 10:30:37,045 [17328] INFO  Processing url: "https://developer.openfin.co/release/runtime/stable" - Utils::Network::HttpRequest::WriteRequest
+10/03/2015 10:30:37,123 [17328] INFO  StatusCode: 200 - Utils::Network::HttpRequest::WriteRequest
+10/03/2015 10:30:37,123 [17328] INFO  ContentLength: 8 - Utils::Network::HttpRequest::ReadResponse
+10/03/2015 10:30:37,123 [17328] INFO  Result: 1, total read: 8 - Utils::Network::HttpRequest::ReadResponse
+10/03/2015 10:30:37,123 [17328] INFO  Get request completed in: 78 milliseconds - Utils::Network::HttpRequest::Get - Utils::Common::LogTimer::~LogTimer
+10/03/2015 10:30:37,123 [17328] INFO  RVM::Controllers::RuntimeInstallerController::DoLogic - RVM::Controllers::RuntimeInstallerController::DoLogic
+10/03/2015 10:30:37,123 [17328] INFO  No need to install the runtime. - RVM::Controllers::RuntimeInstallerController::DoLogic
+10/03/2015 10:30:37,123 [17328] INFO  RVM::Controllers::ApplicationInstallController::DoLogic - RVM::Controllers::ApplicationInstallController::DoLogic
+10/03/2015 10:30:37,123 [17336] INFO  HTTP task: "http://localhost:8000/images/adaptive_mark_250x.png", type: GET - HTTPRequestTask::Execute
+10/03/2015 10:30:37,123 [17328] INFO  RVM::Controllers::LaunchRuntimeController::DoLogic - RVM::Controllers::LaunchRuntimeController::DoLogic
+10/03/2015 10:30:37,123 [17336] INFO  Initializing WinINet - Utils::Network::HttpRequest::Initialize
+10/03/2015 10:30:37,123 [17328] INFO  Launching runtime - RVM::Controllers::LaunchRuntimeController::DoLogic
+10/03/2015 10:30:37,123 [17336] INFO  Setting receive timeout: 300000 - Utils::Network::HttpRequest::Initialize
+10/03/2015 10:30:37,123 [17336] INFO  Setting send timeout: 30000 - Utils::Network::HttpRequest::Initialize
+10/03/2015 10:30:37,123 [17336] INFO  Setting connect timeout: 60000 - Utils::Network::HttpRequest::Initialize
+10/03/2015 10:30:37,123 [17336] INFO  Get request for url: "http://localhost:8000/images/adaptive_mark_250x.png" - Utils::Network::HttpRequest::Get
+10/03/2015 10:30:37,123 [17336] INFO  Processing url: "http://localhost:8000/images/adaptive_mark_250x.png" - Utils::Network::HttpRequest::WriteRequest
+10/03/2015 10:30:37,123 [17328] INFO  Monitoring process handle: 00000714 - RuntimeMonitor::MonitorProcess
+10/03/2015 10:30:37,123 [17328] INFO  Starting monitor thread - RuntimeMonitor::MonitorProcess
+10/03/2015 10:30:37,123 [17328] INFO  Init completed in: 1593 milliseconds - OpenFinRVM::InitInstance - Utils::Common::LogTimer::~LogTimer
+10/03/2015 10:30:37,123 [16540] INFO  Running monitor thread - RuntimeMonitor::MonitorThreadProc
+10/03/2015 10:30:37,123 [16540] INFO  Refreshing handles array - RuntimeMonitor::MonitorThreadProc
+10/03/2015 10:30:37,816 [17340] INFO  Initializing WinINet - Utils::Network::HttpRequest::Initialize
+10/03/2015 10:30:37,816 [17340] INFO  Setting receive timeout: 300000 - Utils::Network::HttpRequest::Initialize
+10/03/2015 10:30:37,816 [17340] INFO  Setting send timeout: 30000 - Utils::Network::HttpRequest::Initialize
+10/03/2015 10:30:37,816 [17340] INFO  Setting connect timeout: 60000 - Utils::Network::HttpRequest::Initialize
+10/03/2015 10:30:37,816 [17340] INFO  Post request for url: "https://dl.openfin.co/services/s/" - Utils::Network::HttpRequest::Post
+10/03/2015 10:30:37,816 [17340] INFO  Processing url: "https://dl.openfin.co/services/s/" - Utils::Network::HttpRequest::WriteRequest
+10/03/2015 10:30:37,858 [17252] INFO  Exit completed in: 2344 milliseconds - OpenFinRVM::ExitInstance - Utils::Common::LogTimer::~LogTimer
+10/03/2015 10:30:37,899 [17340] INFO  StatusCode: 200 - Utils::Network::HttpRequest::WriteRequest
+10/03/2015 10:30:37,899 [17340] INFO  ContentLength: 2 - Utils::Network::HttpRequest::ReadResponse
+10/03/2015 10:30:37,899 [17340] INFO  Result: 1, total read: 2 - Utils::Network::HttpRequest::ReadResponse
+10/03/2015 10:30:37,899 [17340] INFO  Post request completed in: 83 milliseconds - Utils::Network::HttpRequest::Post - Utils::Common::LogTimer::~LogTimer
+10/03/2015 10:30:38,975 [17344] INFO  Initializing WinINet - Utils::Network::HttpRequest::Initialize
+10/03/2015 10:30:38,975 [17344] INFO  Setting receive timeout: 300000 - Utils::Network::HttpRequest::Initialize
+10/03/2015 10:30:38,975 [17344] INFO  Setting send timeout: 30000 - Utils::Network::HttpRequest::Initialize
+10/03/2015 10:30:38,975 [17344] INFO  Setting connect timeout: 60000 - Utils::Network::HttpRequest::Initialize
+10/03/2015 10:30:38,975 [17344] INFO  Post request for url: "https://dl.openfin.co/services/s/" - Utils::Network::HttpRequest::Post
+10/03/2015 10:30:38,975 [17344] INFO  Processing url: "https://dl.openfin.co/services/s/" - Utils::Network::HttpRequest::WriteRequest
+10/03/2015 10:30:39,059 [17344] INFO  StatusCode: 200 - Utils::Network::HttpRequest::WriteRequest
+10/03/2015 10:30:39,059 [17344] INFO  ContentLength: 2 - Utils::Network::HttpRequest::ReadResponse
+10/03/2015 10:30:39,059 [17344] INFO  Result: 1, total read: 2 - Utils::Network::HttpRequest::ReadResponse
+10/03/2015 10:30:39,059 [17344] INFO  Post request completed in: 84 milliseconds - Utils::Network::HttpRequest::Post - Utils::Common::LogTimer::~LogTimer
+10/03/2015 10:30:40,139 [17336] WARN  Failed on HttpSendRequest() - GetLastError() code: 12029, msg:  - Utils::Common::LogFormattedLastError
+10/03/2015 10:30:40,139 [17336] WARN  code: 12029 == ERROR_INTERNET_CANNOT_CONNECT - Utils::Network::LogFormattedLastHttpError
+10/03/2015 10:30:40,139 [17336] INFO  Get request completed in: 3016 milliseconds - Utils::Network::HttpRequest::Get - Utils::Common::LogTimer::~LogTimer
+10/03/2015 10:30:40,139 [17336] ERROR HTTP task failed: "http://localhost:8000/images/adaptive_mark_250x.png" - HTTPRequestTask::Execute
+10/03/2015 10:30:40,139 [17336] INFO  HTTP task complete in: 3016 milliseconds - HTTPRequestTask::Execute
+10/03/2015 10:30:40,139 [17336] WARN  Failed to fetch the icon - RVM::Controllers::ApplicationInstallController::OnRequestComplete
+10/03/2015 10:30:40,149 [17340] INFO  Initializing WinINet - Utils::Network::HttpRequest::Initialize
+10/03/2015 10:30:40,150 [17340] INFO  Setting receive timeout: 300000 - Utils::Network::HttpRequest::Initialize
+10/03/2015 10:30:40,150 [17340] INFO  Setting send timeout: 30000 - Utils::Network::HttpRequest::Initialize
+10/03/2015 10:30:40,150 [17340] INFO  Setting connect timeout: 60000 - Utils::Network::HttpRequest::Initialize
+10/03/2015 10:30:40,150 [17340] INFO  Post request for url: "https://dl.openfin.co/services/s/" - Utils::Network::HttpRequest::Post
+10/03/2015 10:30:40,150 [17340] INFO  Processing url: "https://dl.openfin.co/services/s/" - Utils::Network::HttpRequest::WriteRequest
+10/03/2015 10:30:40,233 [17340] INFO  StatusCode: 200 - Utils::Network::HttpRequest::WriteRequest
+10/03/2015 10:30:40,233 [17340] INFO  ContentLength: 2 - Utils::Network::HttpRequest::ReadResponse
+10/03/2015 10:30:40,233 [17340] INFO  Result: 1, total read: 2 - Utils::Network::HttpRequest::ReadResponse
+10/03/2015 10:30:40,233 [17340] INFO  Post request completed in: 83 milliseconds - Utils::Network::HttpRequest::Post - Utils::Common::LogTimer::~LogTimer
+10/03/2015 11:06:52,487 [17336] INFO  Initializing WinINet - Utils::Network::HttpRequest::Initialize
+10/03/2015 11:06:52,488 [17336] INFO  Setting receive timeout: 300000 - Utils::Network::HttpRequest::Initialize
+10/03/2015 11:06:52,488 [17336] INFO  Setting send timeout: 30000 - Utils::Network::HttpRequest::Initialize
+10/03/2015 11:06:52,488 [17336] INFO  Setting connect timeout: 60000 - Utils::Network::HttpRequest::Initialize
+10/03/2015 11:06:52,488 [17336] INFO  Post request for url: "https://dl.openfin.co/services/s/" - Utils::Network::HttpRequest::Post
+10/03/2015 11:06:52,488 [17336] INFO  Processing url: "https://dl.openfin.co/services/s/" - Utils::Network::HttpRequest::WriteRequest
+10/03/2015 11:06:52,695 [16540] INFO  Termination event for process handle: 00000714 - RuntimeMonitor::MonitorThreadProc
+10/03/2015 11:06:52,695 [16540] INFO  Sending WM_QUIT message, no more process handles. - RuntimeMonitor::MonitorThreadProc
+10/03/2015 11:06:52,695 [17328] INFO  Exiting RVM... - OpenFinRVM::ExitInstance
+10/03/2015 11:06:52,695 [17328] INFO  Exiting RVM... - OpenFinRVM::ExitInstance
+10/03/2015 11:06:52,695 [17328] INFO  Calling MainController.Uninit() - OpenFinRVM::ExitInstance
+10/03/2015 11:06:52,695 [17328] INFO  Calling MessageWindow.Destroy() - OpenFinRVM::ExitInstance
+10/03/2015 11:06:52,695 [17328] INFO  Calling RuntimeMonitor.Stop() - OpenFinRVM::ExitInstance
+10/03/2015 11:06:52,695 [17328] INFO  Calling AnalyticsManager.Uninit() - OpenFinRVM::ExitInstance
+10/03/2015 11:06:52,870 [17336] INFO  StatusCode: 400 - Utils::Network::HttpRequest::WriteRequest
+10/03/2015 11:06:52,870 [17336] WARN  Unhandled HTTP status code - GetLastError() code: 0, msg: The operation completed successfully.
+ - Utils::Common::LogFormattedLastError
+10/03/2015 11:06:52,870 [17336] WARN  StatusCode: 400 == HTTP_STATUS_BAD_REQUEST - Utils::Network::HttpRequest::WriteRequest
+10/03/2015 11:06:52,870 [17336] INFO  Post request completed in: 382 milliseconds - Utils::Network::HttpRequest::Post - Utils::Common::LogTimer::~LogTimer
+10/03/2015 11:06:52,870 [17328] INFO  Calling TaskManager.Wait() - OpenFinRVM::ExitInstance
+10/03/2015 11:06:52,870 [17328] INFO  Exit completed in: 175 milliseconds - OpenFinRVM::ExitInstance - Utils::Common::LogTimer::~LogTimer
+10/03/2015 11:07:46,209 INFO  [default] Init RVM...
+10/03/2015 11:07:46,224 [6100] INFO  Initialized Log - OpenFinRVM::InitInstance
+10/03/2015 11:07:46,224 [6100] INFO  Running "c:\_projects\bnwan\dashboard\OpenFinRVM.exe" Version 0.1.0.20 - OpenFinRVM::InitInstance
+10/03/2015 11:07:46,224 [6100] WARN  RegCloseKey() failed with error 0 for path SOFTWARE\Microsoft\Cryptography - Utils::Repository::Registry::Key::Close
+10/03/2015 11:07:46,224 [6100] INFO  Initialized the MainController - OpenFinRVM::InitInstance
+10/03/2015 11:07:46,224 [6100] INFO  RVM::Controllers::InstallerController::DoLogic - RVM::Controllers::InstallerController::DoLogic
+10/03/2015 11:07:46,224 [6100] INFO  RVM::Controllers::PathVerifyController::DoLogic - RVM::Controllers::PathVerifyController::DoLogic
+10/03/2015 11:07:46,224 [6100] INFO  RVM is not running from the desired path. Launching "C:\Users\benjamin.nwaneampeh\AppData\Local\OpenFin\OpenFinRVM.exe" - RVM::Controllers::PathVerifyController::DoLogic
+10/03/2015 11:07:46,224 [6100] INFO  Init completed in: 15 milliseconds - OpenFinRVM::InitInstance - Utils::Common::LogTimer::~LogTimer
+10/03/2015 11:07:46,224 [6100] INFO  Exiting RVM... - OpenFinRVM::ExitInstance
+10/03/2015 11:07:46,224 [6100] INFO  Exiting RVM... - OpenFinRVM::ExitInstance
+10/03/2015 11:07:46,224 [6100] INFO  Calling MainController.Uninit() - OpenFinRVM::ExitInstance
+10/03/2015 11:07:46,224 [6100] INFO  Calling MessageWindow.Destroy() - OpenFinRVM::ExitInstance
+10/03/2015 11:07:46,224 [6100] INFO  Calling RuntimeMonitor.Stop() - OpenFinRVM::ExitInstance
+10/03/2015 11:07:46,224 [6100] INFO  Calling AnalyticsManager.Uninit() - OpenFinRVM::ExitInstance
+10/03/2015 11:07:46,224 [6100] INFO  Calling TaskManager.Wait() - OpenFinRVM::ExitInstance
+10/03/2015 11:07:46,224 INFO  [default] Init RVM...
+10/03/2015 11:07:46,224 [3236] INFO  Initialized Log - OpenFinRVM::InitInstance
+10/03/2015 11:07:46,224 [3236] INFO  Running "C:\Users\benjamin.nwaneampeh\AppData\Local\OpenFin\OpenFinRVM.exe" Version 0.1.0.20 - OpenFinRVM::InitInstance
+10/03/2015 11:07:46,224 [3236] WARN  RegCloseKey() failed with error 0 for path SOFTWARE\Microsoft\Cryptography - Utils::Repository::Registry::Key::Close
+10/03/2015 11:07:46,224 [3236] INFO  Initialized the MainController - OpenFinRVM::InitInstance
+10/03/2015 11:07:46,240 [3236] INFO  RVM::Controllers::InstallerController::DoLogic - RVM::Controllers::InstallerController::DoLogic
+10/03/2015 11:07:46,240 [3236] INFO  RVM::Controllers::PathVerifyController::DoLogic - RVM::Controllers::PathVerifyController::DoLogic
+10/03/2015 11:07:46,240 [3236] INFO  RVM::Controllers::AutoUpdateController::DoLogic - RVM::Controllers::AutoUpdateController::DoLogic
+10/03/2015 11:07:46,240 [3236] INFO  Initializing WinINet - Utils::Network::HttpRequest::Initialize
+10/03/2015 11:07:46,240 [3236] INFO  Setting receive timeout: 300000 - Utils::Network::HttpRequest::Initialize
+10/03/2015 11:07:46,240 [3236] INFO  Setting send timeout: 30000 - Utils::Network::HttpRequest::Initialize
+10/03/2015 11:07:46,240 [3236] INFO  Setting connect timeout: 60000 - Utils::Network::HttpRequest::Initialize
+10/03/2015 11:07:46,240 [3236] INFO  Get request for url: "https://developer.openfin.co/release/rvm/latestVersion" - Utils::Network::HttpRequest::Get
+10/03/2015 11:07:46,240 [3236] INFO  Processing url: "https://developer.openfin.co/release/rvm/latestVersion" - Utils::Network::HttpRequest::WriteRequest
+10/03/2015 11:07:46,693 [3236] INFO  StatusCode: 200 - Utils::Network::HttpRequest::WriteRequest
+10/03/2015 11:07:46,693 [3236] INFO  ContentLength: 8 - Utils::Network::HttpRequest::ReadResponse
+10/03/2015 11:07:46,693 [3236] INFO  Result: 1, total read: 8 - Utils::Network::HttpRequest::ReadResponse
+10/03/2015 11:07:46,693 [3236] INFO  Get request completed in: 453 milliseconds - Utils::Network::HttpRequest::Get - Utils::Common::LogTimer::~LogTimer
+10/03/2015 11:07:46,693 [3236] INFO  RVM::Controllers::ReadRemoteConfigController::DoLogic - RVM::Controllers::ReadRemoteConfigController::DoLogic
+10/03/2015 11:07:46,693 [3236] INFO  Initializing WinINet - Utils::Network::HttpRequest::Initialize
+10/03/2015 11:07:46,693 [3236] INFO  Setting receive timeout: 300000 - Utils::Network::HttpRequest::Initialize
+10/03/2015 11:07:46,693 [3236] INFO  Setting send timeout: 30000 - Utils::Network::HttpRequest::Initialize
+10/03/2015 11:07:46,693 [3236] INFO  Setting connect timeout: 60000 - Utils::Network::HttpRequest::Initialize
+10/03/2015 11:07:46,693 [3236] INFO  Get request for url: "http://localhost:8080/app.json" - Utils::Network::HttpRequest::Get
+10/03/2015 11:07:46,693 [3236] INFO  Processing url: "http://localhost:8080/app.json" - Utils::Network::HttpRequest::WriteRequest
+10/03/2015 11:07:47,131 [16272] INFO  Initializing WinINet - Utils::Network::HttpRequest::Initialize
+10/03/2015 11:07:47,131 [16272] INFO  Setting receive timeout: 300000 - Utils::Network::HttpRequest::Initialize
+10/03/2015 11:07:47,131 [16272] INFO  Setting send timeout: 30000 - Utils::Network::HttpRequest::Initialize
+10/03/2015 11:07:47,131 [16272] INFO  Setting connect timeout: 60000 - Utils::Network::HttpRequest::Initialize
+10/03/2015 11:07:47,131 [16272] INFO  Post request for url: "https://dl.openfin.co/services/authenticate" - Utils::Network::HttpRequest::Post
+10/03/2015 11:07:47,131 [16272] INFO  Processing url: "https://dl.openfin.co/services/authenticate" - Utils::Network::HttpRequest::WriteRequest
+10/03/2015 11:07:47,146 [16512] INFO  Initializing WinINet - Utils::Network::HttpRequest::Initialize
+10/03/2015 11:07:47,146 [16512] INFO  Setting receive timeout: 300000 - Utils::Network::HttpRequest::Initialize
+10/03/2015 11:07:47,146 [16512] INFO  Setting send timeout: 30000 - Utils::Network::HttpRequest::Initialize
+10/03/2015 11:07:47,146 [16512] INFO  Setting connect timeout: 60000 - Utils::Network::HttpRequest::Initialize
+10/03/2015 11:07:47,146 [16512] INFO  Post request for url: "https://dl.openfin.co/services/authenticate" - Utils::Network::HttpRequest::Post
+10/03/2015 11:07:47,146 [16512] INFO  Processing url: "https://dl.openfin.co/services/authenticate" - Utils::Network::HttpRequest::WriteRequest
+10/03/2015 11:07:47,490 [16512] INFO  StatusCode: 200 - Utils::Network::HttpRequest::WriteRequest
+10/03/2015 11:07:47,490 [16512] INFO  ContentLength: 166 - Utils::Network::HttpRequest::ReadResponse
+10/03/2015 11:07:47,490 [16512] INFO  Result: 1, total read: 166 - Utils::Network::HttpRequest::ReadResponse
+10/03/2015 11:07:47,490 [16512] INFO  Post request completed in: 344 milliseconds - Utils::Network::HttpRequest::Post - Utils::Common::LogTimer::~LogTimer
+10/03/2015 11:07:47,631 [16272] INFO  StatusCode: 200 - Utils::Network::HttpRequest::WriteRequest
+10/03/2015 11:07:47,631 [16272] INFO  ContentLength: 166 - Utils::Network::HttpRequest::ReadResponse
+10/03/2015 11:07:47,631 [16272] INFO  Result: 1, total read: 166 - Utils::Network::HttpRequest::ReadResponse
+10/03/2015 11:07:47,631 [16272] INFO  Post request completed in: 500 milliseconds - Utils::Network::HttpRequest::Post - Utils::Common::LogTimer::~LogTimer
+10/03/2015 11:07:47,724 [3236] INFO  StatusCode: 200 - Utils::Network::HttpRequest::WriteRequest
+10/03/2015 11:07:47,724 [3236] INFO  ContentLength: 546 - Utils::Network::HttpRequest::ReadResponse
+10/03/2015 11:07:47,724 [3236] INFO  Result: 1, total read: 546 - Utils::Network::HttpRequest::ReadResponse
+10/03/2015 11:07:47,724 [3236] INFO  Get request completed in: 1031 milliseconds - Utils::Network::HttpRequest::Get - Utils::Common::LogTimer::~LogTimer
+10/03/2015 11:07:47,740 [3236] INFO  Remote config has been read successfully - RVM::Controllers::ReadRemoteConfigController::DoLogic
+10/03/2015 11:07:47,740 [3236] INFO  Initializing WinINet - Utils::Network::HttpRequest::Initialize
+10/03/2015 11:07:47,740 [3236] INFO  Setting receive timeout: 300000 - Utils::Network::HttpRequest::Initialize
+10/03/2015 11:07:47,740 [3236] INFO  Setting send timeout: 30000 - Utils::Network::HttpRequest::Initialize
+10/03/2015 11:07:47,740 [3236] INFO  Setting connect timeout: 60000 - Utils::Network::HttpRequest::Initialize
+10/03/2015 11:07:47,740 [3236] INFO  Get request for url: "https://developer.openfin.co/release/runtime/releaseChannels" - Utils::Network::HttpRequest::Get
+10/03/2015 11:07:47,740 [3236] INFO  Processing url: "https://developer.openfin.co/release/runtime/releaseChannels" - Utils::Network::HttpRequest::WriteRequest
+10/03/2015 11:07:47,834 [3236] INFO  StatusCode: 200 - Utils::Network::HttpRequest::WriteRequest
+10/03/2015 11:07:47,834 [3236] INFO  ContentLength: 65 - Utils::Network::HttpRequest::ReadResponse
+10/03/2015 11:07:47,834 [3236] INFO  Result: 1, total read: 65 - Utils::Network::HttpRequest::ReadResponse
+10/03/2015 11:07:47,834 [3236] INFO  Get request completed in: 94 milliseconds - Utils::Network::HttpRequest::Get - Utils::Common::LogTimer::~LogTimer
+10/03/2015 11:07:47,834 [3236] INFO  Initializing WinINet - Utils::Network::HttpRequest::Initialize
+10/03/2015 11:07:47,834 [3236] INFO  Setting receive timeout: 300000 - Utils::Network::HttpRequest::Initialize
+10/03/2015 11:07:47,834 [3236] INFO  Setting send timeout: 30000 - Utils::Network::HttpRequest::Initialize
+10/03/2015 11:07:47,834 [3236] INFO  Setting connect timeout: 60000 - Utils::Network::HttpRequest::Initialize
+10/03/2015 11:07:47,834 [3236] INFO  Get request for url: "https://developer.openfin.co/release/runtime/stable" - Utils::Network::HttpRequest::Get
+10/03/2015 11:07:47,834 [3236] INFO  Processing url: "https://developer.openfin.co/release/runtime/stable" - Utils::Network::HttpRequest::WriteRequest
+10/03/2015 11:07:47,912 [3236] INFO  StatusCode: 200 - Utils::Network::HttpRequest::WriteRequest
+10/03/2015 11:07:47,912 [3236] INFO  ContentLength: 8 - Utils::Network::HttpRequest::ReadResponse
+10/03/2015 11:07:47,912 [3236] INFO  Result: 1, total read: 8 - Utils::Network::HttpRequest::ReadResponse
+10/03/2015 11:07:47,912 [3236] INFO  Get request completed in: 78 milliseconds - Utils::Network::HttpRequest::Get - Utils::Common::LogTimer::~LogTimer
+10/03/2015 11:07:47,912 [3236] INFO  RVM::Controllers::RuntimeInstallerController::DoLogic - RVM::Controllers::RuntimeInstallerController::DoLogic
+10/03/2015 11:07:47,912 [3236] INFO  No need to install the runtime. - RVM::Controllers::RuntimeInstallerController::DoLogic
+10/03/2015 11:07:47,912 [3236] INFO  RVM::Controllers::ApplicationInstallController::DoLogic - RVM::Controllers::ApplicationInstallController::DoLogic
+10/03/2015 11:07:47,912 [8884] INFO  HTTP task: "http://localhost:8000/images/adaptive_mark_250x.png", type: GET - HTTPRequestTask::Execute
+10/03/2015 11:07:47,912 [3236] INFO  RVM::Controllers::LaunchRuntimeController::DoLogic - RVM::Controllers::LaunchRuntimeController::DoLogic
+10/03/2015 11:07:47,912 [8884] INFO  Initializing WinINet - Utils::Network::HttpRequest::Initialize
+10/03/2015 11:07:47,912 [3236] INFO  Launching runtime - RVM::Controllers::LaunchRuntimeController::DoLogic
+10/03/2015 11:07:47,912 [8884] INFO  Setting receive timeout: 300000 - Utils::Network::HttpRequest::Initialize
+10/03/2015 11:07:47,912 [8884] INFO  Setting send timeout: 30000 - Utils::Network::HttpRequest::Initialize
+10/03/2015 11:07:47,912 [8884] INFO  Setting connect timeout: 60000 - Utils::Network::HttpRequest::Initialize
+10/03/2015 11:07:47,912 [8884] INFO  Get request for url: "http://localhost:8000/images/adaptive_mark_250x.png" - Utils::Network::HttpRequest::Get
+10/03/2015 11:07:47,912 [8884] INFO  Processing url: "http://localhost:8000/images/adaptive_mark_250x.png" - Utils::Network::HttpRequest::WriteRequest
+10/03/2015 11:07:47,912 [3236] INFO  Monitoring process handle: 00000700 - RuntimeMonitor::MonitorProcess
+10/03/2015 11:07:47,912 [3236] INFO  Starting monitor thread - RuntimeMonitor::MonitorProcess
+10/03/2015 11:07:47,912 [3236] INFO  Init completed in: 1688 milliseconds - OpenFinRVM::InitInstance - Utils::Common::LogTimer::~LogTimer
+10/03/2015 11:07:47,912 [16520] INFO  Running monitor thread - RuntimeMonitor::MonitorThreadProc
+10/03/2015 11:07:47,912 [16520] INFO  Refreshing handles array - RuntimeMonitor::MonitorThreadProc
+10/03/2015 11:07:48,646 [16512] INFO  Initializing WinINet - Utils::Network::HttpRequest::Initialize
+10/03/2015 11:07:48,646 [16512] INFO  Setting receive timeout: 300000 - Utils::Network::HttpRequest::Initialize
+10/03/2015 11:07:48,646 [16512] INFO  Setting send timeout: 30000 - Utils::Network::HttpRequest::Initialize
+10/03/2015 11:07:48,646 [16512] INFO  Setting connect timeout: 60000 - Utils::Network::HttpRequest::Initialize
+10/03/2015 11:07:48,646 [16512] INFO  Post request for url: "https://dl.openfin.co/services/s/" - Utils::Network::HttpRequest::Post
+10/03/2015 11:07:48,646 [16512] INFO  Processing url: "https://dl.openfin.co/services/s/" - Utils::Network::HttpRequest::WriteRequest
+10/03/2015 11:07:48,698 [6100] INFO  Exit completed in: 2474 milliseconds - OpenFinRVM::ExitInstance - Utils::Common::LogTimer::~LogTimer
+10/03/2015 11:07:48,731 [16512] INFO  StatusCode: 200 - Utils::Network::HttpRequest::WriteRequest
+10/03/2015 11:07:48,731 [16512] INFO  ContentLength: 2 - Utils::Network::HttpRequest::ReadResponse
+10/03/2015 11:07:48,731 [16512] INFO  Result: 1, total read: 2 - Utils::Network::HttpRequest::ReadResponse
+10/03/2015 11:07:48,731 [16512] INFO  Post request completed in: 85 milliseconds - Utils::Network::HttpRequest::Post - Utils::Common::LogTimer::~LogTimer
+10/03/2015 11:07:49,778 [16804] INFO  Initializing WinINet - Utils::Network::HttpRequest::Initialize
+10/03/2015 11:07:49,778 [16804] INFO  Setting receive timeout: 300000 - Utils::Network::HttpRequest::Initialize
+10/03/2015 11:07:49,778 [16804] INFO  Setting send timeout: 30000 - Utils::Network::HttpRequest::Initialize
+10/03/2015 11:07:49,778 [16804] INFO  Setting connect timeout: 60000 - Utils::Network::HttpRequest::Initialize
+10/03/2015 11:07:49,778 [16804] INFO  Post request for url: "https://dl.openfin.co/services/s/" - Utils::Network::HttpRequest::Post
+10/03/2015 11:07:49,778 [16804] INFO  Processing url: "https://dl.openfin.co/services/s/" - Utils::Network::HttpRequest::WriteRequest
+10/03/2015 11:07:49,861 [16804] INFO  StatusCode: 200 - Utils::Network::HttpRequest::WriteRequest
+10/03/2015 11:07:49,861 [16804] INFO  ContentLength: 2 - Utils::Network::HttpRequest::ReadResponse
+10/03/2015 11:07:49,862 [16804] INFO  Result: 1, total read: 2 - Utils::Network::HttpRequest::ReadResponse
+10/03/2015 11:07:49,862 [16804] INFO  Post request completed in: 84 milliseconds - Utils::Network::HttpRequest::Post - Utils::Common::LogTimer::~LogTimer
+10/03/2015 11:07:50,926 [8884] WARN  Failed on HttpSendRequest() - GetLastError() code: 12029, msg:  - Utils::Common::LogFormattedLastError
+10/03/2015 11:07:50,927 [8884] WARN  code: 12029 == ERROR_INTERNET_CANNOT_CONNECT - Utils::Network::LogFormattedLastHttpError
+10/03/2015 11:07:50,927 [8884] INFO  Get request completed in: 3015 milliseconds - Utils::Network::HttpRequest::Get - Utils::Common::LogTimer::~LogTimer
+10/03/2015 11:07:50,927 [8884] ERROR HTTP task failed: "http://localhost:8000/images/adaptive_mark_250x.png" - HTTPRequestTask::Execute
+10/03/2015 11:07:50,927 [8884] INFO  HTTP task complete in: 3015 milliseconds - HTTPRequestTask::Execute
+10/03/2015 11:07:50,927 [8884] WARN  Failed to fetch the icon - RVM::Controllers::ApplicationInstallController::OnRequestComplete
+10/03/2015 11:07:50,938 [16804] INFO  Initializing WinINet - Utils::Network::HttpRequest::Initialize
+10/03/2015 11:07:50,938 [16804] INFO  Setting receive timeout: 300000 - Utils::Network::HttpRequest::Initialize
+10/03/2015 11:07:50,938 [16804] INFO  Setting send timeout: 30000 - Utils::Network::HttpRequest::Initialize
+10/03/2015 11:07:50,938 [16804] INFO  Setting connect timeout: 60000 - Utils::Network::HttpRequest::Initialize
+10/03/2015 11:07:50,938 [16804] INFO  Post request for url: "https://dl.openfin.co/services/s/" - Utils::Network::HttpRequest::Post
+10/03/2015 11:07:50,938 [16804] INFO  Processing url: "https://dl.openfin.co/services/s/" - Utils::Network::HttpRequest::WriteRequest
+10/03/2015 11:07:51,021 [16804] INFO  StatusCode: 200 - Utils::Network::HttpRequest::WriteRequest
+10/03/2015 11:07:51,021 [16804] INFO  ContentLength: 2 - Utils::Network::HttpRequest::ReadResponse
+10/03/2015 11:07:51,021 [16804] INFO  Result: 1, total read: 2 - Utils::Network::HttpRequest::ReadResponse
+10/03/2015 11:07:51,021 [16804] INFO  Post request completed in: 83 milliseconds - Utils::Network::HttpRequest::Post - Utils::Common::LogTimer::~LogTimer
+10/03/2015 11:09:01,363 [14528] INFO  Initializing WinINet - Utils::Network::HttpRequest::Initialize
+10/03/2015 11:09:01,363 [14528] INFO  Setting receive timeout: 300000 - Utils::Network::HttpRequest::Initialize
+10/03/2015 11:09:01,363 [14528] INFO  Setting send timeout: 30000 - Utils::Network::HttpRequest::Initialize
+10/03/2015 11:09:01,363 [14528] INFO  Setting connect timeout: 60000 - Utils::Network::HttpRequest::Initialize
+10/03/2015 11:09:01,363 [14528] INFO  Post request for url: "https://dl.openfin.co/services/s/" - Utils::Network::HttpRequest::Post
+10/03/2015 11:09:01,363 [14528] INFO  Processing url: "https://dl.openfin.co/services/s/" - Utils::Network::HttpRequest::WriteRequest
+10/03/2015 11:09:01,567 [16520] INFO  Termination event for process handle: 00000700 - RuntimeMonitor::MonitorThreadProc
+10/03/2015 11:09:01,567 [16520] INFO  Sending WM_QUIT message, no more process handles. - RuntimeMonitor::MonitorThreadProc
+10/03/2015 11:09:01,567 [3236] INFO  Exiting RVM... - OpenFinRVM::ExitInstance
+10/03/2015 11:09:01,567 [3236] INFO  Exiting RVM... - OpenFinRVM::ExitInstance
+10/03/2015 11:09:01,567 [3236] INFO  Calling MainController.Uninit() - OpenFinRVM::ExitInstance
+10/03/2015 11:09:01,567 [3236] INFO  Calling MessageWindow.Destroy() - OpenFinRVM::ExitInstance
+10/03/2015 11:09:01,567 [3236] INFO  Calling RuntimeMonitor.Stop() - OpenFinRVM::ExitInstance
+10/03/2015 11:09:01,567 [3236] INFO  Calling AnalyticsManager.Uninit() - OpenFinRVM::ExitInstance
+10/03/2015 11:09:01,598 [14528] INFO  StatusCode: 200 - Utils::Network::HttpRequest::WriteRequest
+10/03/2015 11:09:01,598 [14528] INFO  ContentLength: 2 - Utils::Network::HttpRequest::ReadResponse
+10/03/2015 11:09:01,598 [14528] INFO  Result: 1, total read: 2 - Utils::Network::HttpRequest::ReadResponse
+10/03/2015 11:09:01,598 [14528] INFO  Post request completed in: 235 milliseconds - Utils::Network::HttpRequest::Post - Utils::Common::LogTimer::~LogTimer
+10/03/2015 11:09:01,598 [3236] INFO  Calling TaskManager.Wait() - OpenFinRVM::ExitInstance
+10/03/2015 11:09:01,598 [3236] INFO  Exit completed in: 31 milliseconds - OpenFinRVM::ExitInstance - Utils::Common::LogTimer::~LogTimer
+10/03/2015 11:09:07,182 INFO  [default] Init RVM...
+10/03/2015 11:09:07,182 [18136] INFO  Initialized Log - OpenFinRVM::InitInstance
+10/03/2015 11:09:07,182 [18136] INFO  Running "c:\_projects\bnwan\dashboard\OpenFinRVM.exe" Version 0.1.0.20 - OpenFinRVM::InitInstance
+10/03/2015 11:09:07,182 [18136] WARN  RegCloseKey() failed with error 0 for path SOFTWARE\Microsoft\Cryptography - Utils::Repository::Registry::Key::Close
+10/03/2015 11:09:07,182 [18136] INFO  Initialized the MainController - OpenFinRVM::InitInstance
+10/03/2015 11:09:07,182 [18136] INFO  RVM::Controllers::InstallerController::DoLogic - RVM::Controllers::InstallerController::DoLogic
+10/03/2015 11:09:07,182 [18136] INFO  RVM::Controllers::PathVerifyController::DoLogic - RVM::Controllers::PathVerifyController::DoLogic
+10/03/2015 11:09:07,182 [18136] INFO  RVM is not running from the desired path. Launching "C:\Users\benjamin.nwaneampeh\AppData\Local\OpenFin\OpenFinRVM.exe" - RVM::Controllers::PathVerifyController::DoLogic
+10/03/2015 11:09:07,182 [18136] INFO  Init completed in: 0 milliseconds - OpenFinRVM::InitInstance - Utils::Common::LogTimer::~LogTimer
+10/03/2015 11:09:07,182 [18136] INFO  Exiting RVM... - OpenFinRVM::ExitInstance
+10/03/2015 11:09:07,182 [18136] INFO  Exiting RVM... - OpenFinRVM::ExitInstance
+10/03/2015 11:09:07,182 [18136] INFO  Calling MainController.Uninit() - OpenFinRVM::ExitInstance
+10/03/2015 11:09:07,182 [18136] INFO  Calling MessageWindow.Destroy() - OpenFinRVM::ExitInstance
+10/03/2015 11:09:07,182 [18136] INFO  Calling RuntimeMonitor.Stop() - OpenFinRVM::ExitInstance
+10/03/2015 11:09:07,182 [18136] INFO  Calling AnalyticsManager.Uninit() - OpenFinRVM::ExitInstance
+10/03/2015 11:09:07,182 [18136] INFO  Calling TaskManager.Wait() - OpenFinRVM::ExitInstance
+10/03/2015 11:09:07,198 INFO  [default] Init RVM...
+10/03/2015 11:09:07,198 [18212] INFO  Initialized Log - OpenFinRVM::InitInstance
+10/03/2015 11:09:07,198 [18212] INFO  Running "C:\Users\benjamin.nwaneampeh\AppData\Local\OpenFin\OpenFinRVM.exe" Version 0.1.0.20 - OpenFinRVM::InitInstance
+10/03/2015 11:09:07,198 [18212] WARN  RegCloseKey() failed with error 0 for path SOFTWARE\Microsoft\Cryptography - Utils::Repository::Registry::Key::Close
+10/03/2015 11:09:07,198 [18212] INFO  Initialized the MainController - OpenFinRVM::InitInstance
+10/03/2015 11:09:07,198 [18212] INFO  RVM::Controllers::InstallerController::DoLogic - RVM::Controllers::InstallerController::DoLogic
+10/03/2015 11:09:07,198 [18212] INFO  RVM::Controllers::PathVerifyController::DoLogic - RVM::Controllers::PathVerifyController::DoLogic
+10/03/2015 11:09:07,198 [18212] INFO  RVM::Controllers::AutoUpdateController::DoLogic - RVM::Controllers::AutoUpdateController::DoLogic
+10/03/2015 11:09:07,198 [18212] INFO  Initializing WinINet - Utils::Network::HttpRequest::Initialize
+10/03/2015 11:09:07,198 [18212] INFO  Setting receive timeout: 300000 - Utils::Network::HttpRequest::Initialize
+10/03/2015 11:09:07,198 [18212] INFO  Setting send timeout: 30000 - Utils::Network::HttpRequest::Initialize
+10/03/2015 11:09:07,198 [18212] INFO  Setting connect timeout: 60000 - Utils::Network::HttpRequest::Initialize
+10/03/2015 11:09:07,198 [18212] INFO  Get request for url: "https://developer.openfin.co/release/rvm/latestVersion" - Utils::Network::HttpRequest::Get
+10/03/2015 11:09:07,198 [18212] INFO  Processing url: "https://developer.openfin.co/release/rvm/latestVersion" - Utils::Network::HttpRequest::WriteRequest
+10/03/2015 11:09:07,898 [18212] INFO  StatusCode: 200 - Utils::Network::HttpRequest::WriteRequest
+10/03/2015 11:09:07,898 [18212] INFO  ContentLength: 8 - Utils::Network::HttpRequest::ReadResponse
+10/03/2015 11:09:07,898 [18212] INFO  Result: 1, total read: 8 - Utils::Network::HttpRequest::ReadResponse
+10/03/2015 11:09:07,898 [18212] INFO  Get request completed in: 700 milliseconds - Utils::Network::HttpRequest::Get - Utils::Common::LogTimer::~LogTimer
+10/03/2015 11:09:07,898 [18212] INFO  RVM::Controllers::ReadRemoteConfigController::DoLogic - RVM::Controllers::ReadRemoteConfigController::DoLogic
+10/03/2015 11:09:07,898 [18212] INFO  Initializing WinINet - Utils::Network::HttpRequest::Initialize
+10/03/2015 11:09:07,898 [18212] INFO  Setting receive timeout: 300000 - Utils::Network::HttpRequest::Initialize
+10/03/2015 11:09:07,898 [18212] INFO  Setting send timeout: 30000 - Utils::Network::HttpRequest::Initialize
+10/03/2015 11:09:07,898 [18212] INFO  Setting connect timeout: 60000 - Utils::Network::HttpRequest::Initialize
+10/03/2015 11:09:07,898 [18212] INFO  Get request for url: "http://localhost:8080/app.json" - Utils::Network::HttpRequest::Get
+10/03/2015 11:09:07,898 [18212] INFO  Processing url: "http://localhost:8080/app.json" - Utils::Network::HttpRequest::WriteRequest
+10/03/2015 11:09:08,122 [18144] INFO  Initializing WinINet - Utils::Network::HttpRequest::Initialize
+10/03/2015 11:09:08,122 [18144] INFO  Setting receive timeout: 300000 - Utils::Network::HttpRequest::Initialize
+10/03/2015 11:09:08,122 [18144] INFO  Setting send timeout: 30000 - Utils::Network::HttpRequest::Initialize
+10/03/2015 11:09:08,122 [18144] INFO  Setting connect timeout: 60000 - Utils::Network::HttpRequest::Initialize
+10/03/2015 11:09:08,122 [18144] INFO  Post request for url: "https://dl.openfin.co/services/authenticate" - Utils::Network::HttpRequest::Post
+10/03/2015 11:09:08,122 [18144] INFO  Processing url: "https://dl.openfin.co/services/authenticate" - Utils::Network::HttpRequest::WriteRequest
+10/03/2015 11:09:08,138 [18268] INFO  Initializing WinINet - Utils::Network::HttpRequest::Initialize
+10/03/2015 11:09:08,138 [18268] INFO  Setting receive timeout: 300000 - Utils::Network::HttpRequest::Initialize
+10/03/2015 11:09:08,138 [18268] INFO  Setting send timeout: 30000 - Utils::Network::HttpRequest::Initialize
+10/03/2015 11:09:08,138 [18268] INFO  Setting connect timeout: 60000 - Utils::Network::HttpRequest::Initialize
+10/03/2015 11:09:08,138 [18268] INFO  Post request for url: "https://dl.openfin.co/services/authenticate" - Utils::Network::HttpRequest::Post
+10/03/2015 11:09:08,138 [18268] INFO  Processing url: "https://dl.openfin.co/services/authenticate" - Utils::Network::HttpRequest::WriteRequest
+10/03/2015 11:09:08,497 [18268] INFO  StatusCode: 200 - Utils::Network::HttpRequest::WriteRequest
+10/03/2015 11:09:08,497 [18268] INFO  ContentLength: 166 - Utils::Network::HttpRequest::ReadResponse
+10/03/2015 11:09:08,497 [18268] INFO  Result: 1, total read: 166 - Utils::Network::HttpRequest::ReadResponse
+10/03/2015 11:09:08,497 [18268] INFO  Post request completed in: 359 milliseconds - Utils::Network::HttpRequest::Post - Utils::Common::LogTimer::~LogTimer
+10/03/2015 11:09:08,607 [18144] INFO  StatusCode: 200 - Utils::Network::HttpRequest::WriteRequest
+10/03/2015 11:09:08,607 [18144] INFO  ContentLength: 166 - Utils::Network::HttpRequest::ReadResponse
+10/03/2015 11:09:08,607 [18144] INFO  Result: 1, total read: 166 - Utils::Network::HttpRequest::ReadResponse
+10/03/2015 11:09:08,607 [18144] INFO  Post request completed in: 485 milliseconds - Utils::Network::HttpRequest::Post - Utils::Common::LogTimer::~LogTimer
+10/03/2015 11:09:08,945 [18212] INFO  StatusCode: 200 - Utils::Network::HttpRequest::WriteRequest
+10/03/2015 11:09:08,945 [18212] INFO  ContentLength: 546 - Utils::Network::HttpRequest::ReadResponse
+10/03/2015 11:09:08,945 [18212] INFO  Result: 1, total read: 546 - Utils::Network::HttpRequest::ReadResponse
+10/03/2015 11:09:08,945 [18212] INFO  Get request completed in: 1047 milliseconds - Utils::Network::HttpRequest::Get - Utils::Common::LogTimer::~LogTimer
+10/03/2015 11:09:08,945 [18212] INFO  Remote config has been read successfully - RVM::Controllers::ReadRemoteConfigController::DoLogic
+10/03/2015 11:09:08,945 [18212] INFO  Initializing WinINet - Utils::Network::HttpRequest::Initialize
+10/03/2015 11:09:08,945 [18212] INFO  Setting receive timeout: 300000 - Utils::Network::HttpRequest::Initialize
+10/03/2015 11:09:08,945 [18212] INFO  Setting send timeout: 30000 - Utils::Network::HttpRequest::Initialize
+10/03/2015 11:09:08,945 [18212] INFO  Setting connect timeout: 60000 - Utils::Network::HttpRequest::Initialize
+10/03/2015 11:09:08,945 [18212] INFO  Get request for url: "https://developer.openfin.co/release/runtime/releaseChannels" - Utils::Network::HttpRequest::Get
+10/03/2015 11:09:08,945 [18212] INFO  Processing url: "https://developer.openfin.co/release/runtime/releaseChannels" - Utils::Network::HttpRequest::WriteRequest
+10/03/2015 11:09:09,039 [18212] INFO  StatusCode: 200 - Utils::Network::HttpRequest::WriteRequest
+10/03/2015 11:09:09,039 [18212] INFO  ContentLength: 65 - Utils::Network::HttpRequest::ReadResponse
+10/03/2015 11:09:09,039 [18212] INFO  Result: 1, total read: 65 - Utils::Network::HttpRequest::ReadResponse
+10/03/2015 11:09:09,039 [18212] INFO  Get request completed in: 94 milliseconds - Utils::Network::HttpRequest::Get - Utils::Common::LogTimer::~LogTimer
+10/03/2015 11:09:09,039 [18212] INFO  Initializing WinINet - Utils::Network::HttpRequest::Initialize
+10/03/2015 11:09:09,039 [18212] INFO  Setting receive timeout: 300000 - Utils::Network::HttpRequest::Initialize
+10/03/2015 11:09:09,039 [18212] INFO  Setting send timeout: 30000 - Utils::Network::HttpRequest::Initialize
+10/03/2015 11:09:09,039 [18212] INFO  Setting connect timeout: 60000 - Utils::Network::HttpRequest::Initialize
+10/03/2015 11:09:09,039 [18212] INFO  Get request for url: "https://developer.openfin.co/release/runtime/stable" - Utils::Network::HttpRequest::Get
+10/03/2015 11:09:09,039 [18212] INFO  Processing url: "https://developer.openfin.co/release/runtime/stable" - Utils::Network::HttpRequest::WriteRequest
+10/03/2015 11:09:09,117 [18212] INFO  StatusCode: 200 - Utils::Network::HttpRequest::WriteRequest
+10/03/2015 11:09:09,117 [18212] INFO  ContentLength: 8 - Utils::Network::HttpRequest::ReadResponse
+10/03/2015 11:09:09,117 [18212] INFO  Result: 1, total read: 8 - Utils::Network::HttpRequest::ReadResponse
+10/03/2015 11:09:09,117 [18212] INFO  Get request completed in: 78 milliseconds - Utils::Network::HttpRequest::Get - Utils::Common::LogTimer::~LogTimer
+10/03/2015 11:09:09,117 [18212] INFO  RVM::Controllers::RuntimeInstallerController::DoLogic - RVM::Controllers::RuntimeInstallerController::DoLogic
+10/03/2015 11:09:09,117 [18212] INFO  No need to install the runtime. - RVM::Controllers::RuntimeInstallerController::DoLogic
+10/03/2015 11:09:09,117 [18212] INFO  RVM::Controllers::ApplicationInstallController::DoLogic - RVM::Controllers::ApplicationInstallController::DoLogic
+10/03/2015 11:09:09,117 [18224] INFO  HTTP task: "http://localhost:8000/images/adaptive_mark_250x.png", type: GET - HTTPRequestTask::Execute
+10/03/2015 11:09:09,117 [18224] INFO  Initializing WinINet - Utils::Network::HttpRequest::Initialize
+10/03/2015 11:09:09,117 [18212] INFO  RVM::Controllers::LaunchRuntimeController::DoLogic - RVM::Controllers::LaunchRuntimeController::DoLogic
+10/03/2015 11:09:09,117 [18224] INFO  Setting receive timeout: 300000 - Utils::Network::HttpRequest::Initialize
+10/03/2015 11:09:09,117 [18212] INFO  Launching runtime - RVM::Controllers::LaunchRuntimeController::DoLogic
+10/03/2015 11:09:09,117 [18224] INFO  Setting send timeout: 30000 - Utils::Network::HttpRequest::Initialize
+10/03/2015 11:09:09,117 [18224] INFO  Setting connect timeout: 60000 - Utils::Network::HttpRequest::Initialize
+10/03/2015 11:09:09,117 [18224] INFO  Get request for url: "http://localhost:8000/images/adaptive_mark_250x.png" - Utils::Network::HttpRequest::Get
+10/03/2015 11:09:09,117 [18224] INFO  Processing url: "http://localhost:8000/images/adaptive_mark_250x.png" - Utils::Network::HttpRequest::WriteRequest
+10/03/2015 11:09:09,117 [18212] INFO  Monitoring process handle: 00000724 - RuntimeMonitor::MonitorProcess
+10/03/2015 11:09:09,117 [18212] INFO  Starting monitor thread - RuntimeMonitor::MonitorProcess
+10/03/2015 11:09:09,117 [18212] INFO  Init completed in: 1919 milliseconds - OpenFinRVM::InitInstance - Utils::Common::LogTimer::~LogTimer
+10/03/2015 11:09:09,117 [18396] INFO  Running monitor thread - RuntimeMonitor::MonitorThreadProc
+10/03/2015 11:09:09,117 [18396] INFO  Refreshing handles array - RuntimeMonitor::MonitorThreadProc
+10/03/2015 11:09:09,590 [18268] INFO  Initializing WinINet - Utils::Network::HttpRequest::Initialize
+10/03/2015 11:09:09,590 [18268] INFO  Setting receive timeout: 300000 - Utils::Network::HttpRequest::Initialize
+10/03/2015 11:09:09,590 [18268] INFO  Setting send timeout: 30000 - Utils::Network::HttpRequest::Initialize
+10/03/2015 11:09:09,590 [18268] INFO  Setting connect timeout: 60000 - Utils::Network::HttpRequest::Initialize
+10/03/2015 11:09:09,590 [18268] INFO  Post request for url: "https://dl.openfin.co/services/s/" - Utils::Network::HttpRequest::Post
+10/03/2015 11:09:09,590 [18268] INFO  Processing url: "https://dl.openfin.co/services/s/" - Utils::Network::HttpRequest::WriteRequest
+10/03/2015 11:09:09,614 [18136] INFO  Exit completed in: 2432 milliseconds - OpenFinRVM::ExitInstance - Utils::Common::LogTimer::~LogTimer
+10/03/2015 11:09:09,688 [18268] INFO  StatusCode: 200 - Utils::Network::HttpRequest::WriteRequest
+10/03/2015 11:09:09,688 [18268] INFO  ContentLength: 2 - Utils::Network::HttpRequest::ReadResponse
+10/03/2015 11:09:09,688 [18268] INFO  Result: 1, total read: 2 - Utils::Network::HttpRequest::ReadResponse
+10/03/2015 11:09:09,688 [18268] INFO  Post request completed in: 98 milliseconds - Utils::Network::HttpRequest::Post - Utils::Common::LogTimer::~LogTimer
+10/03/2015 11:09:10,941 [18276] INFO  Initializing WinINet - Utils::Network::HttpRequest::Initialize
+10/03/2015 11:09:10,941 [18276] INFO  Setting receive timeout: 300000 - Utils::Network::HttpRequest::Initialize
+10/03/2015 11:09:10,941 [18276] INFO  Setting send timeout: 30000 - Utils::Network::HttpRequest::Initialize
+10/03/2015 11:09:10,941 [18276] INFO  Setting connect timeout: 60000 - Utils::Network::HttpRequest::Initialize
+10/03/2015 11:09:10,941 [18276] INFO  Post request for url: "https://dl.openfin.co/services/s/" - Utils::Network::HttpRequest::Post
+10/03/2015 11:09:10,941 [18276] INFO  Processing url: "https://dl.openfin.co/services/s/" - Utils::Network::HttpRequest::WriteRequest
+10/03/2015 11:09:11,061 [18276] INFO  StatusCode: 200 - Utils::Network::HttpRequest::WriteRequest
+10/03/2015 11:09:11,061 [18276] INFO  ContentLength: 2 - Utils::Network::HttpRequest::ReadResponse
+10/03/2015 11:09:11,062 [18276] INFO  Result: 1, total read: 2 - Utils::Network::HttpRequest::ReadResponse
+10/03/2015 11:09:11,062 [18276] INFO  Post request completed in: 121 milliseconds - Utils::Network::HttpRequest::Post - Utils::Common::LogTimer::~LogTimer
+10/03/2015 11:09:12,124 [18224] WARN  Failed on HttpSendRequest() - GetLastError() code: 12029, msg:  - Utils::Common::LogFormattedLastError
+10/03/2015 11:09:12,125 [18224] WARN  code: 12029 == ERROR_INTERNET_CANNOT_CONNECT - Utils::Network::LogFormattedLastHttpError
+10/03/2015 11:09:12,125 [18224] INFO  Get request completed in: 3008 milliseconds - Utils::Network::HttpRequest::Get - Utils::Common::LogTimer::~LogTimer
+10/03/2015 11:09:12,125 [18224] ERROR HTTP task failed: "http://localhost:8000/images/adaptive_mark_250x.png" - HTTPRequestTask::Execute
+10/03/2015 11:09:12,125 [18224] INFO  HTTP task complete in: 3008 milliseconds - HTTPRequestTask::Execute
+10/03/2015 11:09:12,125 [18224] WARN  Failed to fetch the icon - RVM::Controllers::ApplicationInstallController::OnRequestComplete
+10/03/2015 11:09:12,135 [18228] INFO  Initializing WinINet - Utils::Network::HttpRequest::Initialize
+10/03/2015 11:09:12,136 [18228] INFO  Setting receive timeout: 300000 - Utils::Network::HttpRequest::Initialize
+10/03/2015 11:09:12,136 [18228] INFO  Setting send timeout: 30000 - Utils::Network::HttpRequest::Initialize
+10/03/2015 11:09:12,136 [18228] INFO  Setting connect timeout: 60000 - Utils::Network::HttpRequest::Initialize
+10/03/2015 11:09:12,136 [18228] INFO  Post request for url: "https://dl.openfin.co/services/s/" - Utils::Network::HttpRequest::Post
+10/03/2015 11:09:12,136 [18228] INFO  Processing url: "https://dl.openfin.co/services/s/" - Utils::Network::HttpRequest::WriteRequest
+10/03/2015 11:09:12,220 [18228] INFO  StatusCode: 200 - Utils::Network::HttpRequest::WriteRequest
+10/03/2015 11:09:12,220 [18228] INFO  ContentLength: 2 - Utils::Network::HttpRequest::ReadResponse
+10/03/2015 11:09:12,220 [18228] INFO  Result: 1, total read: 2 - Utils::Network::HttpRequest::ReadResponse
+10/03/2015 11:09:12,220 [18228] INFO  Post request completed in: 84 milliseconds - Utils::Network::HttpRequest::Post - Utils::Common::LogTimer::~LogTimer
+10/03/2015 11:53:49,356 [18224] INFO  Initializing WinINet - Utils::Network::HttpRequest::Initialize
+10/03/2015 11:53:49,356 [18224] INFO  Setting receive timeout: 300000 - Utils::Network::HttpRequest::Initialize
+10/03/2015 11:53:49,356 [18224] INFO  Setting send timeout: 30000 - Utils::Network::HttpRequest::Initialize
+10/03/2015 11:53:49,356 [18224] INFO  Setting connect timeout: 60000 - Utils::Network::HttpRequest::Initialize
+10/03/2015 11:53:49,356 [18224] INFO  Post request for url: "https://dl.openfin.co/services/s/" - Utils::Network::HttpRequest::Post
+10/03/2015 11:53:49,356 [18224] INFO  Processing url: "https://dl.openfin.co/services/s/" - Utils::Network::HttpRequest::WriteRequest
+10/03/2015 11:53:49,700 [18396] INFO  Termination event for process handle: 00000724 - RuntimeMonitor::MonitorThreadProc
+10/03/2015 11:53:49,700 [18396] INFO  Sending WM_QUIT message, no more process handles. - RuntimeMonitor::MonitorThreadProc
+10/03/2015 11:53:49,700 [18212] INFO  Exiting RVM... - OpenFinRVM::ExitInstance
+10/03/2015 11:53:49,700 [18212] INFO  Exiting RVM... - OpenFinRVM::ExitInstance
+10/03/2015 11:53:49,700 [18212] INFO  Calling MainController.Uninit() - OpenFinRVM::ExitInstance
+10/03/2015 11:53:49,700 [18212] INFO  Calling MessageWindow.Destroy() - OpenFinRVM::ExitInstance
+10/03/2015 11:53:49,701 [18212] INFO  Calling RuntimeMonitor.Stop() - OpenFinRVM::ExitInstance
+10/03/2015 11:53:49,701 [18212] INFO  Calling AnalyticsManager.Uninit() - OpenFinRVM::ExitInstance
+10/03/2015 11:53:49,755 [18224] INFO  StatusCode: 400 - Utils::Network::HttpRequest::WriteRequest
+10/03/2015 11:53:49,755 [18224] WARN  Unhandled HTTP status code - GetLastError() code: 0, msg: The operation completed successfully.
+ - Utils::Common::LogFormattedLastError
+10/03/2015 11:53:49,755 [18224] WARN  StatusCode: 400 == HTTP_STATUS_BAD_REQUEST - Utils::Network::HttpRequest::WriteRequest
+10/03/2015 11:53:49,755 [18224] INFO  Post request completed in: 399 milliseconds - Utils::Network::HttpRequest::Post - Utils::Common::LogTimer::~LogTimer
+10/03/2015 11:53:49,755 [18212] INFO  Calling TaskManager.Wait() - OpenFinRVM::ExitInstance
+10/03/2015 11:53:49,755 [18212] INFO  Exit completed in: 55 milliseconds - OpenFinRVM::ExitInstance - Utils::Common::LogTimer::~LogTimer
+10/03/2015 11:54:02,455 INFO  [default] Init RVM...
+10/03/2015 11:54:02,455 [18920] INFO  Initialized Log - OpenFinRVM::InitInstance
+10/03/2015 11:54:02,455 [18920] INFO  Running "c:\_projects\bnwan\dashboard\OpenFinRVM.exe" Version 0.1.0.20 - OpenFinRVM::InitInstance
+10/03/2015 11:54:02,455 [18920] WARN  RegCloseKey() failed with error 0 for path SOFTWARE\Microsoft\Cryptography - Utils::Repository::Registry::Key::Close
+10/03/2015 11:54:02,455 [18920] INFO  Initialized the MainController - OpenFinRVM::InitInstance
+10/03/2015 11:54:02,455 [18920] INFO  RVM::Controllers::InstallerController::DoLogic - RVM::Controllers::InstallerController::DoLogic
+10/03/2015 11:54:02,455 [18920] INFO  RVM::Controllers::PathVerifyController::DoLogic - RVM::Controllers::PathVerifyController::DoLogic
+10/03/2015 11:54:02,455 [18920] INFO  RVM is not running from the desired path. Launching "C:\Users\benjamin.nwaneampeh\AppData\Local\OpenFin\OpenFinRVM.exe" - RVM::Controllers::PathVerifyController::DoLogic
+10/03/2015 11:54:02,455 [18920] INFO  Init completed in: 0 milliseconds - OpenFinRVM::InitInstance - Utils::Common::LogTimer::~LogTimer
+10/03/2015 11:54:02,455 [18920] INFO  Exiting RVM... - OpenFinRVM::ExitInstance
+10/03/2015 11:54:02,455 [18920] INFO  Exiting RVM... - OpenFinRVM::ExitInstance
+10/03/2015 11:54:02,455 [18920] INFO  Calling MainController.Uninit() - OpenFinRVM::ExitInstance
+10/03/2015 11:54:02,455 [18920] INFO  Calling MessageWindow.Destroy() - OpenFinRVM::ExitInstance
+10/03/2015 11:54:02,455 [18920] INFO  Calling RuntimeMonitor.Stop() - OpenFinRVM::ExitInstance
+10/03/2015 11:54:02,455 [18920] INFO  Calling AnalyticsManager.Uninit() - OpenFinRVM::ExitInstance
+10/03/2015 11:54:02,455 [18920] INFO  Calling TaskManager.Wait() - OpenFinRVM::ExitInstance
+10/03/2015 11:54:02,471 INFO  [default] Init RVM...
+10/03/2015 11:54:02,471 [15004] INFO  Initialized Log - OpenFinRVM::InitInstance
+10/03/2015 11:54:02,471 [15004] INFO  Running "C:\Users\benjamin.nwaneampeh\AppData\Local\OpenFin\OpenFinRVM.exe" Version 0.1.0.20 - OpenFinRVM::InitInstance
+10/03/2015 11:54:02,471 [15004] WARN  RegCloseKey() failed with error 0 for path SOFTWARE\Microsoft\Cryptography - Utils::Repository::Registry::Key::Close
+10/03/2015 11:54:02,471 [15004] INFO  Initialized the MainController - OpenFinRVM::InitInstance
+10/03/2015 11:54:02,471 [15004] INFO  RVM::Controllers::InstallerController::DoLogic - RVM::Controllers::InstallerController::DoLogic
+10/03/2015 11:54:02,471 [15004] INFO  RVM::Controllers::PathVerifyController::DoLogic - RVM::Controllers::PathVerifyController::DoLogic
+10/03/2015 11:54:02,471 [15004] INFO  RVM::Controllers::AutoUpdateController::DoLogic - RVM::Controllers::AutoUpdateController::DoLogic
+10/03/2015 11:54:02,471 [15004] INFO  Initializing WinINet - Utils::Network::HttpRequest::Initialize
+10/03/2015 11:54:02,471 [15004] INFO  Setting receive timeout: 300000 - Utils::Network::HttpRequest::Initialize
+10/03/2015 11:54:02,471 [15004] INFO  Setting send timeout: 30000 - Utils::Network::HttpRequest::Initialize
+10/03/2015 11:54:02,471 [15004] INFO  Setting connect timeout: 60000 - Utils::Network::HttpRequest::Initialize
+10/03/2015 11:54:02,471 [15004] INFO  Get request for url: "https://developer.openfin.co/release/rvm/latestVersion" - Utils::Network::HttpRequest::Get
+10/03/2015 11:54:02,471 [15004] INFO  Processing url: "https://developer.openfin.co/release/rvm/latestVersion" - Utils::Network::HttpRequest::WriteRequest
+10/03/2015 11:54:02,904 [15004] INFO  StatusCode: 200 - Utils::Network::HttpRequest::WriteRequest
+10/03/2015 11:54:02,904 [15004] INFO  ContentLength: 8 - Utils::Network::HttpRequest::ReadResponse
+10/03/2015 11:54:02,904 [15004] INFO  Result: 1, total read: 8 - Utils::Network::HttpRequest::ReadResponse
+10/03/2015 11:54:02,904 [15004] INFO  Get request completed in: 433 milliseconds - Utils::Network::HttpRequest::Get - Utils::Common::LogTimer::~LogTimer
+10/03/2015 11:54:02,904 [15004] INFO  RVM::Controllers::ReadRemoteConfigController::DoLogic - RVM::Controllers::ReadRemoteConfigController::DoLogic
+10/03/2015 11:54:02,904 [15004] INFO  Initializing WinINet - Utils::Network::HttpRequest::Initialize
+10/03/2015 11:54:02,904 [15004] INFO  Setting receive timeout: 300000 - Utils::Network::HttpRequest::Initialize
+10/03/2015 11:54:02,904 [15004] INFO  Setting send timeout: 30000 - Utils::Network::HttpRequest::Initialize
+10/03/2015 11:54:02,904 [15004] INFO  Setting connect timeout: 60000 - Utils::Network::HttpRequest::Initialize
+10/03/2015 11:54:02,904 [15004] INFO  Get request for url: "http://localhost:8080/app.json" - Utils::Network::HttpRequest::Get
+10/03/2015 11:54:02,904 [15004] INFO  Processing url: "http://localhost:8080/app.json" - Utils::Network::HttpRequest::WriteRequest
+10/03/2015 11:54:03,376 [18148] INFO  Initializing WinINet - Utils::Network::HttpRequest::Initialize
+10/03/2015 11:54:03,376 [18148] INFO  Setting receive timeout: 300000 - Utils::Network::HttpRequest::Initialize
+10/03/2015 11:54:03,376 [18148] INFO  Setting send timeout: 30000 - Utils::Network::HttpRequest::Initialize
+10/03/2015 11:54:03,376 [18148] INFO  Setting connect timeout: 60000 - Utils::Network::HttpRequest::Initialize
+10/03/2015 11:54:03,376 [18148] INFO  Post request for url: "https://dl.openfin.co/services/authenticate" - Utils::Network::HttpRequest::Post
+10/03/2015 11:54:03,376 [18148] INFO  Processing url: "https://dl.openfin.co/services/authenticate" - Utils::Network::HttpRequest::WriteRequest
+10/03/2015 11:54:03,376 [14448] INFO  Initializing WinINet - Utils::Network::HttpRequest::Initialize
+10/03/2015 11:54:03,376 [14448] INFO  Setting receive timeout: 300000 - Utils::Network::HttpRequest::Initialize
+10/03/2015 11:54:03,376 [14448] INFO  Setting send timeout: 30000 - Utils::Network::HttpRequest::Initialize
+10/03/2015 11:54:03,376 [14448] INFO  Setting connect timeout: 60000 - Utils::Network::HttpRequest::Initialize
+10/03/2015 11:54:03,376 [14448] INFO  Post request for url: "https://dl.openfin.co/services/authenticate" - Utils::Network::HttpRequest::Post
+10/03/2015 11:54:03,376 [14448] INFO  Processing url: "https://dl.openfin.co/services/authenticate" - Utils::Network::HttpRequest::WriteRequest
+10/03/2015 11:54:03,719 [14448] INFO  StatusCode: 200 - Utils::Network::HttpRequest::WriteRequest
+10/03/2015 11:54:03,719 [14448] INFO  ContentLength: 166 - Utils::Network::HttpRequest::ReadResponse
+10/03/2015 11:54:03,719 [14448] INFO  Result: 1, total read: 166 - Utils::Network::HttpRequest::ReadResponse
+10/03/2015 11:54:03,719 [14448] INFO  Post request completed in: 343 milliseconds - Utils::Network::HttpRequest::Post - Utils::Common::LogTimer::~LogTimer
+10/03/2015 11:54:03,820 [18148] INFO  StatusCode: 200 - Utils::Network::HttpRequest::WriteRequest
+10/03/2015 11:54:03,820 [18148] INFO  ContentLength: 166 - Utils::Network::HttpRequest::ReadResponse
+10/03/2015 11:54:03,820 [18148] INFO  Result: 1, total read: 166 - Utils::Network::HttpRequest::ReadResponse
+10/03/2015 11:54:03,820 [18148] INFO  Post request completed in: 444 milliseconds - Utils::Network::HttpRequest::Post - Utils::Common::LogTimer::~LogTimer
+10/03/2015 11:54:03,941 [15004] INFO  StatusCode: 200 - Utils::Network::HttpRequest::WriteRequest
+10/03/2015 11:54:03,941 [15004] INFO  ContentLength: 546 - Utils::Network::HttpRequest::ReadResponse
+10/03/2015 11:54:03,941 [15004] INFO  Result: 1, total read: 546 - Utils::Network::HttpRequest::ReadResponse
+10/03/2015 11:54:03,941 [15004] INFO  Get request completed in: 1037 milliseconds - Utils::Network::HttpRequest::Get - Utils::Common::LogTimer::~LogTimer
+10/03/2015 11:54:03,945 [15004] INFO  Remote config has been read successfully - RVM::Controllers::ReadRemoteConfigController::DoLogic
+10/03/2015 11:54:03,945 [15004] INFO  Initializing WinINet - Utils::Network::HttpRequest::Initialize
+10/03/2015 11:54:03,945 [15004] INFO  Setting receive timeout: 300000 - Utils::Network::HttpRequest::Initialize
+10/03/2015 11:54:03,945 [15004] INFO  Setting send timeout: 30000 - Utils::Network::HttpRequest::Initialize
+10/03/2015 11:54:03,945 [15004] INFO  Setting connect timeout: 60000 - Utils::Network::HttpRequest::Initialize
+10/03/2015 11:54:03,945 [15004] INFO  Get request for url: "https://developer.openfin.co/release/runtime/releaseChannels" - Utils::Network::HttpRequest::Get
+10/03/2015 11:54:03,945 [15004] INFO  Processing url: "https://developer.openfin.co/release/runtime/releaseChannels" - Utils::Network::HttpRequest::WriteRequest
+10/03/2015 11:54:04,023 [15004] INFO  StatusCode: 200 - Utils::Network::HttpRequest::WriteRequest
+10/03/2015 11:54:04,023 [15004] INFO  ContentLength: 65 - Utils::Network::HttpRequest::ReadResponse
+10/03/2015 11:54:04,023 [15004] INFO  Result: 1, total read: 65 - Utils::Network::HttpRequest::ReadResponse
+10/03/2015 11:54:04,023 [15004] INFO  Get request completed in: 78 milliseconds - Utils::Network::HttpRequest::Get - Utils::Common::LogTimer::~LogTimer
+10/03/2015 11:54:04,023 [15004] INFO  Initializing WinINet - Utils::Network::HttpRequest::Initialize
+10/03/2015 11:54:04,023 [15004] INFO  Setting receive timeout: 300000 - Utils::Network::HttpRequest::Initialize
+10/03/2015 11:54:04,023 [15004] INFO  Setting send timeout: 30000 - Utils::Network::HttpRequest::Initialize
+10/03/2015 11:54:04,023 [15004] INFO  Setting connect timeout: 60000 - Utils::Network::HttpRequest::Initialize
+10/03/2015 11:54:04,023 [15004] INFO  Get request for url: "https://developer.openfin.co/release/runtime/stable" - Utils::Network::HttpRequest::Get
+10/03/2015 11:54:04,023 [15004] INFO  Processing url: "https://developer.openfin.co/release/runtime/stable" - Utils::Network::HttpRequest::WriteRequest
+10/03/2015 11:54:04,101 [15004] INFO  StatusCode: 200 - Utils::Network::HttpRequest::WriteRequest
+10/03/2015 11:54:04,101 [15004] INFO  ContentLength: 8 - Utils::Network::HttpRequest::ReadResponse
+10/03/2015 11:54:04,101 [15004] INFO  Result: 1, total read: 8 - Utils::Network::HttpRequest::ReadResponse
+10/03/2015 11:54:04,101 [15004] INFO  Get request completed in: 78 milliseconds - Utils::Network::HttpRequest::Get - Utils::Common::LogTimer::~LogTimer
+10/03/2015 11:54:04,101 [15004] INFO  RVM::Controllers::RuntimeInstallerController::DoLogic - RVM::Controllers::RuntimeInstallerController::DoLogic
+10/03/2015 11:54:04,101 [15004] INFO  No need to install the runtime. - RVM::Controllers::RuntimeInstallerController::DoLogic
+10/03/2015 11:54:04,101 [15004] INFO  RVM::Controllers::ApplicationInstallController::DoLogic - RVM::Controllers::ApplicationInstallController::DoLogic
+10/03/2015 11:54:04,101 [7068] INFO  HTTP task: "http://localhost:8000/images/adaptive_mark_250x.png", type: GET - HTTPRequestTask::Execute
+10/03/2015 11:54:04,101 [15004] INFO  RVM::Controllers::LaunchRuntimeController::DoLogic - RVM::Controllers::LaunchRuntimeController::DoLogic
+10/03/2015 11:54:04,101 [7068] INFO  Initializing WinINet - Utils::Network::HttpRequest::Initialize
+10/03/2015 11:54:04,101 [15004] INFO  Launching runtime - RVM::Controllers::LaunchRuntimeController::DoLogic
+10/03/2015 11:54:04,101 [7068] INFO  Setting receive timeout: 300000 - Utils::Network::HttpRequest::Initialize
+10/03/2015 11:54:04,101 [7068] INFO  Setting send timeout: 30000 - Utils::Network::HttpRequest::Initialize
+10/03/2015 11:54:04,101 [7068] INFO  Setting connect timeout: 60000 - Utils::Network::HttpRequest::Initialize
+10/03/2015 11:54:04,101 [7068] INFO  Get request for url: "http://localhost:8000/images/adaptive_mark_250x.png" - Utils::Network::HttpRequest::Get
+10/03/2015 11:54:04,101 [7068] INFO  Processing url: "http://localhost:8000/images/adaptive_mark_250x.png" - Utils::Network::HttpRequest::WriteRequest
+10/03/2015 11:54:04,101 [15004] INFO  Monitoring process handle: 00000718 - RuntimeMonitor::MonitorProcess
+10/03/2015 11:54:04,101 [15004] INFO  Starting monitor thread - RuntimeMonitor::MonitorProcess
+10/03/2015 11:54:04,101 [15004] INFO  Init completed in: 1630 milliseconds - OpenFinRVM::InitInstance - Utils::Common::LogTimer::~LogTimer
+10/03/2015 11:54:04,101 [17612] INFO  Running monitor thread - RuntimeMonitor::MonitorThreadProc
+10/03/2015 11:54:04,101 [17612] INFO  Refreshing handles array - RuntimeMonitor::MonitorThreadProc
+10/03/2015 11:54:04,792 [14448] INFO  Initializing WinINet - Utils::Network::HttpRequest::Initialize
+10/03/2015 11:54:04,792 [14448] INFO  Setting receive timeout: 300000 - Utils::Network::HttpRequest::Initialize
+10/03/2015 11:54:04,792 [14448] INFO  Setting send timeout: 30000 - Utils::Network::HttpRequest::Initialize
+10/03/2015 11:54:04,792 [14448] INFO  Setting connect timeout: 60000 - Utils::Network::HttpRequest::Initialize
+10/03/2015 11:54:04,792 [14448] INFO  Post request for url: "https://dl.openfin.co/services/s/" - Utils::Network::HttpRequest::Post
+10/03/2015 11:54:04,792 [14448] INFO  Processing url: "https://dl.openfin.co/services/s/" - Utils::Network::HttpRequest::WriteRequest
+10/03/2015 11:54:04,839 [18920] INFO  Exit completed in: 2384 milliseconds - OpenFinRVM::ExitInstance - Utils::Common::LogTimer::~LogTimer
+10/03/2015 11:54:04,876 [14448] INFO  StatusCode: 200 - Utils::Network::HttpRequest::WriteRequest
+10/03/2015 11:54:04,876 [14448] INFO  ContentLength: 2 - Utils::Network::HttpRequest::ReadResponse
+10/03/2015 11:54:04,876 [14448] INFO  Result: 1, total read: 2 - Utils::Network::HttpRequest::ReadResponse
+10/03/2015 11:54:04,876 [14448] INFO  Post request completed in: 84 milliseconds - Utils::Network::HttpRequest::Post - Utils::Common::LogTimer::~LogTimer
+10/03/2015 11:54:05,881 [16872] INFO  Initializing WinINet - Utils::Network::HttpRequest::Initialize
+10/03/2015 11:54:05,881 [16872] INFO  Setting receive timeout: 300000 - Utils::Network::HttpRequest::Initialize
+10/03/2015 11:54:05,881 [16872] INFO  Setting send timeout: 30000 - Utils::Network::HttpRequest::Initialize
+10/03/2015 11:54:05,882 [16872] INFO  Setting connect timeout: 60000 - Utils::Network::HttpRequest::Initialize
+10/03/2015 11:54:05,882 [16872] INFO  Post request for url: "https://dl.openfin.co/services/s/" - Utils::Network::HttpRequest::Post
+10/03/2015 11:54:05,882 [16872] INFO  Processing url: "https://dl.openfin.co/services/s/" - Utils::Network::HttpRequest::WriteRequest
+10/03/2015 11:54:05,967 [16872] INFO  StatusCode: 200 - Utils::Network::HttpRequest::WriteRequest
+10/03/2015 11:54:05,967 [16872] INFO  ContentLength: 2 - Utils::Network::HttpRequest::ReadResponse
+10/03/2015 11:54:05,967 [16872] INFO  Result: 1, total read: 2 - Utils::Network::HttpRequest::ReadResponse
+10/03/2015 11:54:05,967 [16872] INFO  Post request completed in: 85 milliseconds - Utils::Network::HttpRequest::Post - Utils::Common::LogTimer::~LogTimer
+10/03/2015 11:54:07,125 [7068] WARN  Failed on HttpSendRequest() - GetLastError() code: 12029, msg:  - Utils::Common::LogFormattedLastError
+10/03/2015 11:54:07,125 [7068] WARN  code: 12029 == ERROR_INTERNET_CANNOT_CONNECT - Utils::Network::LogFormattedLastHttpError
+10/03/2015 11:54:07,126 [7068] INFO  Get request completed in: 3025 milliseconds - Utils::Network::HttpRequest::Get - Utils::Common::LogTimer::~LogTimer
+10/03/2015 11:54:07,126 [7068] ERROR HTTP task failed: "http://localhost:8000/images/adaptive_mark_250x.png" - HTTPRequestTask::Execute
+10/03/2015 11:54:07,126 [7068] INFO  HTTP task complete in: 3025 milliseconds - HTTPRequestTask::Execute
+10/03/2015 11:54:07,126 [7068] WARN  Failed to fetch the icon - RVM::Controllers::ApplicationInstallController::OnRequestComplete
+10/03/2015 11:54:07,134 [16052] INFO  Initializing WinINet - Utils::Network::HttpRequest::Initialize
+10/03/2015 11:54:07,134 [16052] INFO  Setting receive timeout: 300000 - Utils::Network::HttpRequest::Initialize
+10/03/2015 11:54:07,134 [16052] INFO  Setting send timeout: 30000 - Utils::Network::HttpRequest::Initialize
+10/03/2015 11:54:07,134 [16052] INFO  Setting connect timeout: 60000 - Utils::Network::HttpRequest::Initialize
+10/03/2015 11:54:07,134 [16052] INFO  Post request for url: "https://dl.openfin.co/services/s/" - Utils::Network::HttpRequest::Post
+10/03/2015 11:54:07,134 [16052] INFO  Processing url: "https://dl.openfin.co/services/s/" - Utils::Network::HttpRequest::WriteRequest
+10/03/2015 11:54:07,221 [16052] INFO  StatusCode: 200 - Utils::Network::HttpRequest::WriteRequest
+10/03/2015 11:54:07,221 [16052] INFO  ContentLength: 2 - Utils::Network::HttpRequest::ReadResponse
+10/03/2015 11:54:07,221 [16052] INFO  Result: 1, total read: 2 - Utils::Network::HttpRequest::ReadResponse
+10/03/2015 11:54:07,221 [16052] INFO  Post request completed in: 87 milliseconds - Utils::Network::HttpRequest::Post - Utils::Common::LogTimer::~LogTimer
