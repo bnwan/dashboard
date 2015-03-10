@@ -1,23 +1,12 @@
+'use strict';
+
+var app = require('ampersand-app');
+var widgetService = require('../../services/widget-service');
+
 var AmpersandView = require('ampersand-view');
 var template = require('./templates/container-template.html');
 var WidgetControllerView = require('../widget');
-
-
-var WidgetCollection = require('../../models/widget-collection');
-var wCollection = new WidgetCollection();
-
-var WidgetModel = require('../../models/widget-model');
-
 var AppNavBar = require('../navbar');
-
-for (var i = 1; i <= 8; i++) {
-	var wModel = new WidgetModel({
-		name: 'widget-' + i,
-		index: i
-	});
-
-	wCollection.add(wModel);
-}
 
 module.exports = AmpersandView.extend({
 	template: template,
@@ -25,12 +14,13 @@ module.exports = AmpersandView.extend({
 		this.renderWithTemplate(this);
 
 		var navBar = new AppNavBar({
-			el: this.query('.app-navbar')
+			el: this.query('.app-navbar'),
+			collection: widgetService.getWidgets()
 		}).render();
 
 		var widgetController = new WidgetControllerView({
 			el: this.query('.widget-grid'),
-			collection: wCollection
+			collection: widgetService.getWidgets()
 		}).render();			
 
 		return this;

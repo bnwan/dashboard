@@ -22,6 +22,14 @@ module.exports = AmpersandView.extend({
 				
 				return this.subviews.navbar.view;
 			}
+		},
+		widgetContent: {
+			container: '[data-hook=content]',
+			prepareView: function (el) {
+				var content = this.subviews.widgetContent.view = this.model.content;
+				content.el = el;
+				return content;
+			}
 		}
 	},
 	render: function(){

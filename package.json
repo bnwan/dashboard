@@ -41,6 +41,9 @@
     "testem": "^0.7.1"
   },
   "dependencies": {
+    "amp-each": "^1.0.1",
+    "amp-is-empty": "^1.0.2",
+    "amp-is-function": "^1.0.1",
     "ampersand-app": "^1.0.3",
     "ampersand-collection": "^1.4.1",
     "ampersand-state": "^4.4.5",
