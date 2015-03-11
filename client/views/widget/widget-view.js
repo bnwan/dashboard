@@ -1,4 +1,6 @@
 require('./style/style.scss');
+var clone = require('amp-clone');
+var app = require('ampersand-app');
 var AmpersandView = require('ampersand-view');
 var template = require('./templates/widget-template.html');
 
@@ -35,12 +37,12 @@ module.exports = AmpersandView.extend({
 	render: function(){
 		this.renderWithTemplate(this);
 		
-		this.listenTo(this.subviews.navbar.view, 'close', this.close);
+		this.listenTo(this.subviews.navbar.view, 'close', this.close);			
 		
 		return this;
 	},
 	
-	close: function(){		
-		this.model.collection.remove(this.model);
+	close: function(){
+		app.trigger('widget:remove', this.model);
 	}
 });

@@ -16,4 +16,11 @@ module.exports = AmpersandView.extend({
 			hook: 'iconStyle'
 		}
 	},
+	events: {
+		'click': 'select'
+	},
+	
+	select: function(){		
+		this.trigger('select', this.model);
+	}
 });
