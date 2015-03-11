@@ -3,5 +3,5 @@
 module.exports = [
 	require('./grid'),
 	require('./chart'),
-	require('./alert')
+	require('./alert-config')
 ];

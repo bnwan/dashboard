@@ -7,6 +7,11 @@ module.exports = AmpersandView.extend({
 	bindings: {
 		'model.name': {
 			hook: 'name'
+		},
+		'model.iconStyle': {
+			type: 'attribute',
+			name: 'class',
+			hook: 'iconStyle'
 		}
 	},
 	events: {
