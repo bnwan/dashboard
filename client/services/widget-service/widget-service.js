@@ -37,15 +37,15 @@ module.exports = {
 
 //remove widget
 app.on('widget:remove', function (widgetModel) {
-	app.activeWidgetCollection.remove(widgetModel);
+	app.activeWidgetCollection.remove(widgetModel);	
 });
 
 //add widget
-app.on('widget:add', function (widgetModel) {
+app.on('widget:add', function (name) {
 
 	var list = widgetList.map(function (Widget) {
 		var w = new Widget();
-		if (w.name === widgetModel.name) {
+		if (w.name === name) {
 			return w;
 		}
 	});
@@ -60,5 +60,5 @@ app.on('widget:add', function (widgetModel) {
 		content: widgetInstance
 	});
 
-	app.activeWidgetCollection.add(model);
+	app.activeWidgetCollection.add(model);	
 });

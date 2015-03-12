@@ -1,16 +1,23 @@
+'use strict';
+
 require('./app-base');
 var domready = require('domready');
+var config = require('./client-config');
 var app = window.app = require('ampersand-app');
 
-var ActiveWidgetCollection = require('./widgets/active-widget-collection');
+app.extend({
+	clientConfig: config
+});
+
+var ActiveWidgetCollection = require('./active-widget-collection');
 
 require('./app-service-events');
 
 var AppBody = require('./views/app-body');
 
-app.extend({
+app.extend({	
 	activeWidgetCollection: new ActiveWidgetCollection(),
-	init: function () {			
+	init: function () {
 		
 		var appBodyView = new AppBody({
 			el: document.body

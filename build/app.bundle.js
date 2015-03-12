@@ -1,17 +1,24 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
+'use strict';
+
 require('./app-base');
 var domready = require('domready');
+var config = require('./client-config');
 var app = window.app = require('ampersand-app');
 
-var ActiveWidgetCollection = require('./widgets/active-widget-collection');
+app.extend({
+	clientConfig: config
+});
+
+var ActiveWidgetCollection = require('./active-widget-collection');
 
 require('./app-service-events');
 
 var AppBody = require('./views/app-body');
 
-app.extend({
+app.extend({	
 	activeWidgetCollection: new ActiveWidgetCollection(),
-	init: function () {			
+	init: function () {
 		
 		var appBodyView = new AppBody({
 			el: document.body
@@ -24,7 +31,57 @@ domready(function () {
 	
 	app.init();
 });
-},{"./app-base":2,"./app-service-events":3,"./views/app-body":9,"./widgets/active-widget-collection":31,"ampersand-app":73,"domready":157}],2:[function(require,module,exports){
+},{"./active-widget-collection":2,"./app-base":3,"./app-service-events":4,"./client-config":6,"./views/app-body":15,"ampersand-app":74,"domready":158}],2:[function(require,module,exports){
+var AmpersandCollection = require('ampersand-collection');
+
+var dashboardStorageService = require('./services/dashboard-storage-service');
+var each = require('amp-each');
+var find = require('amp-find');
+
+var widgetList = require('./widgets');
+var WidgetModel = require('./widgets/widget-model');
+
+module.exports = AmpersandCollection.extend({
+	model: WidgetModel,
+	initialize: function () {
+
+		var data = dashboardStorageService.retrive();			
+
+		each(data, function (d) {
+
+			this.fetch(d);
+		}, this);
+		
+		this.on('add', this.save);
+		this.on('remove', this.save);
+	},
+
+	fetch: function (d) {
+		var list = widgetList.map(function (Widget) {
+			var w = new Widget();
+			if (w.name === d.name) {
+				return w;
+			}
+		});
+
+		var widgetInstance = find(list, function (w) {
+			return w;
+		});
+
+		var model = new WidgetModel({
+			name: widgetInstance.name,
+			iconStyle: widgetInstance.iconStyle,
+			content: widgetInstance
+		});
+
+		this.add(model);
+	},
+	
+	save: function(){
+		dashboardStorageService.save();		
+	}
+});
+},{"./services/dashboard-storage-service":8,"./widgets":45,"./widgets/widget-model":48,"amp-each":49,"amp-find":56,"ampersand-collection":118}],3:[function(require,module,exports){
 'user strict';
 
 require('./style/base.scss');
@@ -36,11 +93,63 @@ app.extend({
 		this.trigger(target, callback);
 	}
 });
-},{"./style/base.scss":6,"ampersand-app":73}],3:[function(require,module,exports){
+},{"./style/base.scss":12,"ampersand-app":74}],4:[function(require,module,exports){
 var app = require('ampersand-app');
-},{"ampersand-app":73}],4:[function(require,module,exports){
+},{"ampersand-app":74}],5:[function(require,module,exports){
+'use strict';
+
+module.exports = {
+	dashboardItemsLocalStorageKey: 'ci7527oph00003955xpu7p3s6',
+	dashboardItemsOrderLocalStorageKey: 'ci75zg1i600001o9yrqvorzbc'
+};
+},{}],6:[function(require,module,exports){
+'use strict';
+
+module.exports = require('./client-config');
+},{"./client-config":5}],7:[function(require,module,exports){
+'use strict';
+
+var app = require('ampersand-app');
+var storageProvider = require('./storage-provider');
+
+var key = app.clientConfig.dashboardItemsLocalStorageKey;
+
+module.exports = {
+	save: function () {
+		var data = app.activeWidgetCollection.map(function (m) {
+			return {
+				name: m.name				
+			};
+		});
+
+		storageProvider.save(key, JSON.stringify(data));
+	},
+
+	retrive: function () {
+		return JSON.parse(storageProvider.retrive(key));
+	}
+};
+},{"./storage-provider":9,"ampersand-app":74}],8:[function(require,module,exports){
+'use strict';
+
+module.exports = require('./dashboard-storage-service.js');
+},{"./dashboard-storage-service.js":7}],9:[function(require,module,exports){
+'use strict';
+
+var storage = window.localStorage;
+
+module.exports = {
+	save: function(key, jsonString){
+		storage.setItem(key, jsonString);
+	},
+	
+	retrive: function(key){
+		return storage.getItem(key);
+	}
+};
+},{}],10:[function(require,module,exports){
 module.exports = require('./widget-service');
-},{"./widget-service":5}],5:[function(require,module,exports){
+},{"./widget-service":11}],11:[function(require,module,exports){
 'use strict';
 
 var app = require('ampersand-app');
@@ -80,15 +189,15 @@ module.exports = {
 
 //remove widget
 app.on('widget:remove', function (widgetModel) {
-	app.activeWidgetCollection.remove(widgetModel);
+	app.activeWidgetCollection.remove(widgetModel);	
 });
 
 //add widget
-app.on('widget:add', function (widgetModel) {
+app.on('widget:add', function (name) {
 
 	var list = widgetList.map(function (Widget) {
 		var w = new Widget();
-		if (w.name === widgetModel.name) {
+		if (w.name === name) {
 			return w;
 		}
 	});
@@ -103,14 +212,14 @@ app.on('widget:add', function (widgetModel) {
 		content: widgetInstance
 	});
 
-	app.activeWidgetCollection.add(model);
+	app.activeWidgetCollection.add(model);	
 });
-},{"../../widgets":40,"../../widgets/widget-collection":42,"../../widgets/widget-model":43,"amp-each":48,"amp-find":55,"ampersand-app":73}],6:[function(require,module,exports){
+},{"../../widgets":45,"../../widgets/widget-collection":47,"../../widgets/widget-model":48,"amp-each":49,"amp-find":56,"ampersand-app":74}],12:[function(require,module,exports){
 var css = "/* Responsive Breakpoints\n   ========================================================================== */\n/* Usage */\n.page-wrap {\n  width: 75%; }\n  @media (min-width: 64.375em) {\n    .page-wrap {\n      width: 60%; } }\n  @media (min-width: 50em) {\n    .page-wrap {\n      width: 80%; } }\n  @media (min-width: 37.5em) {\n    .page-wrap {\n      width: 95%; } }\n\n/* Sub-section comment block\n   ========================================================================== */\n/* Usage */\ndiv.logo {\n  background: url(\"logo.png\") no-repeat; }\n  @media (min--moz-device-pixel-ratio: 1.3), (-o-min-device-pixel-ratio: 2.6/2), (-webkit-min-device-pixel-ratio: 1.3), (min-device-pixel-ratio: 1.3), (min-resolution: 1.3dppx) {\n    div.logo {\n      /* on retina, use image that's scaled by 2 */\n      background-image: url(\"logo2x.png\");\n      background-size: 100px 25px; } }\n\n/* Clearfix\n  ========================================================================== */\n/* Usage */\n.article {\n  *zoom: 1; }\n.article:before, .article:after {\n  content: \"\";\n  display: table; }\n.article:after {\n  clear: both; }\n\n/* Box Model\n  ========================================================================== */\n/* Usage */\n*, *:after, *:before {\n  -webkit-box-sizing: border-box;\n  -moz-box-sizing: border-box;\n  box-sizing: border-box; }\n\n/* Border Radius\n  ========================================================================== */\n/* Usage */\n.button {\n  -webkit-border-radius: 5px;\n  border-radius: 5px;\n  background-clip: padding-box;\n  /* stops bg color from leaking outside the border: */ }\n\n.submit-button {\n  -webkit-border-top-right-radius: 10px;\n  border-top-right-radius: 10px;\n  -webkit-border-top-left-radius: 10px;\n  border-top-left-radius: 10px;\n  background-clip: padding-box; }\n\n/* Opacity\n  ========================================================================== */\n/* Usage */\n.article-heading {\n  opacity: 0.8;\n  filter: alpha(opacity=80); }\n\n/* Center-align a block level element\n  ========================================================================== */\n/* Usage */\n.footer-wrap {\n  width: 450px;\n  display: block;\n  margin-left: auto;\n  margin-right: auto; }\n\n/* Text overflow\n  ========================================================================== */\n/* Usage */\n.text-truncate {\n  overflow: hidden;\n  text-overflow: ellipsis;\n  white-space: nowrap; }\n\n/* Absolute positioned\n  ========================================================================== */\n/* Usage */\n.abs {\n  top: 10px;\n  right: 10px;\n  bottom: 5px;\n  left: 15px;\n  position: absolute; }\n\n/* Font Size\n  ========================================================================== */\n/* Usage */\nbody {\n  font-size: 16px;\n  font-size: 2rem; }\n\n/* Cross browser inline block\n  ========================================================================== */\n/* Usage */\n.icon {\n  display: -moz-inline-stack;\n  display: inline-block;\n  vertical-align: top;\n  zoom: 1;\n  *display: inline; }\n\n/* Text replacement (instead of text-indent)\n  ========================================================================== */\n/* Usage */\n.header h1 {\n  border: 0;\n  color: transparent;\n  font: 0/0 a;\n  text-shadow: none; }\n\n/* Line Height\n  ========================================================================== */\n/* Usage */\nbody {\n  line-height: 16px;\n  line-height: 2rem; }\n\n/* Placeholder\n  ========================================================================== */\n/* Usage */\ninput.placeholder {\n  color: #FA4A4A; }\ninput:-moz-placeholder {\n  color: #FA4A4A; }\ninput::-webkit-input-placeholder {\n  color: #FA4A4A; }\ninput:-ms-input-placeholder {\n  color: #FA4A4A; }\n\nbody {\n  font-family: 'Segoe UI', sans-serif; }\n\n.container {\n  padding: 10px;\n  background: #EBEBEB;\n  height: inherit; }\n\n@media (min-width: 1220px) {\n  .container {\n    font-family: 'Segoe UI', sans-serif;\n    color: #000000; }\n    .container .row {\n      max-width: 100%;\n      padding: 0; } }\n";(require('sassify'))(css); module.exports = css;
-},{"sassify":158}],7:[function(require,module,exports){
+},{"sassify":159}],13:[function(require,module,exports){
 /*! Sortable 1.1.1 - MIT | git://github.com/rubaxa/Sortable.git */
 !function(a){"use strict";"function"==typeof define&&define.amd?define(a):"undefined"!=typeof module&&"undefined"!=typeof module.exports?module.exports=a():"undefined"!=typeof Package?Sortable=a():window.Sortable=a()}(function(){"use strict";function a(a,b){this.el=a,this.options=b=b||{};var d={group:Math.random(),sort:!0,disabled:!1,store:null,handle:null,scroll:!0,scrollSensitivity:30,scrollSpeed:10,draggable:/[uo]l/i.test(a.nodeName)?"li":">*",ghostClass:"sortable-ghost",ignore:"a, img",filter:null,animation:0,setData:function(a,b){a.setData("Text",b.textContent)},dropBubble:!1,dragoverBubble:!1};for(var e in d)!(e in b)&&(b[e]=d[e]);var g=b.group;g&&"object"==typeof g||(g=b.group={name:g}),["pull","put"].forEach(function(a){a in g||(g[a]=!0)}),M.forEach(function(d){b[d]=c(this,b[d]||N),f(a,d.substr(2).toLowerCase(),b[d])},this),b.groups=" "+g.name+(g.put.join?" "+g.put.join(" "):"")+" ",a[F]=b;for(var h in this)"_"===h.charAt(0)&&(this[h]=c(this,this[h]));f(a,"mousedown",this._onTapStart),f(a,"touchstart",this._onTapStart),f(a,"dragover",this),f(a,"dragenter",this),Q.push(this._onDragOver),b.store&&this.sort(b.store.get(this))}function b(a){s&&s.state!==a&&(i(s,"display",a?"none":""),!a&&s.state&&t.insertBefore(s,q),s.state=a)}function c(a,b){var c=P.call(arguments,2);return b.bind?b.bind.apply(b,[a].concat(c)):function(){return b.apply(a,c.concat(P.call(arguments)))}}function d(a,b,c){if(a){c=c||H,b=b.split(".");var d=b.shift().toUpperCase(),e=new RegExp("\\s("+b.join("|")+")\\s","g");do if(">*"===d&&a.parentNode===c||(""===d||a.nodeName.toUpperCase()==d)&&(!b.length||((" "+a.className+" ").match(e)||[]).length==b.length))return a;while(a!==c&&(a=a.parentNode))}return null}function e(a){a.dataTransfer.dropEffect="move",a.preventDefault()}function f(a,b,c){a.addEventListener(b,c,!1)}function g(a,b,c){a.removeEventListener(b,c,!1)}function h(a,b,c){if(a)if(a.classList)a.classList[c?"add":"remove"](b);else{var d=(" "+a.className+" ").replace(/\s+/g," ").replace(" "+b+" ","");a.className=d+(c?" "+b:"")}}function i(a,b,c){var d=a&&a.style;if(d){if(void 0===c)return H.defaultView&&H.defaultView.getComputedStyle?c=H.defaultView.getComputedStyle(a,""):a.currentStyle&&(c=a.currentStyle),void 0===b?c:c[b];b in d||(b="-webkit-"+b),d[b]=c+("string"==typeof c?"":"px")}}function j(a,b,c){if(a){var d=a.getElementsByTagName(b),e=0,f=d.length;if(c)for(;f>e;e++)c(d[e],e);return d}return[]}function k(a){a.draggable=!1}function l(){K=!1}function m(a,b){var c=a.lastElementChild,d=c.getBoundingClientRect();return b.clientY-(d.top+d.height)>5&&c}function n(a){for(var b=a.tagName+a.className+a.src+a.href+a.textContent,c=b.length,d=0;c--;)d+=b.charCodeAt(c);return d.toString(36)}function o(a){for(var b=0;a&&(a=a.previousElementSibling);)"TEMPLATE"!==a.nodeName.toUpperCase()&&b++;return b}function p(a,b){var c,d;return function(){void 0===c&&(c=arguments,d=this,setTimeout(function(){1===c.length?a.call(d,c[0]):a.apply(d,c),c=void 0},b))}}var q,r,s,t,u,v,w,x,y,z,A,B,C,D,E={},F="Sortable"+(new Date).getTime(),G=window,H=G.document,I=G.parseInt,J=!!("draggable"in H.createElement("div")),K=!1,L=function(a,b,c,d,e,f){var g=H.createEvent("Event");g.initEvent(b,!0,!0),g.item=c||a,g.from=d||a,g.clone=s,g.oldIndex=e,g.newIndex=f,a.dispatchEvent(g)},M="onAdd onUpdate onRemove onStart onEnd onFilter onSort".split(" "),N=function(){},O=Math.abs,P=[].slice,Q=[],R=p(function(a,b,c){if(c&&b.scroll){var d,e,f,g,h=b.scrollSensitivity,i=b.scrollSpeed,j=a.clientX,k=a.clientY,l=window.innerWidth,m=window.innerHeight;if(w!==c&&(v=b.scroll,w=c,v===!0)){v=c;do if(v.offsetWidth<v.scrollWidth||v.offsetHeight<v.scrollHeight)break;while(v=v.parentNode)}v&&(d=v,e=v.getBoundingClientRect(),f=(O(e.right-j)<=h)-(O(e.left-j)<=h),g=(O(e.bottom-k)<=h)-(O(e.top-k)<=h)),f||g||(f=(h>=l-j)-(h>=j),g=(h>=m-k)-(h>=k),(f||g)&&(d=G)),(E.vx!==f||E.vy!==g||E.el!==d)&&(E.el=d,E.vx=f,E.vy=g,clearInterval(E.pid),d&&(E.pid=setInterval(function(){d===G?G.scrollTo(G.scrollX+f*i,G.scrollY+g*i):(g&&(d.scrollTop+=g*i),f&&(d.scrollLeft+=f*i))},24)))}},30);return a.prototype={constructor:a,_dragStarted:function(){t&&q&&(h(q,this.options.ghostClass,!0),a.active=this,L(t,"start",q,t,z))},_onTapStart:function(a){var b=a.type,c=a.touches&&a.touches[0],e=(c||a).target,g=e,h=this.options,i=this.el,l=h.filter;if(!("mousedown"===b&&0!==a.button||h.disabled)&&(e=d(e,h.draggable,i))){if(z=o(e),"function"==typeof l){if(l.call(this,a,e,this))return L(g,"filter",e,i,z),void a.preventDefault()}else if(l&&(l=l.split(",").some(function(a){return a=d(g,a.trim(),i),a?(L(a,"filter",e,i,z),!0):void 0})))return void a.preventDefault();if((!h.handle||d(g,h.handle,i))&&e&&!q&&e.parentNode===i){C=a,t=this.el,q=e,u=q.nextSibling,B=this.options.group,q.draggable=!0,h.ignore.split(",").forEach(function(a){j(e,a.trim(),k)}),c&&(C={target:e,clientX:c.clientX,clientY:c.clientY},this._onDragStart(C,"touch"),a.preventDefault()),f(H,"mouseup",this._onDrop),f(H,"touchend",this._onDrop),f(H,"touchcancel",this._onDrop),f(q,"dragend",this),f(t,"dragstart",this._onDragStart),J||this._onDragStart(C,!0);try{H.selection?H.selection.empty():window.getSelection().removeAllRanges()}catch(m){}}}},_emulateDragOver:function(){if(D){i(r,"display","none");var a=H.elementFromPoint(D.clientX,D.clientY),b=a,c=" "+this.options.group.name,d=Q.length;if(b)do{if(b[F]&&b[F].groups.indexOf(c)>-1){for(;d--;)Q[d]({clientX:D.clientX,clientY:D.clientY,target:a,rootEl:b});break}a=b}while(b=b.parentNode);i(r,"display","")}},_onTouchMove:function(a){if(C){var b=a.touches?a.touches[0]:a,c=b.clientX-C.clientX,d=b.clientY-C.clientY,e=a.touches?"translate3d("+c+"px,"+d+"px,0)":"translate("+c+"px,"+d+"px)";D=b,i(r,"webkitTransform",e),i(r,"mozTransform",e),i(r,"msTransform",e),i(r,"transform",e),a.preventDefault()}},_onDragStart:function(a,b){var c=a.dataTransfer,d=this.options;if(this._offUpEvents(),"clone"==B.pull&&(s=q.cloneNode(!0),i(s,"display","none"),t.insertBefore(s,q)),b){var e,g=q.getBoundingClientRect(),h=i(q);r=q.cloneNode(!0),i(r,"top",g.top-I(h.marginTop,10)),i(r,"left",g.left-I(h.marginLeft,10)),i(r,"width",g.width),i(r,"height",g.height),i(r,"opacity","0.8"),i(r,"position","fixed"),i(r,"zIndex","100000"),t.appendChild(r),e=r.getBoundingClientRect(),i(r,"width",2*g.width-e.width),i(r,"height",2*g.height-e.height),"touch"===b?(f(H,"touchmove",this._onTouchMove),f(H,"touchend",this._onDrop),f(H,"touchcancel",this._onDrop)):(f(H,"mousemove",this._onTouchMove),f(H,"mouseup",this._onDrop)),this._loopId=setInterval(this._emulateDragOver,150)}else c&&(c.effectAllowed="move",d.setData&&d.setData.call(this,c,q)),f(H,"drop",this);setTimeout(this._dragStarted,0)},_onDragOver:function(a){var c,e,f,g=this.el,h=this.options,j=h.group,k=j.put,n=B===j,o=h.sort;if(q&&(void 0!==a.preventDefault&&(a.preventDefault(),!h.dragoverBubble&&a.stopPropagation()),B&&!h.disabled&&(n?o||(f=!t.contains(q)):B.pull&&k&&(B.name===j.name||k.indexOf&&~k.indexOf(B.name)))&&(void 0===a.rootEl||a.rootEl===this.el))){if(R(a,h,this.el),K)return;if(c=d(a.target,h.draggable,g),e=q.getBoundingClientRect(),f)return b(!0),void(s||u?t.insertBefore(q,s||u):o||t.appendChild(q));if(0===g.children.length||g.children[0]===r||g===a.target&&(c=m(g,a))){if(c){if(c.animated)return;v=c.getBoundingClientRect()}b(n),g.appendChild(q),this._animate(e,q),c&&this._animate(v,c)}else if(c&&!c.animated&&c!==q&&void 0!==c.parentNode[F]){x!==c&&(x=c,y=i(c));var p,v=c.getBoundingClientRect(),w=v.right-v.left,z=v.bottom-v.top,A=/left|right|inline/.test(y.cssFloat+y.display),C=c.offsetWidth>q.offsetWidth,D=c.offsetHeight>q.offsetHeight,E=(A?(a.clientX-v.left)/w:(a.clientY-v.top)/z)>.5,G=c.nextElementSibling;K=!0,setTimeout(l,30),b(n),p=A?c.previousElementSibling===q&&!C||E&&C:G!==q&&!D||E&&D,p&&!G?g.appendChild(q):c.parentNode.insertBefore(q,p?G:c),this._animate(e,q),this._animate(v,c)}}},_animate:function(a,b){var c=this.options.animation;if(c){var d=b.getBoundingClientRect();i(b,"transition","none"),i(b,"transform","translate3d("+(a.left-d.left)+"px,"+(a.top-d.top)+"px,0)"),b.offsetWidth,i(b,"transition","all "+c+"ms"),i(b,"transform","translate3d(0,0,0)"),clearTimeout(b.animated),b.animated=setTimeout(function(){i(b,"transition",""),i(b,"transform",""),b.animated=!1},c)}},_offUpEvents:function(){g(H,"mouseup",this._onDrop),g(H,"touchmove",this._onTouchMove),g(H,"touchend",this._onDrop),g(H,"touchcancel",this._onDrop)},_onDrop:function(b){var c=this.el,d=this.options;clearInterval(this._loopId),clearInterval(E.pid),g(H,"drop",this),g(H,"mousemove",this._onTouchMove),g(c,"dragstart",this._onDragStart),this._offUpEvents(),b&&(b.preventDefault(),!d.dropBubble&&b.stopPropagation(),r&&r.parentNode.removeChild(r),q&&(g(q,"dragend",this),k(q),h(q,this.options.ghostClass,!1),t!==q.parentNode?(A=o(q),L(q.parentNode,"sort",q,t,z,A),L(t,"sort",q,t,z,A),L(q,"add",q,t,z,A),L(t,"remove",q,t,z,A)):(s&&s.parentNode.removeChild(s),q.nextSibling!==u&&(A=o(q),L(t,"update",q,t,z,A),L(t,"sort",q,t,z,A))),a.active&&L(t,"end",q,t,z,A)),t=q=r=u=s=v=w=C=D=x=y=B=a.active=null,this.save())},handleEvent:function(a){var b=a.type;"dragover"===b||"dragenter"===b?(this._onDragOver(a),e(a)):("drop"===b||"dragend"===b)&&this._onDrop(a)},toArray:function(){for(var a,b=[],c=this.el.children,e=0,f=c.length;f>e;e++)a=c[e],d(a,this.options.draggable,this.el)&&b.push(a.getAttribute("data-id")||n(a));return b},sort:function(a){var b={},c=this.el;this.toArray().forEach(function(a,e){var f=c.children[e];d(f,this.options.draggable,c)&&(b[a]=f)},this),a.forEach(function(a){b[a]&&(c.removeChild(b[a]),c.appendChild(b[a]))})},save:function(){var a=this.options.store;a&&a.set(this)},closest:function(a,b){return d(a,b||this.options.draggable,this.el)},option:function(a,b){var c=this.options;return void 0===b?c[a]:void(c[a]=b)},destroy:function(){var a=this.el,b=this.options;M.forEach(function(c){g(a,c.substr(2).toLowerCase(),b[c])}),g(a,"mousedown",this._onTapStart),g(a,"touchstart",this._onTapStart),g(a,"dragover",this),g(a,"dragenter",this),Array.prototype.forEach.call(a.querySelectorAll("[draggable]"),function(a){a.removeAttribute("draggable")}),Q.splice(Q.indexOf(this._onDragOver),1),this._onDrop(),this.el=null}},a.utils={on:f,off:g,css:i,find:j,bind:c,is:function(a,b){return!!d(a,b,a)},throttle:p,closest:d,toggleClass:h,dispatchEvent:L,index:o},a.version="1.1.1",a.create=function(b,c){return new a(b,c)},a});
-},{}],8:[function(require,module,exports){
+},{}],14:[function(require,module,exports){
 'use strict';
 
 var app = require('ampersand-app');;
@@ -139,18 +248,18 @@ module.exports = AmpersandView.extend({
 		return this;
 	}
 });
-},{"../../services/widget-service":4,"../navbar":11,"../widget":25,"./templates/container-template.html":10,"ampersand-app":73,"ampersand-view":132}],9:[function(require,module,exports){
+},{"../../services/widget-service":10,"../navbar":17,"../widget":31,"./templates/container-template.html":16,"ampersand-app":74,"ampersand-view":133}],15:[function(require,module,exports){
 module.exports = require('./app-body-view');
-},{"./app-body-view":8}],10:[function(require,module,exports){
+},{"./app-body-view":14}],16:[function(require,module,exports){
 module.exports = '<div class="container">\n' +
     '	<div class="row">\n' +
     '		<div class="app-navbar"></div>				\n' +
     '		<div class="widget-grid"></div>		\n' +
     '	</div>		\n' +
     '</div>';
-},{}],11:[function(require,module,exports){
+},{}],17:[function(require,module,exports){
 module.exports = require('./navbar-view');
-},{"./navbar-view":12}],12:[function(require,module,exports){
+},{"./navbar-view":18}],18:[function(require,module,exports){
 require('./style/style.scss');
 
 var AmpersandView = require('ampersand-view');
@@ -173,9 +282,9 @@ module.exports = AmpersandView.extend({
 		}
 	},
 });
-},{"../widget-dropdown-list":15,"./style/style.scss":13,"./templates/navbar-template.html":14,"ampersand-view":132}],13:[function(require,module,exports){
+},{"../widget-dropdown-list":21,"./style/style.scss":19,"./templates/navbar-template.html":20,"ampersand-view":133}],19:[function(require,module,exports){
 var css = "/* Responsive Breakpoints\n   ========================================================================== */\n/* Usage */\n.page-wrap {\n  width: 75%; }\n  @media (min-width: 64.375em) {\n    .page-wrap {\n      width: 60%; } }\n  @media (min-width: 50em) {\n    .page-wrap {\n      width: 80%; } }\n  @media (min-width: 37.5em) {\n    .page-wrap {\n      width: 95%; } }\n\n/* Sub-section comment block\n   ========================================================================== */\n/* Usage */\ndiv.logo {\n  background: url(\"logo.png\") no-repeat; }\n  @media (min--moz-device-pixel-ratio: 1.3), (-o-min-device-pixel-ratio: 2.6/2), (-webkit-min-device-pixel-ratio: 1.3), (min-device-pixel-ratio: 1.3), (min-resolution: 1.3dppx) {\n    div.logo {\n      /* on retina, use image that's scaled by 2 */\n      background-image: url(\"logo2x.png\");\n      background-size: 100px 25px; } }\n\n/* Clearfix\n  ========================================================================== */\n/* Usage */\n.article {\n  *zoom: 1; }\n.article:before, .article:after {\n  content: \"\";\n  display: table; }\n.article:after {\n  clear: both; }\n\n/* Box Model\n  ========================================================================== */\n/* Usage */\n*, *:after, *:before {\n  -webkit-box-sizing: border-box;\n  -moz-box-sizing: border-box;\n  box-sizing: border-box; }\n\n/* Border Radius\n  ========================================================================== */\n/* Usage */\n.button {\n  -webkit-border-radius: 5px;\n  border-radius: 5px;\n  background-clip: padding-box;\n  /* stops bg color from leaking outside the border: */ }\n\n.submit-button {\n  -webkit-border-top-right-radius: 10px;\n  border-top-right-radius: 10px;\n  -webkit-border-top-left-radius: 10px;\n  border-top-left-radius: 10px;\n  background-clip: padding-box; }\n\n/* Opacity\n  ========================================================================== */\n/* Usage */\n.article-heading {\n  opacity: 0.8;\n  filter: alpha(opacity=80); }\n\n/* Center-align a block level element\n  ========================================================================== */\n/* Usage */\n.footer-wrap {\n  width: 450px;\n  display: block;\n  margin-left: auto;\n  margin-right: auto; }\n\n/* Text overflow\n  ========================================================================== */\n/* Usage */\n.text-truncate {\n  overflow: hidden;\n  text-overflow: ellipsis;\n  white-space: nowrap; }\n\n/* Absolute positioned\n  ========================================================================== */\n/* Usage */\n.abs {\n  top: 10px;\n  right: 10px;\n  bottom: 5px;\n  left: 15px;\n  position: absolute; }\n\n/* Font Size\n  ========================================================================== */\n/* Usage */\nbody {\n  font-size: 16px;\n  font-size: 2rem; }\n\n/* Cross browser inline block\n  ========================================================================== */\n/* Usage */\n.icon {\n  display: -moz-inline-stack;\n  display: inline-block;\n  vertical-align: top;\n  zoom: 1;\n  *display: inline; }\n\n/* Text replacement (instead of text-indent)\n  ========================================================================== */\n/* Usage */\n.header h1 {\n  border: 0;\n  color: transparent;\n  font: 0/0 a;\n  text-shadow: none; }\n\n/* Line Height\n  ========================================================================== */\n/* Usage */\nbody {\n  line-height: 16px;\n  line-height: 2rem; }\n\n/* Placeholder\n  ========================================================================== */\n/* Usage */\ninput.placeholder {\n  color: #FA4A4A; }\ninput:-moz-placeholder {\n  color: #FA4A4A; }\ninput::-webkit-input-placeholder {\n  color: #FA4A4A; }\ninput:-ms-input-placeholder {\n  color: #FA4A4A; }\n\n.app-topbar {\n  margin-bottom: 20px; }\n";(require('sassify'))(css); module.exports = css;
-},{"sassify":158}],14:[function(require,module,exports){
+},{"sassify":159}],20:[function(require,module,exports){
 module.exports = '<nav class="app-topbar top-bar" data-topbar="" role="navigation">\n' +
     '	<ul class="title-area">\n' +
     '		<!-- Title Area -->\n' +
@@ -196,20 +305,20 @@ module.exports = '<nav class="app-topbar top-bar" data-topbar="" role="navigatio
     '		</ul>\n' +
     '	</section>\n' +
     '</nav>';
-},{}],15:[function(require,module,exports){
+},{}],21:[function(require,module,exports){
 module.exports = require('./widget-dropdown-list-view');
-},{"./widget-dropdown-list-view":20}],16:[function(require,module,exports){
+},{"./widget-dropdown-list-view":26}],22:[function(require,module,exports){
 var css = ".widget-list-item span {\n  margin-left: 5px; }\n";(require('sassify'))(css); module.exports = css;
-},{"sassify":158}],17:[function(require,module,exports){
+},{"sassify":159}],23:[function(require,module,exports){
 module.exports = '<li class="widget-list-item">\n' +
     '	<a href="#">\n' +
     '		<i data-hook="iconStyle" class="fi-arrow-right"></i><span data-hook="name">Widget</span>\n' +
     '	</a>\n' +
     '</li>';
-},{}],18:[function(require,module,exports){
+},{}],24:[function(require,module,exports){
 module.exports = '<ul class="dropdown">\n' +
     '</ul>';
-},{}],19:[function(require,module,exports){
+},{}],25:[function(require,module,exports){
 'use strict';
 
 require('./style/style.scss');
@@ -236,7 +345,7 @@ module.exports = AmpersandView.extend({
 		this.trigger('select', this.model);
 	}
 });
-},{"./style/style.scss":16,"./templates/widget-dropdown-list-item-template.html":17,"ampersand-view":132}],20:[function(require,module,exports){
+},{"./style/style.scss":22,"./templates/widget-dropdown-list-item-template.html":23,"ampersand-view":133}],26:[function(require,module,exports){
 'use strict';
 
 require('./style/style.scss');
@@ -264,14 +373,14 @@ module.exports = AmpersandView.extend({
 	},
 	
 	select: function(widgetModel){
-		app.trigger('widget:add', widgetModel);
+		app.trigger('widget:add', widgetModel.name);
 	}
 });
-},{"./style/style.scss":16,"./templates/widget-dropdown-list-template.html":18,"./widget-dropdown-list-item-view":19,"amp-each":48,"ampersand-app":73,"ampersand-view":132}],21:[function(require,module,exports){
+},{"./style/style.scss":22,"./templates/widget-dropdown-list-template.html":24,"./widget-dropdown-list-item-view":25,"amp-each":49,"ampersand-app":74,"ampersand-view":133}],27:[function(require,module,exports){
 module.exports = require('./widget-item-navbar-view');
-},{"./widget-item-navbar-view":24}],22:[function(require,module,exports){
-var css = "/* Responsive Breakpoints\n   ========================================================================== */\n/* Usage */\n.page-wrap {\n  width: 75%; }\n  @media (min-width: 64.375em) {\n    .page-wrap {\n      width: 60%; } }\n  @media (min-width: 50em) {\n    .page-wrap {\n      width: 80%; } }\n  @media (min-width: 37.5em) {\n    .page-wrap {\n      width: 95%; } }\n\n/* Sub-section comment block\n   ========================================================================== */\n/* Usage */\ndiv.logo {\n  background: url(\"logo.png\") no-repeat; }\n  @media (min--moz-device-pixel-ratio: 1.3), (-o-min-device-pixel-ratio: 2.6/2), (-webkit-min-device-pixel-ratio: 1.3), (min-device-pixel-ratio: 1.3), (min-resolution: 1.3dppx) {\n    div.logo {\n      /* on retina, use image that's scaled by 2 */\n      background-image: url(\"logo2x.png\");\n      background-size: 100px 25px; } }\n\n/* Clearfix\n  ========================================================================== */\n/* Usage */\n.article {\n  *zoom: 1; }\n.article:before, .article:after {\n  content: \"\";\n  display: table; }\n.article:after {\n  clear: both; }\n\n/* Box Model\n  ========================================================================== */\n/* Usage */\n*, *:after, *:before {\n  -webkit-box-sizing: border-box;\n  -moz-box-sizing: border-box;\n  box-sizing: border-box; }\n\n/* Border Radius\n  ========================================================================== */\n/* Usage */\n.button {\n  -webkit-border-radius: 5px;\n  border-radius: 5px;\n  background-clip: padding-box;\n  /* stops bg color from leaking outside the border: */ }\n\n.submit-button {\n  -webkit-border-top-right-radius: 10px;\n  border-top-right-radius: 10px;\n  -webkit-border-top-left-radius: 10px;\n  border-top-left-radius: 10px;\n  background-clip: padding-box; }\n\n/* Opacity\n  ========================================================================== */\n/* Usage */\n.article-heading {\n  opacity: 0.8;\n  filter: alpha(opacity=80); }\n\n/* Center-align a block level element\n  ========================================================================== */\n/* Usage */\n.footer-wrap {\n  width: 450px;\n  display: block;\n  margin-left: auto;\n  margin-right: auto; }\n\n/* Text overflow\n  ========================================================================== */\n/* Usage */\n.text-truncate {\n  overflow: hidden;\n  text-overflow: ellipsis;\n  white-space: nowrap; }\n\n/* Absolute positioned\n  ========================================================================== */\n/* Usage */\n.abs {\n  top: 10px;\n  right: 10px;\n  bottom: 5px;\n  left: 15px;\n  position: absolute; }\n\n/* Font Size\n  ========================================================================== */\n/* Usage */\nbody {\n  font-size: 16px;\n  font-size: 2rem; }\n\n/* Cross browser inline block\n  ========================================================================== */\n/* Usage */\n.icon {\n  display: -moz-inline-stack;\n  display: inline-block;\n  vertical-align: top;\n  zoom: 1;\n  *display: inline; }\n\n/* Text replacement (instead of text-indent)\n  ========================================================================== */\n/* Usage */\n.header h1 {\n  border: 0;\n  color: transparent;\n  font: 0/0 a;\n  text-shadow: none; }\n\n/* Line Height\n  ========================================================================== */\n/* Usage */\nbody {\n  line-height: 16px;\n  line-height: 2rem; }\n\n/* Placeholder\n  ========================================================================== */\n/* Usage */\ninput.placeholder {\n  color: #FA4A4A; }\ninput:-moz-placeholder {\n  color: #FA4A4A; }\ninput::-webkit-input-placeholder {\n  color: #FA4A4A; }\ninput:-ms-input-placeholder {\n  color: #FA4A4A; }\n\n.title-area .name {\n  margin-left: 5px;\n  height: 1.8125rem; }\n  .title-area .name i {\n    position: relative;\n    bottom: 7px;\n    margin-right: 10px; }\n  .title-area .name span {\n    position: relative;\n    bottom: 7px; }\n\n.top-bar-section ul li {\n  background: #EBEBEB;\n  margin-right: 10px;\n  cursor: pointer; }\n  .top-bar-section ul li :last-child {\n    margin-right: 5px; }\n";(require('sassify'))(css); module.exports = css;
-},{"sassify":158}],23:[function(require,module,exports){
+},{"./widget-item-navbar-view":30}],28:[function(require,module,exports){
+var css = "/* Responsive Breakpoints\n   ========================================================================== */\n/* Usage */\n.page-wrap {\n  width: 75%; }\n  @media (min-width: 64.375em) {\n    .page-wrap {\n      width: 60%; } }\n  @media (min-width: 50em) {\n    .page-wrap {\n      width: 80%; } }\n  @media (min-width: 37.5em) {\n    .page-wrap {\n      width: 95%; } }\n\n/* Sub-section comment block\n   ========================================================================== */\n/* Usage */\ndiv.logo {\n  background: url(\"logo.png\") no-repeat; }\n  @media (min--moz-device-pixel-ratio: 1.3), (-o-min-device-pixel-ratio: 2.6/2), (-webkit-min-device-pixel-ratio: 1.3), (min-device-pixel-ratio: 1.3), (min-resolution: 1.3dppx) {\n    div.logo {\n      /* on retina, use image that's scaled by 2 */\n      background-image: url(\"logo2x.png\");\n      background-size: 100px 25px; } }\n\n/* Clearfix\n  ========================================================================== */\n/* Usage */\n.article {\n  *zoom: 1; }\n.article:before, .article:after {\n  content: \"\";\n  display: table; }\n.article:after {\n  clear: both; }\n\n/* Box Model\n  ========================================================================== */\n/* Usage */\n*, *:after, *:before {\n  -webkit-box-sizing: border-box;\n  -moz-box-sizing: border-box;\n  box-sizing: border-box; }\n\n/* Border Radius\n  ========================================================================== */\n/* Usage */\n.button {\n  -webkit-border-radius: 5px;\n  border-radius: 5px;\n  background-clip: padding-box;\n  /* stops bg color from leaking outside the border: */ }\n\n.submit-button {\n  -webkit-border-top-right-radius: 10px;\n  border-top-right-radius: 10px;\n  -webkit-border-top-left-radius: 10px;\n  border-top-left-radius: 10px;\n  background-clip: padding-box; }\n\n/* Opacity\n  ========================================================================== */\n/* Usage */\n.article-heading {\n  opacity: 0.8;\n  filter: alpha(opacity=80); }\n\n/* Center-align a block level element\n  ========================================================================== */\n/* Usage */\n.footer-wrap {\n  width: 450px;\n  display: block;\n  margin-left: auto;\n  margin-right: auto; }\n\n/* Text overflow\n  ========================================================================== */\n/* Usage */\n.text-truncate {\n  overflow: hidden;\n  text-overflow: ellipsis;\n  white-space: nowrap; }\n\n/* Absolute positioned\n  ========================================================================== */\n/* Usage */\n.abs {\n  top: 10px;\n  right: 10px;\n  bottom: 5px;\n  left: 15px;\n  position: absolute; }\n\n/* Font Size\n  ========================================================================== */\n/* Usage */\nbody {\n  font-size: 16px;\n  font-size: 2rem; }\n\n/* Cross browser inline block\n  ========================================================================== */\n/* Usage */\n.icon {\n  display: -moz-inline-stack;\n  display: inline-block;\n  vertical-align: top;\n  zoom: 1;\n  *display: inline; }\n\n/* Text replacement (instead of text-indent)\n  ========================================================================== */\n/* Usage */\n.header h1 {\n  border: 0;\n  color: transparent;\n  font: 0/0 a;\n  text-shadow: none; }\n\n/* Line Height\n  ========================================================================== */\n/* Usage */\nbody {\n  line-height: 16px;\n  line-height: 2rem; }\n\n/* Placeholder\n  ========================================================================== */\n/* Usage */\ninput.placeholder {\n  color: #FA4A4A; }\ninput:-moz-placeholder {\n  color: #FA4A4A; }\ninput::-webkit-input-placeholder {\n  color: #FA4A4A; }\ninput:-ms-input-placeholder {\n  color: #FA4A4A; }\n\n.title-area .name {\n  margin-left: 5px;\n  height: 1.8125rem;\n  font-weight: 700; }\n  .title-area .name i {\n    position: relative;\n    bottom: 7px;\n    margin-right: 10px;\n    font-size: 18px; }\n  .title-area .name span {\n    position: relative;\n    bottom: 7px; }\n\n.top-bar-section ul li {\n  background: #EBEBEB;\n  margin-right: 10px;\n  cursor: pointer; }\n  .top-bar-section ul li :last-child {\n    margin-right: 5px; }\n";(require('sassify'))(css); module.exports = css;
+},{"sassify":159}],29:[function(require,module,exports){
 module.exports = '<nav class="top-bar" data-topbar="" role="navigation">\n' +
     '	<ul class="title-area">\n' +
     '		<!-- Title Area -->\n' +
@@ -291,7 +400,7 @@ module.exports = '<nav class="top-bar" data-topbar="" role="navigation">\n' +
     '		</ul>\n' +
     '	</section>\n' +
     '</nav>';
-},{}],24:[function(require,module,exports){
+},{}],30:[function(require,module,exports){
 require('./style/style.scss');
 var AmpersandView = require('ampersand-view');
 var template = require('./templates/widget-item-navbar-template.html');
@@ -321,43 +430,70 @@ module.exports = AmpersandView.extend({
 		this.trigger('close');		
 	}
 });
-},{"./style/style.scss":22,"./templates/widget-item-navbar-template.html":23,"ampersand-view":132}],25:[function(require,module,exports){
+},{"./style/style.scss":28,"./templates/widget-item-navbar-template.html":29,"ampersand-view":133}],31:[function(require,module,exports){
 module.exports = require('./widget-controller-view');
-},{"./widget-controller-view":29}],26:[function(require,module,exports){
+},{"./widget-controller-view":35}],32:[function(require,module,exports){
 var css = "/* Responsive Breakpoints\n   ========================================================================== */\n/* Usage */\n.page-wrap {\n  width: 75%; }\n  @media (min-width: 64.375em) {\n    .page-wrap {\n      width: 60%; } }\n  @media (min-width: 50em) {\n    .page-wrap {\n      width: 80%; } }\n  @media (min-width: 37.5em) {\n    .page-wrap {\n      width: 95%; } }\n\n/* Sub-section comment block\n   ========================================================================== */\n/* Usage */\ndiv.logo {\n  background: url(\"logo.png\") no-repeat; }\n  @media (min--moz-device-pixel-ratio: 1.3), (-o-min-device-pixel-ratio: 2.6/2), (-webkit-min-device-pixel-ratio: 1.3), (min-device-pixel-ratio: 1.3), (min-resolution: 1.3dppx) {\n    div.logo {\n      /* on retina, use image that's scaled by 2 */\n      background-image: url(\"logo2x.png\");\n      background-size: 100px 25px; } }\n\n/* Clearfix\n  ========================================================================== */\n/* Usage */\n.article {\n  *zoom: 1; }\n.article:before, .article:after {\n  content: \"\";\n  display: table; }\n.article:after {\n  clear: both; }\n\n/* Box Model\n  ========================================================================== */\n/* Usage */\n*, *:after, *:before {\n  -webkit-box-sizing: border-box;\n  -moz-box-sizing: border-box;\n  box-sizing: border-box; }\n\n/* Border Radius\n  ========================================================================== */\n/* Usage */\n.button {\n  -webkit-border-radius: 5px;\n  border-radius: 5px;\n  background-clip: padding-box;\n  /* stops bg color from leaking outside the border: */ }\n\n.submit-button {\n  -webkit-border-top-right-radius: 10px;\n  border-top-right-radius: 10px;\n  -webkit-border-top-left-radius: 10px;\n  border-top-left-radius: 10px;\n  background-clip: padding-box; }\n\n/* Opacity\n  ========================================================================== */\n/* Usage */\n.article-heading {\n  opacity: 0.8;\n  filter: alpha(opacity=80); }\n\n/* Center-align a block level element\n  ========================================================================== */\n/* Usage */\n.footer-wrap {\n  width: 450px;\n  display: block;\n  margin-left: auto;\n  margin-right: auto; }\n\n/* Text overflow\n  ========================================================================== */\n/* Usage */\n.text-truncate {\n  overflow: hidden;\n  text-overflow: ellipsis;\n  white-space: nowrap; }\n\n/* Absolute positioned\n  ========================================================================== */\n/* Usage */\n.abs {\n  top: 10px;\n  right: 10px;\n  bottom: 5px;\n  left: 15px;\n  position: absolute; }\n\n/* Font Size\n  ========================================================================== */\n/* Usage */\nbody {\n  font-size: 16px;\n  font-size: 2rem; }\n\n/* Cross browser inline block\n  ========================================================================== */\n/* Usage */\n.icon {\n  display: -moz-inline-stack;\n  display: inline-block;\n  vertical-align: top;\n  zoom: 1;\n  *display: inline; }\n\n/* Text replacement (instead of text-indent)\n  ========================================================================== */\n/* Usage */\n.header h1 {\n  border: 0;\n  color: transparent;\n  font: 0/0 a;\n  text-shadow: none; }\n\n/* Line Height\n  ========================================================================== */\n/* Usage */\nbody {\n  line-height: 16px;\n  line-height: 2rem; }\n\n/* Placeholder\n  ========================================================================== */\n/* Usage */\ninput.placeholder {\n  color: #FA4A4A; }\ninput:-moz-placeholder {\n  color: #FA4A4A; }\ninput::-webkit-input-placeholder {\n  color: #FA4A4A; }\ninput:-ms-input-placeholder {\n  color: #FA4A4A; }\n\n.widget-item {\n  border: 1px solid silver;\n  padding: 5px;\n  background: #D8D8D8; }\n  .widget-item .top-bar {\n    background: #EBEBEB;\n    margin-bottom: 10px;\n    height: 1.8125rem;\n    line-height: 1.8125rem; }\n\n.ghost {\n  border: 1px dashed #444749;\n  opacity: 0.4; }\n";(require('sassify'))(css); module.exports = css;
-},{"sassify":158}],27:[function(require,module,exports){
+},{"sassify":159}],33:[function(require,module,exports){
 module.exports = '<ul data-hook="widget-controller" class="sortable small-block-grid-1 medium-block-grid-2 large-block-grid-3"></ul>';
-},{}],28:[function(require,module,exports){
+},{}],34:[function(require,module,exports){
 module.exports = '<li>\n' +
     '	<div class="widget-item">\n' +
     '		<div data-hook="navbar"></div>\n' +
     '		<div data-hook="content"></div>\n' +
     '	</div>\n' +
     '</li>';
-},{}],29:[function(require,module,exports){
+},{}],35:[function(require,module,exports){
+'use strict';
+
+var app = require('ampersand-app');
 var Sortable = require('../../vendor/js/Sortable.min');
 var AmpersandView = require('ampersand-view');
 var template = require('./templates/widget-controller-template.html');
 
+var storageProvider = require('../../services/dashboard-storage-service/storage-provider');
+
 var WidgetView = require('./widget-view');
 
 module.exports = AmpersandView.extend({
-	template: template,	
+	template: template,
 	render: function () {
 		this.renderWithTemplate(this);
-		
+
 		this.renderCollection(this.collection, WidgetView);
-		
-		this.sortable = Sortable.create(this.el, {
-			ghostClass: 'ghost'			
-		});
-				
+
+		this.initSortable();
+
 		return this;
-	}	
+	},
+
+	initSortable: function () {
+		this.sortable = Sortable.create(this.el, {
+			ghostClass: 'ghost',
+			key: app.clientConfig.dashboardItemsOrderLocalStorageKey,			
+			store: {
+				get: function (sortable) {
+					var order = storageProvider.retrive(sortable.options.key);
+					return order ? order.split('|') : [];
+				},
+
+				set: function (sortable) {
+					var order = sortable.toArray();
+					storageProvider.save(sortable.options.key, order.join('|'));
+				}
+			}
+		});
+		
+		this.listenTo(this.collection, 'add', this.saveSortableOrder);
+		this.listenTo(this.collection, 'remove', this.saveSortableOrder);
+	},
+	
+	saveSortableOrder: function(){
+		this.sortable.save();
+	}
 });
-},{"../../vendor/js/Sortable.min":7,"./templates/widget-controller-template.html":27,"./widget-view":30,"ampersand-view":132}],30:[function(require,module,exports){
+},{"../../services/dashboard-storage-service/storage-provider":9,"../../vendor/js/Sortable.min":13,"./templates/widget-controller-template.html":33,"./widget-view":36,"ampersand-app":74,"ampersand-view":133}],36:[function(require,module,exports){
 require('./style/style.scss');
-var clone = require('amp-clone');
 var app = require('ampersand-app');
 var AmpersandView = require('ampersand-view');
 var template = require('./templates/widget-template.html');
@@ -404,24 +540,18 @@ module.exports = AmpersandView.extend({
 		app.trigger('widget:remove', this.model);
 	}
 });
-},{"../widget-item-navbar":21,"./style/style.scss":26,"./templates/widget-template.html":28,"amp-clone":44,"ampersand-app":73,"ampersand-view":132}],31:[function(require,module,exports){
-var AmpersandCollection = require('ampersand-collection');
-
-module.exports = AmpersandCollection.extend({
-	model: require('./widget-model')
-});
-},{"./widget-model":43,"ampersand-collection":117}],32:[function(require,module,exports){
+},{"../widget-item-navbar":27,"./style/style.scss":32,"./templates/widget-template.html":34,"ampersand-app":74,"ampersand-view":133}],37:[function(require,module,exports){
 var WidgetBase = require('../widget-base');
 
 module.exports = WidgetBase.extend({
-	name: 'Alert Configuration',
+	name: 'Alert Config',
 	iconStyle: 'fi-alert',
 });
 
 
-},{"../widget-base":41}],33:[function(require,module,exports){
+},{"../widget-base":46}],38:[function(require,module,exports){
 module.exports = require('./alert-config-view');
-},{"./alert-config-view":32}],34:[function(require,module,exports){
+},{"./alert-config-view":37}],39:[function(require,module,exports){
 var WidgetBase = require('../widget-base');
 
 module.exports = WidgetBase.extend({
@@ -430,11 +560,11 @@ module.exports = WidgetBase.extend({
 });
 
 
-},{"../widget-base":41}],35:[function(require,module,exports){
+},{"../widget-base":46}],40:[function(require,module,exports){
 module.exports = require('./chart-view');
-},{"./chart-view":34}],36:[function(require,module,exports){
+},{"./chart-view":39}],41:[function(require,module,exports){
 module.exports = '<div data-hook="name"></div>';
-},{}],37:[function(require,module,exports){
+},{}],42:[function(require,module,exports){
 var WidgetBase = require('../widget-base');
 var template = require('./templates/grid-template.html');
 
@@ -443,12 +573,12 @@ module.exports = WidgetBase.extend({
 	iconStyle: 'fi-list',
 	template: template
 });
-},{"../widget-base":41,"./templates/grid-template.html":39}],38:[function(require,module,exports){
+},{"../widget-base":46,"./templates/grid-template.html":44}],43:[function(require,module,exports){
 'use strict';
 module.exports = require('./grid-view');
-},{"./grid-view":37}],39:[function(require,module,exports){
+},{"./grid-view":42}],44:[function(require,module,exports){
 module.exports = '<div>this is the grid</div>';
-},{}],40:[function(require,module,exports){
+},{}],45:[function(require,module,exports){
 'use strict';
 
 module.exports = [
@@ -456,19 +586,11 @@ module.exports = [
 	require('./chart'),
 	require('./alert-config')
 ];
-},{"./alert-config":33,"./chart":35,"./grid":38}],41:[function(require,module,exports){
+},{"./alert-config":38,"./chart":40,"./grid":43}],46:[function(require,module,exports){
 'use strict';
 
 var AmpersandView = require('ampersand-view');
 var defaultTemplate = require('./default-template.html');
-
-//var AmpersandState = require('ampersand-state');
-//
-//var DefaultModel = new AmpersandState({
-//	props: {
-//		name: 'string'
-//	}
-//});
 
 module.exports = AmpersandView.extend({
 	template: defaultTemplate,	
@@ -476,62 +598,25 @@ module.exports = AmpersandView.extend({
 		name: '[data-hook=name]'
 	},
 });
-},{"./default-template.html":36,"ampersand-view":132}],42:[function(require,module,exports){
-arguments[4][31][0].apply(exports,arguments)
-},{"./widget-model":43,"ampersand-collection":117,"dup":31}],43:[function(require,module,exports){
+},{"./default-template.html":41,"ampersand-view":133}],47:[function(require,module,exports){
+var AmpersandCollection = require('ampersand-collection');
+
+module.exports = AmpersandCollection.extend({
+	model: require('./widget-model')
+});
+},{"./widget-model":48,"ampersand-collection":118}],48:[function(require,module,exports){
 var AmpersandState = require('ampersand-state');
 
 module.exports = AmpersandState.extend({
 	props: {
+		type: 'string',
 		name: 'string',
-		index: 'number',	
+		index: 'number',
 		iconStyle: 'string',
 		content: 'object'
 	}
 });
-},{"ampersand-state":126}],44:[function(require,module,exports){
-var isObject = require('amp-is-object');
-var isArray = require('amp-is-array');
-var extend = require('amp-extend');
-
-
-module.exports = function clone(obj) {
-    if (!isObject(obj)) return obj;
-    return isArray(obj) ? obj.slice() : extend({}, obj);
-};
-
-},{"amp-extend":45,"amp-is-array":46,"amp-is-object":47}],45:[function(require,module,exports){
-var isObject = require('amp-is-object');
-
-
-module.exports = function(obj) {
-    if (!isObject(obj)) return obj;
-    var source, prop;
-    for (var i = 1, length = arguments.length; i < length; i++) {
-        source = arguments[i];
-        for (prop in source) {
-            obj[prop] = source[prop];
-        }
-    }
-    return obj;
-};
-
-},{"amp-is-object":47}],46:[function(require,module,exports){
-var toString = Object.prototype.toString;
-var nativeIsArray = Array.isArray;
-
-
-module.exports = nativeIsArray || function isArray(obj) {
-    return toString.call(obj) === '[object Array]';
-};
-
-},{}],47:[function(require,module,exports){
-module.exports = function isObject(obj) {
-    var type = typeof obj;
-    return !!obj && (type === 'function' || type === 'object');
-};
-
-},{}],48:[function(require,module,exports){
+},{"ampersand-state":127}],49:[function(require,module,exports){
 var objKeys = require('amp-keys');
 var createCallback = require('amp-create-callback');
 
@@ -553,7 +638,7 @@ module.exports = function each(obj, iteratee, context) {
     return obj;
 };
 
-},{"amp-create-callback":49,"amp-keys":50}],49:[function(require,module,exports){
+},{"amp-create-callback":50,"amp-keys":51}],50:[function(require,module,exports){
 module.exports = function createCallback(func, context, argCount) {
     if (context === void 0) return func;
     switch (argCount) {
@@ -579,7 +664,7 @@ module.exports = function createCallback(func, context, argCount) {
     };
 };
 
-},{}],50:[function(require,module,exports){
+},{}],51:[function(require,module,exports){
 var has = require('amp-has');
 var indexOf = require('amp-index-of');
 var isObject = require('amp-is-object');
@@ -606,7 +691,7 @@ module.exports = function keys(obj) {
     return result;
 };
 
-},{"amp-has":51,"amp-index-of":52,"amp-is-object":54}],51:[function(require,module,exports){
+},{"amp-has":52,"amp-index-of":53,"amp-is-object":55}],52:[function(require,module,exports){
 var hasOwn = Object.prototype.hasOwnProperty;
 
 
@@ -614,7 +699,7 @@ module.exports = function has(obj, key) {
     return obj != null && hasOwn.call(obj, key);
 };
 
-},{}],52:[function(require,module,exports){
+},{}],53:[function(require,module,exports){
 var isNumber = require('amp-is-number');
 
 
@@ -630,7 +715,7 @@ module.exports = function indexOf(arr, item, from) {
     return -1;
 };
 
-},{"amp-is-number":53}],53:[function(require,module,exports){
+},{"amp-is-number":54}],54:[function(require,module,exports){
 var toString = Object.prototype.toString;
 
 
@@ -638,9 +723,13 @@ module.exports = function isNumber(obj) {
     return toString.call(obj) === '[object Number]';
 };
 
-},{}],54:[function(require,module,exports){
-arguments[4][47][0].apply(exports,arguments)
-},{"dup":47}],55:[function(require,module,exports){
+},{}],55:[function(require,module,exports){
+module.exports = function isObject(obj) {
+    var type = typeof obj;
+    return !!obj && (type === 'function' || type === 'object');
+};
+
+},{}],56:[function(require,module,exports){
 var iteratee = require('amp-iteratee');
 var some = require('amp-some');
 
@@ -658,7 +747,7 @@ module.exports = function find(obj, func, context) {
     return result;
 };
 
-},{"amp-iteratee":56,"amp-some":71}],56:[function(require,module,exports){
+},{"amp-iteratee":57,"amp-some":72}],57:[function(require,module,exports){
 var isFunction = require('amp-is-function');
 var isObject = require('amp-is-object');
 var createCallback = require('amp-create-callback');
@@ -674,11 +763,11 @@ module.exports = function iteratee(value, context, argCount) {
     return property(value);
 };
 
-},{"amp-create-callback":57,"amp-is-function":72,"amp-is-object":58,"amp-matches":59,"amp-property":65}],57:[function(require,module,exports){
-arguments[4][49][0].apply(exports,arguments)
-},{"dup":49}],58:[function(require,module,exports){
-arguments[4][47][0].apply(exports,arguments)
-},{"dup":47}],59:[function(require,module,exports){
+},{"amp-create-callback":58,"amp-is-function":73,"amp-is-object":59,"amp-matches":60,"amp-property":66}],58:[function(require,module,exports){
+arguments[4][50][0].apply(exports,arguments)
+},{"dup":50}],59:[function(require,module,exports){
+arguments[4][55][0].apply(exports,arguments)
+},{"dup":55}],60:[function(require,module,exports){
 var getPairs = require('amp-pairs');
 
 
@@ -696,15 +785,15 @@ module.exports = function matches(attrs) {
     };
 };
 
-},{"amp-pairs":64}],60:[function(require,module,exports){
-arguments[4][50][0].apply(exports,arguments)
-},{"amp-has":61,"amp-index-of":62,"amp-is-object":58,"dup":50}],61:[function(require,module,exports){
+},{"amp-pairs":65}],61:[function(require,module,exports){
 arguments[4][51][0].apply(exports,arguments)
-},{"dup":51}],62:[function(require,module,exports){
+},{"amp-has":62,"amp-index-of":63,"amp-is-object":59,"dup":51}],62:[function(require,module,exports){
 arguments[4][52][0].apply(exports,arguments)
-},{"amp-is-number":63,"dup":52}],63:[function(require,module,exports){
+},{"dup":52}],63:[function(require,module,exports){
 arguments[4][53][0].apply(exports,arguments)
-},{"dup":53}],64:[function(require,module,exports){
+},{"amp-is-number":64,"dup":53}],64:[function(require,module,exports){
+arguments[4][54][0].apply(exports,arguments)
+},{"dup":54}],65:[function(require,module,exports){
 var objKeys = require('amp-keys');
 
 
@@ -718,24 +807,24 @@ module.exports = function pairs(obj) {
     return result;
 };
 
-},{"amp-keys":60}],65:[function(require,module,exports){
+},{"amp-keys":61}],66:[function(require,module,exports){
 module.exports = function property(key) {
     return function(obj) {
         return obj == null ? void 0 : obj[key];
     };
 };
 
-},{}],66:[function(require,module,exports){
-arguments[4][50][0].apply(exports,arguments)
-},{"amp-has":67,"amp-index-of":68,"amp-is-object":70,"dup":50}],67:[function(require,module,exports){
+},{}],67:[function(require,module,exports){
 arguments[4][51][0].apply(exports,arguments)
-},{"dup":51}],68:[function(require,module,exports){
+},{"amp-has":68,"amp-index-of":69,"amp-is-object":71,"dup":51}],68:[function(require,module,exports){
 arguments[4][52][0].apply(exports,arguments)
-},{"amp-is-number":69,"dup":52}],69:[function(require,module,exports){
+},{"dup":52}],69:[function(require,module,exports){
 arguments[4][53][0].apply(exports,arguments)
-},{"dup":53}],70:[function(require,module,exports){
-arguments[4][47][0].apply(exports,arguments)
-},{"dup":47}],71:[function(require,module,exports){
+},{"amp-is-number":70,"dup":53}],70:[function(require,module,exports){
+arguments[4][54][0].apply(exports,arguments)
+},{"dup":54}],71:[function(require,module,exports){
+arguments[4][55][0].apply(exports,arguments)
+},{"dup":55}],72:[function(require,module,exports){
 var iteratee = require('amp-iteratee');
 var objKeys = require('amp-keys');
 
@@ -755,7 +844,7 @@ module.exports = function some(obj, func, context) {
     return false;
 };
 
-},{"amp-iteratee":56,"amp-keys":66}],72:[function(require,module,exports){
+},{"amp-iteratee":57,"amp-keys":67}],73:[function(require,module,exports){
 var toString = Object.prototype.toString;
 var func = function isFunction(obj) {
     return toString.call(obj) === '[object Function]';
@@ -770,7 +859,7 @@ if (typeof /./ !== 'function') {
 
 module.exports = func;
 
-},{}],73:[function(require,module,exports){
+},{}],74:[function(require,module,exports){
 ;if (typeof window !== "undefined") {  window.ampersand = window.ampersand || {};  window.ampersand["ampersand-app"] = window.ampersand["ampersand-app"] || [];  window.ampersand["ampersand-app"].push("1.0.3");}
 var Events = require('ampersand-events');
 var toArray = require('amp-to-array');
@@ -806,13 +895,34 @@ Events.createEmitter(app);
 // export our singleton
 module.exports = app;
 
-},{"amp-extend":74,"amp-to-array":96,"ampersand-events":97}],74:[function(require,module,exports){
-arguments[4][45][0].apply(exports,arguments)
-},{"amp-is-object":75,"dup":45}],75:[function(require,module,exports){
-arguments[4][47][0].apply(exports,arguments)
-},{"dup":47}],76:[function(require,module,exports){
-arguments[4][46][0].apply(exports,arguments)
-},{"dup":46}],77:[function(require,module,exports){
+},{"amp-extend":75,"amp-to-array":97,"ampersand-events":98}],75:[function(require,module,exports){
+var isObject = require('amp-is-object');
+
+
+module.exports = function(obj) {
+    if (!isObject(obj)) return obj;
+    var source, prop;
+    for (var i = 1, length = arguments.length; i < length; i++) {
+        source = arguments[i];
+        for (prop in source) {
+            obj[prop] = source[prop];
+        }
+    }
+    return obj;
+};
+
+},{"amp-is-object":76}],76:[function(require,module,exports){
+arguments[4][55][0].apply(exports,arguments)
+},{"dup":55}],77:[function(require,module,exports){
+var toString = Object.prototype.toString;
+var nativeIsArray = Array.isArray;
+
+
+module.exports = nativeIsArray || function isArray(obj) {
+    return toString.call(obj) === '[object Array]';
+};
+
+},{}],78:[function(require,module,exports){
 var createIteratee = require('amp-iteratee');
 var objKeys = require('amp-keys');
 
@@ -832,41 +942,41 @@ module.exports = function map(obj, iteratee, context) {
     return results;
 };
 
-},{"amp-iteratee":78,"amp-keys":85}],78:[function(require,module,exports){
-arguments[4][56][0].apply(exports,arguments)
-},{"amp-create-callback":79,"amp-is-function":80,"amp-is-object":81,"amp-matches":82,"amp-property":84,"dup":56}],79:[function(require,module,exports){
-arguments[4][49][0].apply(exports,arguments)
-},{"dup":49}],80:[function(require,module,exports){
-arguments[4][72][0].apply(exports,arguments)
-},{"dup":72}],81:[function(require,module,exports){
-arguments[4][47][0].apply(exports,arguments)
-},{"dup":47}],82:[function(require,module,exports){
-arguments[4][59][0].apply(exports,arguments)
-},{"amp-pairs":83,"dup":59}],83:[function(require,module,exports){
-arguments[4][64][0].apply(exports,arguments)
-},{"amp-keys":85,"dup":64}],84:[function(require,module,exports){
+},{"amp-iteratee":79,"amp-keys":86}],79:[function(require,module,exports){
+arguments[4][57][0].apply(exports,arguments)
+},{"amp-create-callback":80,"amp-is-function":81,"amp-is-object":82,"amp-matches":83,"amp-property":85,"dup":57}],80:[function(require,module,exports){
+arguments[4][50][0].apply(exports,arguments)
+},{"dup":50}],81:[function(require,module,exports){
+arguments[4][73][0].apply(exports,arguments)
+},{"dup":73}],82:[function(require,module,exports){
+arguments[4][55][0].apply(exports,arguments)
+},{"dup":55}],83:[function(require,module,exports){
+arguments[4][60][0].apply(exports,arguments)
+},{"amp-pairs":84,"dup":60}],84:[function(require,module,exports){
 arguments[4][65][0].apply(exports,arguments)
-},{"dup":65}],85:[function(require,module,exports){
-arguments[4][50][0].apply(exports,arguments)
-},{"amp-has":86,"amp-index-of":87,"amp-is-object":89,"dup":50}],86:[function(require,module,exports){
+},{"amp-keys":86,"dup":65}],85:[function(require,module,exports){
+arguments[4][66][0].apply(exports,arguments)
+},{"dup":66}],86:[function(require,module,exports){
 arguments[4][51][0].apply(exports,arguments)
-},{"dup":51}],87:[function(require,module,exports){
+},{"amp-has":87,"amp-index-of":88,"amp-is-object":90,"dup":51}],87:[function(require,module,exports){
 arguments[4][52][0].apply(exports,arguments)
-},{"amp-is-number":88,"dup":52}],88:[function(require,module,exports){
+},{"dup":52}],88:[function(require,module,exports){
 arguments[4][53][0].apply(exports,arguments)
-},{"dup":53}],89:[function(require,module,exports){
-arguments[4][47][0].apply(exports,arguments)
-},{"dup":47}],90:[function(require,module,exports){
-arguments[4][50][0].apply(exports,arguments)
-},{"amp-has":91,"amp-index-of":92,"amp-is-object":94,"dup":50}],91:[function(require,module,exports){
+},{"amp-is-number":89,"dup":53}],89:[function(require,module,exports){
+arguments[4][54][0].apply(exports,arguments)
+},{"dup":54}],90:[function(require,module,exports){
+arguments[4][55][0].apply(exports,arguments)
+},{"dup":55}],91:[function(require,module,exports){
 arguments[4][51][0].apply(exports,arguments)
-},{"dup":51}],92:[function(require,module,exports){
+},{"amp-has":92,"amp-index-of":93,"amp-is-object":95,"dup":51}],92:[function(require,module,exports){
 arguments[4][52][0].apply(exports,arguments)
-},{"amp-is-number":93,"dup":52}],93:[function(require,module,exports){
+},{"dup":52}],93:[function(require,module,exports){
 arguments[4][53][0].apply(exports,arguments)
-},{"dup":53}],94:[function(require,module,exports){
-arguments[4][47][0].apply(exports,arguments)
-},{"dup":47}],95:[function(require,module,exports){
+},{"amp-is-number":94,"dup":53}],94:[function(require,module,exports){
+arguments[4][54][0].apply(exports,arguments)
+},{"dup":54}],95:[function(require,module,exports){
+arguments[4][55][0].apply(exports,arguments)
+},{"dup":55}],96:[function(require,module,exports){
 var oKeys = require('amp-keys');
 
 
@@ -880,7 +990,7 @@ module.exports = function values(obj) {
     return vals;
 };
 
-},{"amp-keys":90}],96:[function(require,module,exports){
+},{"amp-keys":91}],97:[function(require,module,exports){
 var values = require('amp-values');
 var map = require('amp-map');
 var isArray = require('amp-is-array');
@@ -895,7 +1005,7 @@ module.exports = function toArray(obj) {
     return values(obj);
 };
 
-},{"amp-is-array":76,"amp-map":77,"amp-values":95}],97:[function(require,module,exports){
+},{"amp-is-array":77,"amp-map":78,"amp-values":96}],98:[function(require,module,exports){
 ;if (typeof window !== "undefined") {  window.ampersand = window.ampersand || {};  window.ampersand["ampersand-events"] = window.ampersand["ampersand-events"] || [];  window.ampersand["ampersand-events"].push("1.0.1");}
 var runOnce = require('amp-once');
 var uniqueId = require('amp-unique-id');
@@ -1075,7 +1185,7 @@ Events.listenToAndRun = function (obj, name, callback) {
 
 module.exports = Events;
 
-},{"amp-bind":98,"amp-each":101,"amp-extend":74,"amp-is-empty":103,"amp-keys":109,"amp-once":115,"amp-unique-id":116}],98:[function(require,module,exports){
+},{"amp-bind":99,"amp-each":102,"amp-extend":75,"amp-is-empty":104,"amp-keys":110,"amp-once":116,"amp-unique-id":117}],99:[function(require,module,exports){
 var isFunction = require('amp-is-function');
 var isObject = require('amp-is-object');
 var nativeBind = Function.prototype.bind;
@@ -1100,15 +1210,15 @@ module.exports = function bind(func, context) {
     return bound;
 };
 
-},{"amp-is-function":99,"amp-is-object":100}],99:[function(require,module,exports){
-arguments[4][72][0].apply(exports,arguments)
-},{"dup":72}],100:[function(require,module,exports){
-arguments[4][47][0].apply(exports,arguments)
-},{"dup":47}],101:[function(require,module,exports){
-arguments[4][48][0].apply(exports,arguments)
-},{"amp-create-callback":102,"amp-keys":109,"dup":48}],102:[function(require,module,exports){
+},{"amp-is-function":100,"amp-is-object":101}],100:[function(require,module,exports){
+arguments[4][73][0].apply(exports,arguments)
+},{"dup":73}],101:[function(require,module,exports){
+arguments[4][55][0].apply(exports,arguments)
+},{"dup":55}],102:[function(require,module,exports){
 arguments[4][49][0].apply(exports,arguments)
-},{"dup":49}],103:[function(require,module,exports){
+},{"amp-create-callback":103,"amp-keys":110,"dup":49}],103:[function(require,module,exports){
+arguments[4][50][0].apply(exports,arguments)
+},{"dup":50}],104:[function(require,module,exports){
 var isArray = require('amp-is-array');
 var isString = require('amp-is-string');
 var isArguments = require('amp-is-arguments');
@@ -1125,7 +1235,7 @@ module.exports = function isEmpty(obj) {
     return true;
 };
 
-},{"amp-is-arguments":104,"amp-is-array":105,"amp-is-nan":106,"amp-is-number":107,"amp-is-string":108,"amp-keys":109}],104:[function(require,module,exports){
+},{"amp-is-arguments":105,"amp-is-array":106,"amp-is-nan":107,"amp-is-number":108,"amp-is-string":109,"amp-keys":110}],105:[function(require,module,exports){
 var toString = Object.prototype.toString;
 var hasOwn = Object.prototype.hasOwnProperty;
 var isArgs = function isArgs(obj) {
@@ -1141,9 +1251,9 @@ if (!isArgs(arguments)) {
 
 module.exports = isArgs;
 
-},{}],105:[function(require,module,exports){
-arguments[4][46][0].apply(exports,arguments)
-},{"dup":46}],106:[function(require,module,exports){
+},{}],106:[function(require,module,exports){
+arguments[4][77][0].apply(exports,arguments)
+},{"dup":77}],107:[function(require,module,exports){
 var isNumber = require('amp-is-number');
 
 
@@ -1151,9 +1261,9 @@ module.exports = function isNaN(obj) {
     return isNumber(obj) && obj !== +obj;
 };
 
-},{"amp-is-number":107}],107:[function(require,module,exports){
-arguments[4][53][0].apply(exports,arguments)
-},{"dup":53}],108:[function(require,module,exports){
+},{"amp-is-number":108}],108:[function(require,module,exports){
+arguments[4][54][0].apply(exports,arguments)
+},{"dup":54}],109:[function(require,module,exports){
 var toString = Object.prototype.toString;
 
 
@@ -1161,17 +1271,17 @@ module.exports = function isString(obj) {
     return toString.call(obj) === '[object String]';
 };
 
-},{}],109:[function(require,module,exports){
-arguments[4][50][0].apply(exports,arguments)
-},{"amp-has":110,"amp-index-of":111,"amp-is-object":113,"dup":50}],110:[function(require,module,exports){
+},{}],110:[function(require,module,exports){
 arguments[4][51][0].apply(exports,arguments)
-},{"dup":51}],111:[function(require,module,exports){
+},{"amp-has":111,"amp-index-of":112,"amp-is-object":114,"dup":51}],111:[function(require,module,exports){
 arguments[4][52][0].apply(exports,arguments)
-},{"amp-is-number":112,"dup":52}],112:[function(require,module,exports){
+},{"dup":52}],112:[function(require,module,exports){
 arguments[4][53][0].apply(exports,arguments)
-},{"dup":53}],113:[function(require,module,exports){
-arguments[4][47][0].apply(exports,arguments)
-},{"dup":47}],114:[function(require,module,exports){
+},{"amp-is-number":113,"dup":53}],113:[function(require,module,exports){
+arguments[4][54][0].apply(exports,arguments)
+},{"dup":54}],114:[function(require,module,exports){
+arguments[4][55][0].apply(exports,arguments)
+},{"dup":55}],115:[function(require,module,exports){
 module.exports = function limitCalls(fn, times) {
     var memo;
     return function() {
@@ -1184,7 +1294,7 @@ module.exports = function limitCalls(fn, times) {
     };
 };
 
-},{}],115:[function(require,module,exports){
+},{}],116:[function(require,module,exports){
 var limitCalls = require('amp-limit-calls');
 
 
@@ -1192,7 +1302,7 @@ module.exports = function once(fn) {
     return limitCalls(fn, 1);
 };
 
-},{"amp-limit-calls":114}],116:[function(require,module,exports){
+},{"amp-limit-calls":115}],117:[function(require,module,exports){
 (function (global){
 /*global window, global*/
 var theGlobal = (typeof window !== 'undefined') ? window : global;
@@ -1207,7 +1317,7 @@ module.exports = function uniqueId(prefix) {
 };
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],117:[function(require,module,exports){
+},{}],118:[function(require,module,exports){
 var BackboneEvents = require('backbone-events-standalone');
 var classExtend = require('ampersand-class-extend');
 var isArray = require('is-array');
@@ -1561,13 +1671,13 @@ Collection.extend = classExtend;
 
 module.exports = Collection;
 
-},{"amp-bind":118,"ampersand-class-extend":121,"backbone-events-standalone":123,"extend-object":124,"is-array":125}],118:[function(require,module,exports){
-arguments[4][98][0].apply(exports,arguments)
-},{"amp-is-function":119,"amp-is-object":120,"dup":98}],119:[function(require,module,exports){
-arguments[4][72][0].apply(exports,arguments)
-},{"dup":72}],120:[function(require,module,exports){
-arguments[4][47][0].apply(exports,arguments)
-},{"dup":47}],121:[function(require,module,exports){
+},{"amp-bind":119,"ampersand-class-extend":122,"backbone-events-standalone":124,"extend-object":125,"is-array":126}],119:[function(require,module,exports){
+arguments[4][99][0].apply(exports,arguments)
+},{"amp-is-function":120,"amp-is-object":121,"dup":99}],120:[function(require,module,exports){
+arguments[4][73][0].apply(exports,arguments)
+},{"dup":73}],121:[function(require,module,exports){
+arguments[4][55][0].apply(exports,arguments)
+},{"dup":55}],122:[function(require,module,exports){
 var objectExtend = require('extend-object');
 
 
@@ -1617,7 +1727,7 @@ var extend = function(protoProps) {
 // Expose the extend function
 module.exports = extend;
 
-},{"extend-object":124}],122:[function(require,module,exports){
+},{"extend-object":125}],123:[function(require,module,exports){
 /**
  * Standalone extraction of Backbone.Events, no external dependency required.
  * Degrades nicely when Backone/underscore are already available in the current
@@ -1885,10 +1995,10 @@ module.exports = extend;
   }
 })(this);
 
-},{}],123:[function(require,module,exports){
+},{}],124:[function(require,module,exports){
 module.exports = require('./backbone-events-standalone');
 
-},{"./backbone-events-standalone":122}],124:[function(require,module,exports){
+},{"./backbone-events-standalone":123}],125:[function(require,module,exports){
 var arr = [];
 var each = arr.forEach;
 var slice = arr.slice;
@@ -1905,7 +2015,7 @@ module.exports = function(obj) {
     return obj;
 };
 
-},{}],125:[function(require,module,exports){
+},{}],126:[function(require,module,exports){
 
 /**
  * isArray
@@ -1940,7 +2050,7 @@ module.exports = isArray || function (val) {
   return !! val && '[object Array]' == str.call(val);
 };
 
-},{}],126:[function(require,module,exports){
+},{}],127:[function(require,module,exports){
 ;if (typeof window !== "undefined") {  window.ampersand = window.ampersand || {};  window.ampersand["ampersand-state"] = window.ampersand["ampersand-state"] || [];  window.ampersand["ampersand-state"].push("4.4.5");}
 var _ = require('underscore');
 var BBEvents = require('backbone-events-standalone');
@@ -2720,7 +2830,7 @@ Base.extend = extend;
 // Our main exports
 module.exports = Base;
 
-},{"array-next":127,"backbone-events-standalone":129,"key-tree-store":130,"underscore":131}],127:[function(require,module,exports){
+},{"array-next":128,"backbone-events-standalone":130,"key-tree-store":131,"underscore":132}],128:[function(require,module,exports){
 module.exports = function arrayNext(array, currentItem) {
     var len = array.length;
     var newIndex = array.indexOf(currentItem) + 1;
@@ -2728,11 +2838,11 @@ module.exports = function arrayNext(array, currentItem) {
     return array[newIndex];
 };
 
-},{}],128:[function(require,module,exports){
-arguments[4][122][0].apply(exports,arguments)
-},{"dup":122}],129:[function(require,module,exports){
+},{}],129:[function(require,module,exports){
 arguments[4][123][0].apply(exports,arguments)
-},{"./backbone-events-standalone":128,"dup":123}],130:[function(require,module,exports){
+},{"dup":123}],130:[function(require,module,exports){
+arguments[4][124][0].apply(exports,arguments)
+},{"./backbone-events-standalone":129,"dup":124}],131:[function(require,module,exports){
 function KeyTreeStore() {
     this.storage = {};
 }
@@ -2773,7 +2883,7 @@ KeyTreeStore.prototype.get = function (keypath) {
 
 module.exports = KeyTreeStore;
 
-},{}],131:[function(require,module,exports){
+},{}],132:[function(require,module,exports){
 //     Underscore.js 1.8.2
 //     http://underscorejs.org
 //     (c) 2009-2015 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
@@ -4311,7 +4421,7 @@ module.exports = KeyTreeStore;
   }
 }.call(this));
 
-},{}],132:[function(require,module,exports){
+},{}],133:[function(require,module,exports){
 ;if (typeof window !== "undefined") {  window.ampersand = window.ampersand || {};  window.ampersand["ampersand-view"] = window.ampersand["ampersand-view"] || [];  window.ampersand["ampersand-view"].push("7.2.0");}
 var State = require('ampersand-state');
 var CollectionView = require('ampersand-collection-view');
@@ -4681,7 +4791,7 @@ _.extend(View.prototype, {
 View.extend = BaseState.extend;
 module.exports = View;
 
-},{"ampersand-collection-view":133,"ampersand-dom-bindings":139,"ampersand-state":142,"domify":148,"events-mixin":149,"get-object-path":154,"matches-selector":155,"underscore":156}],133:[function(require,module,exports){
+},{"ampersand-collection-view":134,"ampersand-dom-bindings":140,"ampersand-state":143,"domify":149,"events-mixin":150,"get-object-path":155,"matches-selector":156,"underscore":157}],134:[function(require,module,exports){
 ;if (typeof window !== "undefined") {  window.ampersand = window.ampersand || {};  window.ampersand["ampersand-collection-view"] = window.ampersand["ampersand-collection-view"] || [];  window.ampersand["ampersand-collection-view"].push("1.2.1");}
 var _ = require('underscore');
 var BBEvents = require('backbone-events-standalone');
@@ -4843,11 +4953,11 @@ CollectionView.extend = ampExtend;
 
 module.exports = CollectionView;
 
-},{"ampersand-class-extend":134,"backbone-events-standalone":137,"underscore":138}],134:[function(require,module,exports){
-arguments[4][121][0].apply(exports,arguments)
-},{"dup":121,"extend-object":135}],135:[function(require,module,exports){
-arguments[4][124][0].apply(exports,arguments)
-},{"dup":124}],136:[function(require,module,exports){
+},{"ampersand-class-extend":135,"backbone-events-standalone":138,"underscore":139}],135:[function(require,module,exports){
+arguments[4][122][0].apply(exports,arguments)
+},{"dup":122,"extend-object":136}],136:[function(require,module,exports){
+arguments[4][125][0].apply(exports,arguments)
+},{"dup":125}],137:[function(require,module,exports){
 /**
  * Standalone extraction of Backbone.Events, no external dependency required.
  * Degrades nicely when Backone/underscore are already available in the current
@@ -5126,9 +5236,9 @@ arguments[4][124][0].apply(exports,arguments)
   }
 })(this);
 
-},{}],137:[function(require,module,exports){
-arguments[4][123][0].apply(exports,arguments)
-},{"./backbone-events-standalone":136,"dup":123}],138:[function(require,module,exports){
+},{}],138:[function(require,module,exports){
+arguments[4][124][0].apply(exports,arguments)
+},{"./backbone-events-standalone":137,"dup":124}],139:[function(require,module,exports){
 //     Underscore.js 1.6.0
 //     http://underscorejs.org
 //     (c) 2009-2014 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
@@ -6473,7 +6583,7 @@ arguments[4][123][0].apply(exports,arguments)
   }
 }).call(this);
 
-},{}],139:[function(require,module,exports){
+},{}],140:[function(require,module,exports){
 ;if (typeof window !== "undefined") {  window.ampersand = window.ampersand || {};  window.ampersand["ampersand-dom-bindings"] = window.ampersand["ampersand-dom-bindings"] || [];  window.ampersand["ampersand-dom-bindings"].push("3.3.3");}
 var Store = require('key-tree-store');
 var dom = require('ampersand-dom');
@@ -6667,7 +6777,7 @@ function getBindingFunc(binding, context) {
     }
 }
 
-},{"ampersand-dom":140,"key-tree-store":141,"matches-selector":155}],140:[function(require,module,exports){
+},{"ampersand-dom":141,"key-tree-store":142,"matches-selector":156}],141:[function(require,module,exports){
 ;if (typeof window !== "undefined") {  window.ampersand = window.ampersand || {};  window.ampersand["ampersand-dom"] = window.ampersand["ampersand-dom"] || [];  window.ampersand["ampersand-dom"].push("1.2.7");}
 var dom = module.exports = {
     text: function (el, val) {
@@ -6787,7 +6897,7 @@ function hide (el) {
     el.style.display = 'none';
 }
 
-},{}],141:[function(require,module,exports){
+},{}],142:[function(require,module,exports){
 var slice = Array.prototype.slice;
 
 // our constructor
@@ -6869,19 +6979,19 @@ KeyTreeStore.prototype.run = function (keypath, context) {
 
 module.exports = KeyTreeStore;
 
-},{}],142:[function(require,module,exports){
-arguments[4][126][0].apply(exports,arguments)
-},{"array-next":143,"backbone-events-standalone":145,"dup":126,"key-tree-store":146,"underscore":147}],143:[function(require,module,exports){
+},{}],143:[function(require,module,exports){
 arguments[4][127][0].apply(exports,arguments)
-},{"dup":127}],144:[function(require,module,exports){
-arguments[4][122][0].apply(exports,arguments)
-},{"dup":122}],145:[function(require,module,exports){
+},{"array-next":144,"backbone-events-standalone":146,"dup":127,"key-tree-store":147,"underscore":148}],144:[function(require,module,exports){
+arguments[4][128][0].apply(exports,arguments)
+},{"dup":128}],145:[function(require,module,exports){
 arguments[4][123][0].apply(exports,arguments)
-},{"./backbone-events-standalone":144,"dup":123}],146:[function(require,module,exports){
-arguments[4][130][0].apply(exports,arguments)
-},{"dup":130}],147:[function(require,module,exports){
+},{"dup":123}],146:[function(require,module,exports){
+arguments[4][124][0].apply(exports,arguments)
+},{"./backbone-events-standalone":145,"dup":124}],147:[function(require,module,exports){
 arguments[4][131][0].apply(exports,arguments)
 },{"dup":131}],148:[function(require,module,exports){
+arguments[4][132][0].apply(exports,arguments)
+},{"dup":132}],149:[function(require,module,exports){
 
 /**
  * Expose `parse`.
@@ -6990,7 +7100,7 @@ function parse(html, doc) {
   return fragment;
 }
 
-},{}],149:[function(require,module,exports){
+},{}],150:[function(require,module,exports){
 
 /**
  * Module dependencies.
@@ -7170,7 +7280,7 @@ function parse(event) {
   }
 }
 
-},{"component-event":150,"delegate-events":151}],150:[function(require,module,exports){
+},{"component-event":151,"delegate-events":152}],151:[function(require,module,exports){
 var bind = window.addEventListener ? 'addEventListener' : 'attachEvent',
     unbind = window.removeEventListener ? 'removeEventListener' : 'detachEvent',
     prefix = bind !== 'addEventListener' ? 'on' : '';
@@ -7206,7 +7316,7 @@ exports.unbind = function(el, type, fn, capture){
   el[unbind](prefix + type, fn, capture || false);
   return fn;
 };
-},{}],151:[function(require,module,exports){
+},{}],152:[function(require,module,exports){
 /**
  * Module dependencies.
  */
@@ -7258,7 +7368,7 @@ exports.unbind = function(el, type, fn, capture){
   event.unbind(el, type, fn, capture);
 };
 
-},{"closest":152,"event":150}],152:[function(require,module,exports){
+},{"closest":153,"event":151}],153:[function(require,module,exports){
 var matches = require('matches-selector')
 
 module.exports = function (element, selector, checkYoSelf) {
@@ -7270,7 +7380,7 @@ module.exports = function (element, selector, checkYoSelf) {
   }
 }
 
-},{"matches-selector":153}],153:[function(require,module,exports){
+},{"matches-selector":154}],154:[function(require,module,exports){
 
 /**
  * Element prototype.
@@ -7311,7 +7421,7 @@ function match(el, selector) {
   }
   return false;
 }
-},{}],154:[function(require,module,exports){
+},{}],155:[function(require,module,exports){
 module.exports = get;
 
 function get (context, path) {
@@ -7334,7 +7444,7 @@ function get (context, path) {
   return result;
 }
 
-},{}],155:[function(require,module,exports){
+},{}],156:[function(require,module,exports){
 'use strict';
 
 var proto = Element.prototype;
@@ -7364,9 +7474,9 @@ function match(el, selector) {
   }
   return false;
 }
-},{}],156:[function(require,module,exports){
-arguments[4][138][0].apply(exports,arguments)
-},{"dup":138}],157:[function(require,module,exports){
+},{}],157:[function(require,module,exports){
+arguments[4][139][0].apply(exports,arguments)
+},{"dup":139}],158:[function(require,module,exports){
 /*!
   * domready (c) Dustin Diaz 2014 - License MIT
   */
@@ -7398,9 +7508,9 @@ arguments[4][138][0].apply(exports,arguments)
 
 });
 
-},{}],158:[function(require,module,exports){
+},{}],159:[function(require,module,exports){
 module.exports = require('cssify');
-},{"cssify":159}],159:[function(require,module,exports){
+},{"cssify":160}],160:[function(require,module,exports){
 module.exports = function (css, customDocument) {
   var doc = customDocument || document;
   if (doc.createStyleSheet) {

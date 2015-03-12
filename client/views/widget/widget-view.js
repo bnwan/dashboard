@@ -1,5 +1,4 @@
 require('./style/style.scss');
-var clone = require('amp-clone');
 var app = require('ampersand-app');
 var AmpersandView = require('ampersand-view');
 var template = require('./templates/widget-template.html');

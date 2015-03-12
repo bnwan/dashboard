@@ -25,6 +25,6 @@ module.exports = AmpersandView.extend({
 	},
 	
 	select: function(widgetModel){
-		app.trigger('widget:add', widgetModel);
+		app.trigger('widget:add', widgetModel.name);
 	}
 });
